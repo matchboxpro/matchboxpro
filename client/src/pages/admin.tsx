@@ -724,10 +724,10 @@ export default function Admin() {
 
                 {/* Table Header */}
                 <div className="pt-4 border-t">
-                  <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '1fr 2fr 1fr'}}>
+                  <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '80px 1fr 120px'}}>
                     <div>Numero</div>
                     <div>Descrizione</div>
-                    <div>Azioni</div>
+                    <div className="text-right">Azioni</div>
                   </div>
                   
                   {/* Stickers List */}
@@ -740,14 +740,14 @@ export default function Admin() {
                   ) : (
                     <div className="space-y-2 max-h-[300px] overflow-y-auto mt-2">
                       {importedStickers.map((sticker) => (
-                        <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '1fr 2fr 1fr'}}>
+                        <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '80px 1fr 120px'}}>
                           <div className="font-mono text-sm text-[#05637b] font-medium">
                             {sticker.number}
                           </div>
-                          <div className="text-sm text-[#052b3e]">
+                          <div className="text-sm text-[#052b3e] break-words">
                             {sticker.description || "Senza descrizione"}
                           </div>
-                          <div className="flex items-center space-x-2">
+                          <div className="flex items-center justify-end space-x-2">
                             <Button
                               size="sm"
                               variant="outline"
