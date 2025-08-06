@@ -292,6 +292,23 @@ function StickerRow({
   onStatusChange: (stickerId: string, status: "yes" | "no" | "double") => void;
   onNameClick: () => void;
 }) {
+  const handleStatusChange = (newStatus: "yes" | "no" | "double") => {
+    // Regola importante: DOPPIA può essere flaggata solo se SI è già flaggato
+    if (newStatus === "double" && status !== "yes") {
+      // Prima flagga SI, poi DOPPIA
+      onStatusChange(sticker.id, "yes");
+      setTimeout(() => {
+        onStatusChange(sticker.id, "double");
+      }, 100);
+      return;
+    }
+    
+    onStatusChange(sticker.id, newStatus);
+  };
+
+  // Determina se il pulsante DOPPIA deve essere disabilitato
+  const isDoubleDisabled = status !== "yes" && status !== "double";
+
   return (
     <Card className="bg-[#05637b] border-0 shadow-sm">
       <CardContent className="p-4">
@@ -313,11 +330,11 @@ function StickerRow({
           <div className="flex items-center gap-3">
             <Button
               size="lg"
-              variant={status === "yes" ? "default" : "outline"}
-              onClick={() => onStatusChange(sticker.id, "yes")}
-              className={`h-12 w-12 p-0 rounded-xl ${
-                status === "yes" 
-                  ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-lg" 
+              variant="outline"
+              onClick={() => handleStatusChange("yes")}
+              className={`h-12 w-12 p-0 rounded-xl transition-all ${
+                status === "yes" || status === "double"
+                  ? "bg-green-600 border-green-600 text-white shadow-lg" 
                   : "border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-white/90"
               }`}
             >
@@ -325,11 +342,11 @@ function StickerRow({
             </Button>
             <Button
               size="lg"
-              variant={status === "no" ? "default" : "outline"}
-              onClick={() => onStatusChange(sticker.id, "no")}
-              className={`h-12 w-12 p-0 rounded-xl ${
+              variant="outline"
+              onClick={() => handleStatusChange("no")}
+              className={`h-12 w-12 p-0 rounded-xl transition-all ${
                 status === "no" 
-                  ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-lg" 
+                  ? "bg-red-600 border-red-600 text-white shadow-lg" 
                   : "border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-white/90"
               }`}
             >
@@ -337,12 +354,15 @@ function StickerRow({
             </Button>
             <Button
               size="lg"
-              variant={status === "double" ? "default" : "outline"}
-              onClick={() => onStatusChange(sticker.id, "double")}
-              className={`h-12 w-12 p-0 rounded-xl ${
+              variant="outline"
+              onClick={() => handleStatusChange("double")}
+              disabled={isDoubleDisabled}
+              className={`h-12 w-12 p-0 rounded-xl transition-all ${
                 status === "double" 
-                  ? "bg-[#d4a504] hover:bg-[#d4a504]/90 text-white border-[#d4a504] shadow-lg" 
-                  : "border-2 border-[#d4a504] text-[#d4a504] hover:bg-[#d4a504] hover:text-white bg-white/90"
+                  ? "bg-[#d4a504] border-[#d4a504] text-white shadow-lg" 
+                  : isDoubleDisabled
+                    ? "border-2 border-gray-400 text-gray-400 bg-gray-200 cursor-not-allowed opacity-50"
+                    : "border-2 border-[#d4a504] text-[#d4a504] hover:bg-[#d4a504] hover:text-white bg-white/90"
               }`}
             >
               <Copy className="w-6 h-6" />
