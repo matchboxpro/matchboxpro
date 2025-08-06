@@ -49,10 +49,15 @@ export default function Match() {
   if (!user?.albumSelezionato) {
     return (
       <div className="min-h-screen bg-brand-bianco pb-20">
-        <MobileHeader
-          title="Trova Match"
-          onBack={() => setLocation("/")}
-        />
+        <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+          <div className="flex items-center justify-center">
+            <img 
+              src="/matchbox-logo.png" 
+              alt="MATCHBOX" 
+              className="h-10 w-auto"
+            />
+          </div>
+        </div>
         <div className="p-4 text-center">
           <p className="text-brand-bianco/80 mb-4">Seleziona un album attivo per trovare match</p>
           <Button 
@@ -68,11 +73,15 @@ export default function Match() {
 
   return (
     <div className="min-h-screen bg-brand-bianco pb-20">
-      <MobileHeader
-        title="Trova Match"
-        subtitle="Trova collezionisti compatibili"
-        onBack={() => setLocation("/")}
-      />
+      <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+        <div className="flex items-center justify-center">
+          <img 
+            src="/matchbox-logo.png" 
+            alt="MATCHBOX" 
+            className="h-10 w-auto"
+          />
+        </div>
+      </div>
 
       {/* Filter Options */}
       <Card className="m-4">
