@@ -67,13 +67,12 @@ export default function Login() {
       <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-48 h-32 mx-auto mb-6 flex items-center justify-center">
-              <div className="w-32 h-32 bg-brand-bianco rounded-2xl flex items-center justify-center shadow-lg">
-                <div className="text-center">
-                  <div className="text-4xl mb-2">⚡</div>
-                  <div className="text-brand-nero font-bold text-lg">MATCHBOX</div>
-                </div>
-              </div>
+            <div className="w-60 h-44 mx-auto mb-6 flex items-center justify-center">
+              <img 
+                src="/matchbox-logo.png" 
+                alt="MATCHBOX"
+                className="w-full h-full object-contain"
+              />
             </div>
             <p className="text-brand-bianco/90 text-lg mb-6">Scambia le tue figurine Panini</p>
           </div>
