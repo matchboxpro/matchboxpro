@@ -32,7 +32,13 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
           <span className="text-xs">Match</span>
         </button>
         <button
-          onClick={() => onNavigate("/album")}
+          onClick={() => {
+            onNavigate("/album");
+            // Force reload to reset album selection if we're already on the album page
+            if (window.location.pathname === "/album") {
+              window.location.reload();
+            }
+          }}
           className={`flex flex-col items-center py-2 ${
             isActive("/album") ? "text-brand-giallo" : "text-brand-bianco"
           }`}

@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { ChevronRight, Check, X, Copy } from "lucide-react";
@@ -12,6 +13,7 @@ export default function Album() {
   const [, setLocation] = useLocation();
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
+  const [expandedSticker, setExpandedSticker] = useState<any | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -225,6 +227,7 @@ export default function Album() {
                 onStatusChange={(stickerId, status) => 
                   updateStickerMutation.mutate({ stickerId, status })
                 }
+                onNameClick={() => setExpandedSticker(sticker)}
               />
             ))}
           </div>
@@ -242,6 +245,22 @@ export default function Album() {
           Admin
         </Button>
       </div>
+
+      {/* Expanded Sticker Dialog */}
+      <Dialog open={!!expandedSticker} onOpenChange={() => setExpandedSticker(null)}>
+        <DialogContent className="bg-[#05637b] border-0 text-white">
+          <DialogHeader>
+            <DialogTitle className="text-[#f8b400] text-xl">
+              Figurina #{expandedSticker?.number}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <p className="text-white text-lg leading-relaxed">
+              {expandedSticker?.name || "Senza descrizione"}
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
@@ -250,11 +269,13 @@ export default function Album() {
 function StickerRow({ 
   sticker, 
   status, 
-  onStatusChange 
+  onStatusChange,
+  onNameClick
 }: { 
   sticker: any; 
   status?: string; 
   onStatusChange: (stickerId: string, status: "yes" | "no" | "double") => void;
+  onNameClick: () => void;
 }) {
   return (
     <Card className="bg-[#05637b] border-0 shadow-sm">
@@ -268,8 +289,8 @@ function StickerRow({
             </div>
           </div>
           
-          <div className="flex-1 min-w-0">
-            <span className="text-white text-base font-medium block truncate">
+          <div className="flex-1 min-w-0 cursor-pointer" onClick={onNameClick}>
+            <span className="text-white text-base font-medium block truncate hover:text-[#f8b400] transition-colors">
               {sticker.name || "Senza descrizione"}
             </span>
           </div>
