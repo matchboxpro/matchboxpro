@@ -652,22 +652,12 @@ export default function Admin() {
 
           {/* Sticker Management Modal */}
           <Dialog open={showStickerModal} onOpenChange={setShowStickerModal}>
-            <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto bg-white" hideClose>
+            <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto bg-white">{/* Removed hideClose prop */}
               <DialogHeader className="border-b pb-4">
-                <div className="flex items-center justify-between">
-                  <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
-                    <Image className="w-5 h-5 text-[#05637b]" />
-                    Gestisci Figurine - {selectedAlbum?.name}
-                  </DialogTitle>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setShowStickerModal(false)}
-                    className="text-gray-400 hover:text-gray-600"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
+                <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
+                  <Image className="w-5 h-5 text-[#05637b]" />
+                  Gestisci Figurine - {selectedAlbum?.name}
+                </DialogTitle>
               </DialogHeader>
 
               <div className="space-y-6 py-4">
