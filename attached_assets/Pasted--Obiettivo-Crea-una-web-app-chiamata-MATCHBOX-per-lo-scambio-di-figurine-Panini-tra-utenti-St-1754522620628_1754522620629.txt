@@ -1,0 +1,107 @@
+🚀 Obiettivo: Crea una web app chiamata MATCHBOX per lo scambio di figurine Panini tra utenti.
+🧰 Strumenti da usare:
+Replit come ambiente di sviluppo
+Supabase come backend (auth, db, realtime)
+GitHub per il versionamento
+
+⚙️ Stack tecnologico richiesto:
+Frontend: HTML, CSS (mobile-first), JavaScript
+Backend: Supabase (auth + database + realtime subscriptions)
+Libreria opzionale: puoi usare librerie JS leggere se migliorano l'esperienza
+Nessun framework frontend pesante
+
+🗂️ Struttura del progetto:
+App mobile per utenti (responsive solo smartphone)
+Pannello admin accessibile solo da desktop
+Database centralizzato su Supabase
+Gestione login, figurine, album, match e chat
+
+🔐 Autenticazione utenti:
+Login via nickname e password (inizialmente)
+Salva su Supabase la data di primo accesso (startTrial)
+Campo isPremium predisposto ma non attivo al lancio
+Profilo utente:
+nickname (unico)
+cap
+raggioKm
+albumSelezionato
+startTrial
+isPremium
+role = "user" o "admin"
+
+📦 Funzionalità principali utenti:
+HOME: dashboard iniziale
+MATCH:
+Mostra elenco utenti compatibili (per CAP o totale)
+Crea algoritmo 1:1 per scambio figurine
+Ogni match mostra figurine mancanti/doppie
+Aggiungi pulsante “Matcha” → apre chat 1:1 tra utenti
+ALBUM:
+Mostra figurine dell’album attivo selezionato
+Ogni figurina ha 3 stati flaggabili: SI / NO / DOPPIA
+I dati vengono sincronizzati con l’album inserito dall’admin
+PROFILO:
+Campi modificabili: nickname, CAP, raggio, album attivo
+Visualizza lo stato premium ma non applica limitazioni per ora
+
+🧑‍💻 Admin Panel (solo desktop):
+Accesso solo per utenti con role === "admin"
+Non accessibile da utenti normali, né visibile nei menu
+Accesso solo da URL diretto (es. /admin-dashboard) o via app dedicata
+Funzionalità:
+Creazione nuovi album
+Inserimento lista figurine tramite copia/incolla
+Tabella generata con colonne: NUMERO | DESCRIZIONE | AZIONI (modifica/elimina)
+Visualizzazione:
+Segnalazioni utenti
+Errori inviati automaticamente dal frontend
+Esportazione dati (figurine, utenti, chat) in CSV/JSON
+
+💬 Chat tra utenti (match):
+Semplice chat testuale persistente tra due utenti
+Messaggi salvati in Supabase con timestamp
+Chat associata all’album attivo
+Realtime tramite Supabase
+
+🔒 Sicurezza & validazioni:
+Nickname → lunghezza min/max e caratteri ammessi
+CAP → solo numerico, 5 cifre italiane
+Figurine → solo valori presenti nella lista admin (numeri o codici alfanumerici)
+Protezioni anti-spam/bot:
+Rate limiting
+Controlli IP/dispositivo
+
+📆 Trial e Premium (già strutturati ma non attivi):
+Implementare logica per:
+Salvataggio data inizio prova (startTrial)
+Stato isPremium booleano
+Non attivare alcuna restrizione per ora
+L'attivazione sarà gestita manualmente da admin in un secondo momento
+
+🧠 MODALITÀ DI LAVORO – Segui questi step, uno alla volta:
+🔹 Step 1: Setup iniziale
+Crea progetto in Replit
+Crea tabelle in Supabase:
+users, albums, figurine, match, messaggi, segnalazioni, errori
+Imposta autenticazione Supabase (nickname/password)
+🔹 Step 2: Interfaccia utente
+Pagina login + HOME
+Profilo utente (modifica dati + selezione album)
+Pagina ALBUM con gestione flag figurine
+🔹 Step 3: Matching + Chat
+Algoritmo di match 1:1 per doppie/mancanti
+Pagina MATCH + pulsante "Matcha"
+Sistema di chat tra utenti (testuale, realtime)
+🔹 Step 4: Admin Panel
+Accesso solo admin (role check + URL separato)
+Inserimento album/figurine
+Visualizzazione errori + segnalazioni
+Esportazione dati
+🔹 Step 5: Trial/Premium (struttura)
+Aggiungi logica lato DB e app, ma non attivare restrizioni
+Controlli IP/device base per prevenzione abusi
+🔹 Step 6: Refactor e miglioramenti
+Logging automatico lato client → Supabase
+Validazioni finali + UI/UX
+
+✅ Al termine di ogni step, chiedi conferma prima di procedere al successivo. L’app deve essere scalabile, sicura e pronta per pubblicazione futura sugli store.

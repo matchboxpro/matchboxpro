@@ -246,6 +246,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/user-stickers", requireAuth, async (req, res) => {
+    try {
+      const { stickerId, status, albumId } = req.body;
+      
+      const userSticker = await storage.updateUserSticker(
+        (req.session as any).userId,
+        stickerId,
+        status
+      );
+      
+      res.json(userSticker);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      res.status(500).json({ message: "Errore nell'aggiornamento della figurina" });
+    }
+  });
+
   app.put("/api/user-stickers/:stickerId", requireAuth, async (req, res) => {
     try {
       const { status } = insertUserStickerSchema.pick({ status: true }).parse(req.body);

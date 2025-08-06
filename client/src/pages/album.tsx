@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { MobileHeader } from "@/components/ui/mobile-header";
-import { StickerCard } from "@/components/ui/sticker-card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { ChevronRight, Check, X, Copy } from "lucide-react";
 
 export default function Album() {
   const [, setLocation] = useLocation();
+  const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -17,23 +19,32 @@ export default function Album() {
     queryKey: ["/api/auth/me"],
   });
 
+  // Get all albums from admin
+  const { data: albums = [] } = useQuery({
+    queryKey: ["/api/albums"],
+  });
+
   const { data: userStickers = [] } = useQuery({
-    queryKey: ["/api/user-stickers", user?.albumSelezionato],
-    enabled: !!user?.albumSelezionato,
+    queryKey: ["/api/user-stickers", selectedAlbum],
+    enabled: !!selectedAlbum,
   });
 
   const { data: stickers = [] } = useQuery({
-    queryKey: ["/api/albums", user?.albumSelezionato, "stickers"],
-    enabled: !!user?.albumSelezionato,
+    queryKey: ["/api/albums", selectedAlbum, "stickers"],
+    enabled: !!selectedAlbum,
   });
 
   const updateStickerMutation = useMutation({
     mutationFn: async ({ stickerId, status }: { stickerId: string; status: "yes" | "no" | "double" }) => {
-      const response = await apiRequest("PUT", `/api/user-stickers/${stickerId}`, { status });
+      const response = await apiRequest("POST", "/api/user-stickers", { 
+        stickerId, 
+        status,
+        albumId: selectedAlbum 
+      });
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", user?.albumSelezionato] });
+      queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
       toast({
         title: "Aggiornato!",
         description: "Stato della figurina aggiornato",
@@ -48,10 +59,11 @@ export default function Album() {
     },
   });
 
-  if (!user?.albumSelezionato) {
+  // If no album selected, show album selection
+  if (!selectedAlbum) {
     return (
-      <div className="min-h-screen bg-brand-bianco pb-20">
-        <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+      <div className="min-h-screen bg-[#fff4d6] pb-20">
+        <div className="bg-[#05637b] border-b border-[#05637b] p-4">
           <div className="flex items-center justify-center">
             <img 
               src="/matchbox-logo.png" 
@@ -60,13 +72,56 @@ export default function Album() {
             />
           </div>
         </div>
-        <div className="p-4 text-center">
-          <p className="text-brand-bianco/80 mb-4">Seleziona un album attivo dal tuo profilo</p>
-          <Button 
-            onClick={() => setLocation("/profile")}
-            className="bg-brand-bianco hover:bg-brand-bianco/90 text-brand-nero"
+        
+        <div className="p-4">
+          <h2 className="text-xl font-bold text-[#052b3e] mb-6 text-center">
+            Seleziona un album attivo dal tuo profilo
+          </h2>
+          
+          {albums.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-[#052b3e]/70 mb-4">Nessun album disponibile</p>
+              <Button 
+                onClick={() => setLocation("/profile")}
+                className="bg-[#05637b] hover:bg-[#05637b]/90 text-white"
+              >
+                Vai al Profilo
+              </Button>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {albums.map((album: any) => (
+                <Card 
+                  key={album.id} 
+                  className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setSelectedAlbum(album.id)}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-white">{album.name}</h3>
+                        <p className="text-white/70 text-sm">
+                          {album.stickerCount || 0} figurine disponibili
+                        </p>
+                      </div>
+                      <ChevronRight className="w-6 h-6 text-[#f8b400]" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
+        
+        {/* Admin Button */}
+        <div className="fixed bottom-4 left-4">
+          <Button
+            onClick={() => window.location.href = '/admin'}
+            variant="ghost"
+            size="sm"
+            className="text-xs text-gray-400 hover:text-gray-600 opacity-50 hover:opacity-100 transition-opacity"
           >
-            Vai al Profilo
+            Admin
           </Button>
         </div>
       </div>
@@ -85,27 +140,45 @@ export default function Album() {
     return true;
   });
 
+  const selectedAlbumData = albums.find((album: any) => album.id === selectedAlbum);
+
   return (
-    <div className="min-h-screen bg-brand-bianco pb-20">
-      <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
-        <div className="flex items-center justify-center">
+    <div className="min-h-screen bg-[#fff4d6] pb-20">
+      <div className="bg-[#05637b] border-b border-[#05637b] p-4">
+        <div className="flex items-center justify-between">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSelectedAlbum(null)}
+            className="text-white hover:bg-white/10"
+          >
+            ← Album
+          </Button>
           <img 
             src="/matchbox-logo.png" 
             alt="MATCHBOX" 
             className="h-10 w-auto"
           />
+          <div className="w-16"></div> {/* Spacer */}
         </div>
+        
+        {selectedAlbumData && (
+          <div className="text-center mt-2">
+            <h1 className="text-lg font-bold text-white">{selectedAlbumData.name}</h1>
+            <p className="text-white/70 text-sm">{selectedAlbumData.stickerCount || 0} figurine</p>
+          </div>
+        )}
       </div>
 
       {/* Filter Tabs */}
-      <div className="bg-brand-azzurro border-b border-brand-bianco/20">
+      <div className="bg-[#05637b] border-b border-white/20">
         <div className="flex">
           <Button
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "all" 
-                ? "border-brand-giallo text-brand-giallo" 
-                : "border-transparent text-brand-bianco/60"
+                ? "border-[#f8b400] text-[#f8b400]" 
+                : "border-transparent text-white/60"
             }`}
             onClick={() => setFilter("all")}
           >
@@ -115,8 +188,8 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "missing" 
-                ? "border-brand-giallo text-brand-giallo" 
-                : "border-transparent text-brand-bianco/60"
+                ? "border-[#f8b400] text-[#f8b400]" 
+                : "border-transparent text-white/60"
             }`}
             onClick={() => setFilter("missing")}
           >
@@ -126,8 +199,8 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "double" 
-                ? "border-brand-giallo text-brand-giallo" 
-                : "border-transparent text-brand-bianco/60"
+                ? "border-[#f8b400] text-[#f8b400]" 
+                : "border-transparent text-white/60"
             }`}
             onClick={() => setFilter("double")}
           >
@@ -136,16 +209,16 @@ export default function Album() {
         </div>
       </div>
 
-      {/* Stickers Grid */}
+      {/* Stickers List */}
       <div className="p-4">
         {filteredStickers.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-brand-bianco/80">Nessuna figurina trovata</p>
+            <p className="text-[#052b3e]/70">Nessuna figurina trovata</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="space-y-2">
             {filteredStickers.map((sticker: any) => (
-              <StickerCard
+              <StickerRow
                 key={sticker.id}
                 sticker={sticker}
                 status={getUserStickerStatus(sticker.id)}
@@ -158,7 +231,7 @@ export default function Album() {
         )}
       </div>
       
-      {/* Admin Button - Discreto a fondo pagina */}
+      {/* Admin Button */}
       <div className="fixed bottom-4 left-4">
         <Button
           onClick={() => window.location.href = '/admin'}
@@ -170,5 +243,75 @@ export default function Album() {
         </Button>
       </div>
     </div>
+  );
+}
+
+// New component for sticker row with 3 status buttons
+function StickerRow({ 
+  sticker, 
+  status, 
+  onStatusChange 
+}: { 
+  sticker: any; 
+  status?: string; 
+  onStatusChange: (stickerId: string, status: "yes" | "no" | "double") => void;
+}) {
+  return (
+    <Card className="bg-[#05637b] border-0 shadow-sm">
+      <CardContent className="p-3">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="border-[#f8b400] text-[#f8b400] font-mono text-sm px-2 py-1">
+                {sticker.number}
+              </Badge>
+              <span className="text-white text-sm font-medium">{sticker.name || "Senza descrizione"}</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              variant={status === "yes" ? "default" : "outline"}
+              onClick={() => onStatusChange(sticker.id, "yes")}
+              className={`h-8 px-3 ${
+                status === "yes" 
+                  ? "bg-green-600 hover:bg-green-700 text-white border-green-600" 
+                  : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+              }`}
+            >
+              <Check className="w-3 h-3 mr-1" />
+              SI
+            </Button>
+            <Button
+              size="sm"
+              variant={status === "no" ? "default" : "outline"}
+              onClick={() => onStatusChange(sticker.id, "no")}
+              className={`h-8 px-3 ${
+                status === "no" 
+                  ? "bg-red-600 hover:bg-red-700 text-white border-red-600" 
+                  : "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+              }`}
+            >
+              <X className="w-3 h-3 mr-1" />
+              NO
+            </Button>
+            <Button
+              size="sm"
+              variant={status === "double" ? "default" : "outline"}
+              onClick={() => onStatusChange(sticker.id, "double")}
+              className={`h-8 px-3 ${
+                status === "double" 
+                  ? "bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] border-[#f8b400]" 
+                  : "border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
+              }`}
+            >
+              <Copy className="w-3 h-3 mr-1" />
+              DOPPIA
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
