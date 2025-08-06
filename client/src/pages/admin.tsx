@@ -21,9 +21,15 @@ export default function Admin() {
   const [activeSection, setActiveSection] = useState<"dashboard" | "albums" | "settings">("dashboard");
   const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
   const [showStickerModal, setShowStickerModal] = useState(false);
+  const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
   const [stickerFormData, setStickerFormData] = useState({
     stickers: "",
     paniniLink: ""
+  });
+  const [newAlbumData, setNewAlbumData] = useState({
+    name: "",
+    year: new Date().getFullYear(),
+    stickers: ""
   });
   const [importedStickers, setImportedStickers] = useState<Array<{id: string, number: string, description: string}>>([]);
   const [editingSticker, setEditingSticker] = useState<{id: string, number: string, description: string} | null>(null);
@@ -401,7 +407,10 @@ export default function Admin() {
                       <Image className="w-6 h-6 text-[#f8b400]" />
                       Gestione Album
                     </CardTitle>
-                    <Button className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-6">
+                    <Button 
+                      onClick={() => setShowNewAlbumModal(true)}
+                      className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-6"
+                    >
                       <Plus className="w-4 h-4 mr-2" />
                       Nuovo Album
                     </Button>
@@ -438,6 +447,16 @@ export default function Admin() {
                           <Button 
                             size="sm" 
                             variant="outline"
+                            onClick={() => {
+                              const newName = window.prompt("Modifica nome album:", album.name);
+                              if (newName && newName.trim() !== "") {
+                                // TODO: Implement edit album API call
+                                toast({ 
+                                  title: "Funzione in sviluppo", 
+                                  description: "Modifica album sarà presto disponibile" 
+                                });
+                              }
+                            }}
                             className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
                           >
                             Modifica
@@ -445,6 +464,15 @@ export default function Admin() {
                           <Button 
                             size="sm" 
                             variant="outline"
+                            onClick={() => {
+                              if (window.confirm(`Sei sicuro di voler eliminare l'album "${album.name}"? Questa azione eliminerà anche tutte le figurine associate.`)) {
+                                // TODO: Implement delete album API call
+                                toast({ 
+                                  title: "Funzione in sviluppo", 
+                                  description: "Eliminazione album sarà presto disponibile" 
+                                });
+                              }
+                            }}
                             className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
                           >
                             Elimina
@@ -550,6 +578,7 @@ export default function Admin() {
           )}
 
           {/* Sticker Management Modal */}
+          {showStickerModal && (
           <Dialog open={showStickerModal} onOpenChange={setShowStickerModal}>
             <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto bg-white">{/* Removed hideClose prop */}
               <DialogHeader className="border-b pb-4">
@@ -684,6 +713,108 @@ export default function Admin() {
               </div>
             </DialogContent>
           </Dialog>
+        )}
+
+        {/* New Album Modal */}
+        {showNewAlbumModal && (
+          <Dialog open={showNewAlbumModal} onOpenChange={setShowNewAlbumModal}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader className="border-b pb-4">
+                <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-[#05637b]" />
+                  Crea Nuovo Album
+                </DialogTitle>
+              </DialogHeader>
+
+              <div className="space-y-6 py-4">
+                {/* Album Name */}
+                <div className="space-y-3">
+                  <Label className="text-[#052b3e] font-medium">
+                    Nome Album:
+                  </Label>
+                  <Input
+                    placeholder="Es: Panini Calciatori 2025"
+                    value={newAlbumData.name}
+                    onChange={(e) => setNewAlbumData(prev => ({ ...prev, name: e.target.value }))}
+                    className="border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
+                  />
+                </div>
+
+                {/* Album Year */}
+                <div className="space-y-3">
+                  <Label className="text-[#052b3e] font-medium">
+                    Anno:
+                  </Label>
+                  <Input
+                    type="number"
+                    placeholder="2025"
+                    value={newAlbumData.year}
+                    onChange={(e) => setNewAlbumData(prev => ({ ...prev, year: parseInt(e.target.value) || new Date().getFullYear() }))}
+                    className="border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
+                  />
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center justify-end space-x-3 pt-4 border-t">
+                  <Button 
+                    variant="outline"
+                    onClick={() => {
+                      setShowNewAlbumModal(false);
+                      setNewAlbumData({ name: "", year: new Date().getFullYear(), stickers: "" });
+                    }}
+                    className="px-6"
+                  >
+                    Annulla
+                  </Button>
+                  <Button 
+                    onClick={async () => {
+                      if (!newAlbumData.name.trim()) {
+                        toast({
+                          title: "Errore",
+                          description: "Inserisci il nome dell'album",
+                          variant: "destructive"
+                        });
+                        return;
+                      }
+
+                      try {
+                        const response = await apiRequest("POST", "/api/albums", {
+                          name: newAlbumData.name.trim(),
+                          year: newAlbumData.year
+                        });
+
+                        if (response.ok) {
+                          // Refresh albums list
+                          queryClient.invalidateQueries({ queryKey: ["/api/albums"] });
+                          
+                          setShowNewAlbumModal(false);
+                          setNewAlbumData({ name: "", year: new Date().getFullYear(), stickers: "" });
+                          
+                          toast({
+                            title: "Album creato",
+                            description: `L'album "${newAlbumData.name}" è stato creato con successo`
+                          });
+                        } else {
+                          throw new Error("Errore nella creazione");
+                        }
+                      } catch (error) {
+                        toast({
+                          title: "Errore",
+                          description: "Errore nella creazione dell'album",
+                          variant: "destructive"
+                        });
+                      }
+                    }}
+                    className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Crea Album
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
         </main>
       </div>
     </div>
