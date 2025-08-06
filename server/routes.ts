@@ -18,13 +18,8 @@ const requireAuth = (req: any, res: any, next: any) => {
 };
 
 const requireAdmin = async (req: any, res: any, next: any) => {
-  if (!req.session?.userId) {
-    return res.status(401).json({ message: "Authentication required" });
-  }
-  
-  const user = await storage.getUser(req.session.userId);
-  if (!user || user.role !== "admin") {
-    return res.status(403).json({ message: "Admin access required" });
+  if (!req.session?.adminAuth) {
+    return res.status(401).json({ message: "Admin authentication required" });
   }
   
   next();
@@ -47,6 +42,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       },
     })
   );
+
+  // Admin auth route
+  app.post("/api/auth/admin", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (username === "ADMIN" && password === "1404") {
+        (req.session as any).adminAuth = true;
+        res.json({ success: true, message: "Admin authenticated" });
+      } else {
+        res.status(401).json({ message: "Invalid admin credentials" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+
+  app.post("/api/auth/admin-logout", (req, res) => {
+    (req.session as any).adminAuth = false;
+    res.json({ success: true, message: "Admin logged out" });
+  });
+
+  app.get("/api/auth/admin-status", (req, res) => {
+    res.json({ authenticated: !!(req.session as any)?.adminAuth });
+  });
 
   // Auth routes
   app.post("/api/auth/register", async (req, res) => {

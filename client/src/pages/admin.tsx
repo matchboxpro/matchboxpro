@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download } from "lucide-react";
+import { Users, Zap, Image, AlertTriangle, Plus, Download, LogOut } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,80 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
+function AdminLogin({ onLogin }: { onLogin: () => void }) {
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const { toast } = useToast();
+
+  const loginMutation = useMutation({
+    mutationFn: async (data: { username: string; password: string }) => {
+      const response = await apiRequest("POST", "/api/auth/admin", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      onLogin();
+      toast({
+        title: "Accesso effettuato",
+        description: "Benvenuto nell'area amministrativa",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Errore",
+        description: "Credenziali non valide",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginMutation.mutate(credentials);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#fff4d6] flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-[#05637b] border-0 shadow-2xl">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl text-white">MATCHBOX Admin</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label className="text-white">Username</Label>
+              <Input
+                type="text"
+                value={credentials.username}
+                onChange={(e) => setCredentials(prev => ({ ...prev, username: e.target.value }))}
+                placeholder="ADMIN"
+                className="bg-white"
+                required
+              />
+            </div>
+            <div>
+              <Label className="text-white">Password</Label>
+              <Input
+                type="password"
+                value={credentials.password}
+                onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
+                placeholder="1404"
+                className="bg-white"
+                required
+              />
+            </div>
+            <Button 
+              type="submit" 
+              className="w-full bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e]"
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? "Accesso..." : "Accedi"}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 export default function Admin() {
   const [albumForm, setAlbumForm] = useState({
     name: "",
@@ -20,23 +94,37 @@ export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: user } = useQuery({
-    queryKey: ["/api/auth/me"],
+  const { data: adminStatus } = useQuery({
+    queryKey: ["/api/auth/admin-status"],
   });
 
   const { data: stats } = useQuery({
     queryKey: ["/api/admin/stats"],
-    enabled: user?.role === "admin",
+    enabled: adminStatus?.authenticated,
   });
 
   const { data: albums = [] } = useQuery({
     queryKey: ["/api/albums"],
-    enabled: user?.role === "admin",
+    enabled: adminStatus?.authenticated,
   });
 
   const { data: reports = [] } = useQuery({
     queryKey: ["/api/admin/reports"],
-    enabled: user?.role === "admin",
+    enabled: adminStatus?.authenticated,
+  });
+
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const response = await apiRequest("POST", "/api/auth/admin-logout");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/auth/admin-status"] });
+      toast({
+        title: "Disconnesso",
+        description: "Sessione admin terminata",
+      });
+    },
   });
 
   const createAlbumMutation = useMutation({
@@ -119,19 +207,9 @@ export default function Admin() {
     },
   });
 
-  // Redirect if not admin
-  if (user && user.role !== "admin") {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <Card className="w-96">
-          <CardContent className="pt-6 text-center">
-            <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Accesso Negato</h2>
-            <p className="text-gray-600">Non hai i permessi per accedere a questa pagina.</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
+  // Show admin login if not authenticated
+  if (!adminStatus?.authenticated) {
+    return <AdminLogin onLogin={() => queryClient.invalidateQueries({ queryKey: ["/api/auth/admin-status"] })} />;
   }
 
   const handleCreateAlbum = (e: React.FormEvent) => {
@@ -154,18 +232,29 @@ export default function Admin() {
         <nav className="w-64 bg-white shadow-lg min-h-screen">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
-              <div className="w-10 h-10 bg-brand-teal rounded-lg flex items-center justify-center">
-                <Zap className="text-brand-orange w-5 h-5" />
+              <div className="w-10 h-10 bg-brand-azzurro rounded-lg flex items-center justify-center">
+                <Zap className="text-white w-5 h-5" />
               </div>
               <div>
-                <h1 className="font-bold text-gray-900">MATCHNODE</h1>
+                <h1 className="font-bold text-gray-900">MATCHBOX</h1>
                 <p className="text-sm text-gray-600">Admin Panel</p>
               </div>
             </div>
             
+            {/* Logout Button */}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => logoutMutation.mutate()}
+              className="w-full mb-6 flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </Button>
+            
             <ul className="space-y-2">
               <li>
-                <div className="flex items-center space-x-3 px-4 py-3 text-brand-teal bg-cyan-50 rounded-lg">
+                <div className="flex items-center space-x-3 px-4 py-3 text-brand-azzurro bg-blue-50 rounded-lg">
                   <Users className="w-4 h-4" />
                   <span>Dashboard</span>
                 </div>
