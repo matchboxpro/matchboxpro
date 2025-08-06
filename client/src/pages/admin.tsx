@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download, LogOut, Settings } from "lucide-react";
+import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,80 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-function AdminLogin({ onLogin }: { onLogin: () => void }) {
-  const [credentials, setCredentials] = useState({ username: "", password: "" });
-  const { toast } = useToast();
-
-  const loginMutation = useMutation({
-    mutationFn: async (data: { username: string; password: string }) => {
-      const response = await apiRequest("POST", "/api/auth/admin", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      onLogin();
-      toast({
-        title: "Accesso effettuato",
-        description: "Benvenuto nell'area amministrativa",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Errore",
-        description: "Credenziali non valide",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    loginMutation.mutate(credentials);
-  };
-
-  return (
-    <div className="min-h-screen bg-[#fff4d6] flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-[#05637b] border-0 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl text-white">MATCHBOX Admin</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label className="text-white">Username</Label>
-              <Input
-                type="text"
-                value={credentials.username}
-                onChange={(e) => setCredentials(prev => ({ ...prev, username: e.target.value }))}
-                placeholder="ADMIN"
-                className="bg-white"
-                required
-              />
-            </div>
-            <div>
-              <Label className="text-white">Password</Label>
-              <Input
-                type="password"
-                value={credentials.password}
-                onChange={(e) => setCredentials(prev => ({ ...prev, password: e.target.value }))}
-                placeholder="1404"
-                className="bg-white"
-                required
-              />
-            </div>
-            <Button 
-              type="submit" 
-              className="w-full bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e]"
-              disabled={loginMutation.isPending}
-            >
-              {loginMutation.isPending ? "Accesso..." : "Accedi"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-
 export default function Admin() {
   const [albumForm, setAlbumForm] = useState({
     name: "",
@@ -94,37 +20,16 @@ export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: adminStatus } = useQuery({
-    queryKey: ["/api/auth/admin-status"],
-  });
-
   const { data: stats } = useQuery({
     queryKey: ["/api/admin/stats"],
-    enabled: adminStatus?.authenticated,
   });
 
   const { data: albums = [] } = useQuery({
     queryKey: ["/api/albums"],
-    enabled: adminStatus?.authenticated,
   });
 
   const { data: reports = [] } = useQuery({
     queryKey: ["/api/admin/reports"],
-    enabled: adminStatus?.authenticated,
-  });
-
-  const logoutMutation = useMutation({
-    mutationFn: async () => {
-      const response = await apiRequest("POST", "/api/auth/admin-logout");
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/auth/admin-status"] });
-      toast({
-        title: "Disconnesso",
-        description: "Sessione admin terminata",
-      });
-    },
   });
 
   const createAlbumMutation = useMutation({
@@ -207,10 +112,7 @@ export default function Admin() {
     },
   });
 
-  // Show admin login if not authenticated
-  if (!adminStatus?.authenticated) {
-    return <AdminLogin onLogin={() => queryClient.invalidateQueries({ queryKey: ["/api/auth/admin-status"] })} />;
-  }
+
 
   const handleCreateAlbum = (e: React.FormEvent) => {
     e.preventDefault();
@@ -240,17 +142,7 @@ export default function Admin() {
                 <p className="text-sm text-gray-600">Admin Panel</p>
               </div>
             </div>
-            
-            {/* Logout Button */}
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => logoutMutation.mutate()}
-              className="w-full mb-6 flex items-center gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </Button>
+
             
             <ul className="space-y-2">
               <li>
