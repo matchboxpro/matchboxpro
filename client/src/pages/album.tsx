@@ -258,56 +258,58 @@ function StickerRow({
 }) {
   return (
     <Card className="bg-[#05637b] border-0 shadow-sm">
-      <CardContent className="p-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-3">
-              <Badge variant="outline" className="border-[#f8b400] text-[#f8b400] font-mono text-sm px-2 py-1">
+      <CardContent className="p-4">
+        <div className="flex items-center gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+              <span className="text-[#052b3e] font-bold text-lg font-mono">
                 {sticker.number}
-              </Badge>
-              <span className="text-white text-sm font-medium">{sticker.name || "Senza descrizione"}</span>
+              </span>
             </div>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex-1 min-w-0">
+            <span className="text-white text-base font-medium block truncate">
+              {sticker.name || "Senza descrizione"}
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-3">
             <Button
-              size="sm"
+              size="lg"
               variant={status === "yes" ? "default" : "outline"}
               onClick={() => onStatusChange(sticker.id, "yes")}
-              className={`h-8 px-3 ${
+              className={`h-12 w-12 p-0 rounded-xl ${
                 status === "yes" 
-                  ? "bg-green-600 hover:bg-green-700 text-white border-green-600" 
-                  : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                  ? "bg-green-600 hover:bg-green-700 text-white border-green-600 shadow-lg" 
+                  : "border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-white/90"
               }`}
             >
-              <Check className="w-3 h-3 mr-1" />
-              SI
+              <Check className="w-6 h-6" />
             </Button>
             <Button
-              size="sm"
+              size="lg"
               variant={status === "no" ? "default" : "outline"}
               onClick={() => onStatusChange(sticker.id, "no")}
-              className={`h-8 px-3 ${
+              className={`h-12 w-12 p-0 rounded-xl ${
                 status === "no" 
-                  ? "bg-red-600 hover:bg-red-700 text-white border-red-600" 
-                  : "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                  ? "bg-red-600 hover:bg-red-700 text-white border-red-600 shadow-lg" 
+                  : "border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-white/90"
               }`}
             >
-              <X className="w-3 h-3 mr-1" />
-              NO
+              <X className="w-6 h-6" />
             </Button>
             <Button
-              size="sm"
+              size="lg"
               variant={status === "double" ? "default" : "outline"}
               onClick={() => onStatusChange(sticker.id, "double")}
-              className={`h-8 px-3 ${
+              className={`h-12 w-12 p-0 rounded-xl ${
                 status === "double" 
-                  ? "bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] border-[#f8b400]" 
-                  : "border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
+                  ? "bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] border-[#f8b400] shadow-lg" 
+                  : "border-2 border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e] bg-white/90"
               }`}
             >
-              <Copy className="w-3 h-3 mr-1" />
-              DOPPIA
+              <Copy className="w-6 h-6" />
             </Button>
           </div>
         </div>
