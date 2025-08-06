@@ -67,11 +67,15 @@ export default function Login() {
       <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-48 h-36 mx-auto mb-4 flex items-center justify-center">
+            <div className="w-48 h-40 mx-auto mb-4 flex items-center justify-center bg-white/10 rounded-lg">
               <img 
-                src="/attached_assets/matchtext_1754509586835.png" 
-                alt="MATCHBOX"
-                className="w-full h-full object-contain"
+                src="/matchbox-logo.png" 
+                alt="MATCHBOX Logo"
+                className="max-w-full max-h-full object-contain"
+                onError={(e) => {
+                  console.error('Logo failed to load:', e);
+                }}
+                onLoad={() => console.log('Logo caricato con successo')}
               />
             </div>
             <p className="text-brand-bianco/90 text-lg">Scambia le tue figurine Panini</p>
