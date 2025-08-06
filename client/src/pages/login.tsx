@@ -63,8 +63,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-azzurro flex flex-col justify-center p-6">
-      <Card className="w-full max-w-md mx-auto border-brand-bianco bg-brand-bianco">
+    <div className="min-h-screen bg-brand-bianco flex flex-col justify-center p-6">
+      <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
             <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
@@ -74,8 +74,8 @@ export default function Login() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <h1 className="text-2xl font-bold text-brand-nero mb-2">MATCHBOX</h1>
-            <p className="text-brand-nero/80">Scambia le tue figurine Panini</p>
+            <h1 className="text-2xl font-bold text-brand-bianco mb-2">MATCHBOX</h1>
+            <p className="text-brand-bianco/80">Scambia le tue figurine Panini</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -120,7 +120,7 @@ export default function Login() {
 
             <Button 
               type="submit" 
-              className="w-full bg-brand-nero hover:bg-brand-nero/90 text-brand-bianco"
+              className="w-full bg-brand-bianco hover:bg-brand-bianco/90 text-brand-nero"
               disabled={authMutation.isPending}
             >
               {authMutation.isPending 
@@ -138,7 +138,7 @@ export default function Login() {
             </p>
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="text-brand-nero font-medium hover:underline"
+              className="text-brand-bianco font-medium hover:underline"
             >
               {isRegister ? "Accedi" : "Registrati"}
             </button>

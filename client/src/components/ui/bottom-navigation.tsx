@@ -11,12 +11,12 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
   const isActive = (path: string) => location === path;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-brand-bianco border-t border-brand-nero/20 max-w-md mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 bg-brand-azzurro border-t border-brand-azzurro max-w-md mx-auto">
       <div className="grid grid-cols-4 py-2">
         <button
           onClick={() => onNavigate("/")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/") ? "text-brand-nero" : "text-brand-nero/60"
+            isActive("/") ? "text-brand-bianco" : "text-brand-bianco/60"
           }`}
         >
           <Home className="w-5 h-5 mb-1" />
@@ -25,7 +25,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/match")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/match") ? "text-brand-nero" : "text-brand-nero/60"
+            isActive("/match") ? "text-brand-bianco" : "text-brand-bianco/60"
           }`}
         >
           <Zap className="w-5 h-5 mb-1" />
@@ -34,7 +34,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/album")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/album") ? "text-brand-nero" : "text-brand-nero/60"
+            isActive("/album") ? "text-brand-bianco" : "text-brand-bianco/60"
           }`}
         >
           <Image className="w-5 h-5 mb-1" />
@@ -43,7 +43,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/profile")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/profile") ? "text-brand-nero" : "text-brand-nero/60"
+            isActive("/profile") ? "text-brand-bianco" : "text-brand-bianco/60"
           }`}
         >
           <User className="w-5 h-5 mb-1" />

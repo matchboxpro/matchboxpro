@@ -85,14 +85,14 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-brand-azzurro flex items-center justify-center">
-        <p className="text-brand-bianco/80">Caricamento...</p>
+      <div className="min-h-screen bg-brand-bianco flex items-center justify-center">
+        <p className="text-brand-nero/60">Caricamento...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-brand-azzurro pb-20">
+    <div className="min-h-screen bg-brand-bianco pb-20">
       <MobileHeader
         title="Profilo"
         subtitle="Gestisci le tue impostazioni"
@@ -153,7 +153,7 @@ export default function Profile() {
                   step={1}
                   className="mt-2"
                 />
-                <div className="flex justify-between text-xs text-brand-nero/60 mt-1">
+                <div className="flex justify-between text-xs text-brand-bianco/60 mt-1">
                   <span>1 km</span>
                   <span>50 km</span>
                 </div>
@@ -180,7 +180,7 @@ export default function Profile() {
 
               <Button
                 type="submit"
-                className="w-full bg-brand-nero hover:bg-brand-nero/90 text-brand-bianco"
+                className="w-full bg-brand-bianco hover:bg-brand-bianco/90 text-brand-nero"
                 disabled={updateProfileMutation.isPending}
               >
                 {updateProfileMutation.isPending ? "Salvando..." : "Salva Modifiche"}

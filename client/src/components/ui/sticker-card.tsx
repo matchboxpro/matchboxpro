@@ -14,16 +14,16 @@ interface StickerCardProps {
 
 export function StickerCard({ sticker, status, onStatusChange }: StickerCardProps) {
   return (
-    <div className="bg-brand-bianco rounded-xl border border-brand-nero/20 overflow-hidden">
-      <div className="w-full h-24 bg-gradient-to-br from-brand-nero to-brand-nero/80 flex items-center justify-center">
-        <span className="text-brand-bianco font-bold text-2xl">{sticker.number}</span>
+    <div className="bg-brand-azzurro rounded-xl border border-brand-azzurro overflow-hidden">
+      <div className="w-full h-24 bg-gradient-to-br from-brand-bianco to-brand-bianco/90 flex items-center justify-center">
+        <span className="text-brand-nero font-bold text-2xl">{sticker.number}</span>
       </div>
       
       <div className="p-3">
-        <div className="text-sm font-medium text-brand-nero mb-1">N. {sticker.number}</div>
-        <div className="text-xs text-brand-nero/80 mb-2">{sticker.name}</div>
+        <div className="text-sm font-medium text-brand-bianco mb-1">N. {sticker.number}</div>
+        <div className="text-xs text-brand-bianco/90 mb-2">{sticker.name}</div>
         {sticker.team && (
-          <div className="text-xs text-brand-nero/60 mb-3">{sticker.team}</div>
+          <div className="text-xs text-brand-bianco/80 mb-3">{sticker.team}</div>
         )}
         
         <div className="grid grid-cols-3 gap-1">
