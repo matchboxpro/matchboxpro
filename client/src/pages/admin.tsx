@@ -305,7 +305,7 @@ export default function Admin() {
               </p>
             </div>
             <Button 
-              onClick={() => window.location.href = '/dashboard'}
+              onClick={() => window.location.href = '/'}
               className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-4 py-2 shadow-md"
             >
               Vai all'App
