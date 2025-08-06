@@ -25,6 +25,7 @@ export default function Admin() {
     stickers: "",
     paniniLink: ""
   });
+  const [importedStickers, setImportedStickers] = useState<Array<{id: string, number: string, description: string}>>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -45,6 +46,70 @@ export default function Admin() {
     queryKey: ["/api/albums", selectedAlbum?.id, "stickers"],
     enabled: !!selectedAlbum,
   });
+
+  // Function to parse and import stickers
+  const handleImportStickers = () => {
+    if (!stickerFormData.stickers.trim()) {
+      toast({
+        title: "Errore",
+        description: "Inserisci la lista delle figurine da importare",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      const lines = stickerFormData.stickers.trim().split('\n');
+      const parsed = lines.map((line, index) => {
+        // Remove empty lines
+        if (!line.trim()) return null;
+        
+        // Parse different formats: "123 - Description" or "CODE123 Description" or "123 Description"
+        const match = line.match(/^(.+?)\s*[-—–]\s*(.+)$/) || 
+                     line.match(/^(\S+)\s+(.+)$/) ||
+                     [null, line.trim(), ""];
+        
+        if (!match) return null;
+        
+        const [, numberOrCode, description] = match;
+        return {
+          id: `temp_${index}`,
+          number: numberOrCode.trim(),
+          description: (description || "").trim()
+        };
+      }).filter(Boolean);
+
+      if (parsed.length === 0) {
+        toast({
+          title: "Errore",
+          description: "Nessuna figurina valida trovata nel formato specificato",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      setImportedStickers(parsed);
+      toast({
+        title: "Successo",
+        description: `Importate ${parsed.length} figurine`
+      });
+    } catch (error) {
+      toast({
+        title: "Errore",
+        description: "Errore nel parsing della lista figurine",
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Function to delete a sticker
+  const handleDeleteSticker = (id: string) => {
+    setImportedStickers(prev => prev.filter(sticker => sticker.id !== id));
+    toast({
+      title: "Figurina eliminata",
+      description: "La figurina è stata rimossa dalla lista"
+    });
+  };
 
   const createAlbumMutation = useMutation({
     mutationFn: async (data: any) => {
@@ -622,7 +687,10 @@ export default function Admin() {
 
                 {/* Action Buttons */}
                 <div className="flex items-center space-x-3 pt-4 border-t">
-                  <Button className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6">
+                  <Button 
+                    onClick={handleImportStickers}
+                    className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                  >
                     <Upload className="w-4 h-4 mr-2" />
                     Importa
                   </Button>
@@ -630,7 +698,14 @@ export default function Admin() {
                     <FileDown className="w-4 h-4 mr-2" />
                     Esporta
                   </Button>
-                  <Button className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-medium px-6">
+                  <Button 
+                    onClick={() => {
+                      setImportedStickers([]);
+                      setStickerFormData({ stickers: "", paniniLink: "" });
+                      toast({ title: "Lista svuotata", description: "Tutte le figurine sono state rimosse" });
+                    }}
+                    className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-medium px-6"
+                  >
                     <Save className="w-4 h-4 mr-2" />
                     Svuota
                   </Button>
@@ -639,17 +714,51 @@ export default function Admin() {
                 {/* Table Header */}
                 <div className="pt-4 border-t">
                   <div className="grid grid-cols-3 gap-4 font-medium text-[#052b3e] text-sm border-b pb-2">
-                    <div>Numero</div>
-                    <div>Nome</div>
+                    <div>Numero/Codice</div>
+                    <div>Descrizione</div>
                     <div>Azioni</div>
                   </div>
                   
-                  {/* Empty state or stickers would go here */}
-                  <div className="py-8 text-center text-gray-500">
-                    <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-                    <p>Nessuna figurina presente</p>
-                    <p className="text-sm">Importa le figurine per iniziare</p>
-                  </div>
+                  {/* Stickers List */}
+                  {importedStickers.length === 0 ? (
+                    <div className="py-8 text-center text-gray-500">
+                      <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                      <p>Nessuna figurina presente</p>
+                      <p className="text-sm">Importa le figurine per iniziare</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2 max-h-[300px] overflow-y-auto mt-2">
+                      {importedStickers.map((sticker) => (
+                        <div key={sticker.id} className="grid grid-cols-3 gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors">
+                          <div className="font-mono text-sm text-[#05637b] font-medium">
+                            {sticker.number}
+                          </div>
+                          <div className="text-sm text-[#052b3e]">
+                            {sticker.description || "Senza descrizione"}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 px-2 border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white"
+                            >
+                              <Edit className="w-3 h-3" />
+                              <span className="sr-only">Modifica</span>
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleDeleteSticker(sticker.id)}
+                              className="h-7 px-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                              <span className="sr-only">Elimina</span>
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </DialogContent>

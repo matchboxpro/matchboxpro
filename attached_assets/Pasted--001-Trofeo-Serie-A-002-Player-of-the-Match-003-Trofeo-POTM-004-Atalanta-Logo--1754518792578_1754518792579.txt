@@ -1,0 +1,736 @@
+		001 - Trofeo Serie A
+		 002 - Player of the Match
+		 003 - Trofeo POTM
+		 004 - Atalanta - Logo
+		 005 - Marco Carnesecchi - Atalanta
+		 006 - Rui Patrício - Atalanta
+		 007 - Berat Djimsiti - Atalanta
+		 008 - Isak Hien - Atalanta
+		 009 - Sead Kolašinac - Atalanta
+		 010 - Raoul Bellanova - Atalanta
+		 011 - Giorgio Scalvini - Atalanta
+		 012 - Odilon Kossounou - Atalanta
+		 013 - Marco Brescianini - Atalanta
+		 014 - Matteo Ruggeri - Atalanta
+		 015 - Éderson - Atalanta
+		 016 - Davide Zappacosta - Atalanta
+		 017 - Marten De Roon - Atalanta
+		 018 - Mario Pašalić - Atalanta
+		 019 - Lazar Samardžić - Atalanta
+		 020 - Nicolò Zaniolo - Atalanta
+		 021 - Charles De Ketelaere - Atalanta
+		 022 - Mateo Retegui - Atalanta
+		 023 - Gianluca Scamacca - Atalanta
+		 024 - Ademola Lookman - Atalanta
+		 025 - Gian Piero Gasperini - Atalanta
+		 026 - Atalanta
+		 027 - Atalanta
+		 028 - Raoul Bellanova - Atalanta
+		 029 - Éderson - Atalanta
+		 030 - Ademola Lookman - Atalanta
+		 031 - Bologna - Logo
+		 032 - Łukasz Skorupski - Bologna
+		 033 - Federico Ravaglia - Bologna
+		 034 - Juan Miranda - Bologna
+		 035 - Emil Holm - Bologna
+		 036 - Sam Beukema - Bologna
+		 037 - Nicolò Casale - Bologna
+		 038 - Charalampos Lykogiannis - Bologna
+		 039 - Stefan Posch - Bologna
+		 040 - Jhon Lucumi - Bologna
+		 041 - Lorenzo De Silvestri - Bologna
+		 042 - Lewis Ferguson - Bologna
+		 043 - Remo Freuler - Bologna
+		 044 - Michel Aebischer - Bologna
+		 045 - Nikola Moro - Bologna
+		 046 - Giovanni Fabbian - Bologna
+		 047 - Santiago Castro - Bologna
+		 048 - Jens Odgaard - Bologna
+		 049 - Dan Ndoye - Bologna
+		 050 - Thijs Dallinga - Bologna
+		 051 - Riccardo Orsolini - Bologna
+		 052 - Vincenzo Italiano
+		 053 - Bologna
+		 054 - Bologna
+		 055 - Stefan Posch - Bologna
+		 056 - Giovanni Fabbian - Bologna
+		 057 - Riccardo Orsolini - Bologna
+		 058 - Cagliari - Logo
+		 059 - Simone Scuffet - Cagliari
+		 060 - Alen Sherri - Cagliari
+		 061 - Sebastiano Luperto - Cagliari
+		 062 - Tommaso Augello - Cagliari
+		 063 - Yerry Mina - Cagliari
+		 064 - Gabriele Zappa - Cagliari
+		 065 - Adam Obert - Cagliari
+		 066 - José Palomino - Cagliari
+		 067 - Paulo Azzi - Cagliari
+		 068 - Nadir Zortea - Cagliari
+		 069 - Michel Adopo - Cagliari
+		 070 - Răzvan Marin - Cagliari
+		 071 - Matteo Prati - Cagliari
+		 072 - Alessandro Deiola - Cagliari
+		 073 - Gianluca Gaetano - Cagliari
+		 074 - Nicolas Viola - Cagliari
+		 075 - Gianluca Lapadula - Cagliari
+		 076 - Leonardo Pavoletti - Cagliari
+		 077 - Zito Luvumbo - Cagliari
+		 078 - Roberto Piccoli - Cagliari
+		 079 - Davide Nicola - Cagliari
+		 080 - Cagliari
+		 081 - Cagliari
+		 082 - Sebastiano Luperto - Cagliari
+		 083 - Răzvan Marin - Cagliari
+		 084 - Roberto Piccoli - Cagliari
+		 085 - Como - Logo
+		 086 - Emil Audero - Como
+		 087 - Pepe Reina - Como
+		 088 - Alberto Dossena - Como
+		 089 - Federico Barba - Como
+		 090 - Alberto Moreno - Como
+		 091 - Marc Oliver Kempf - Como
+		 092 - Edoardo Goldaniga - Como
+		 093 - Ignace Van der Brempt - Como
+		 094 - Sergi Roberto - Como
+		 095 - Alessio Iovine - Como
+		 096 - Luca Mazzitelli - Como
+		 097 - Matthias Braunöder - Como
+		 098 - Lucas Da Cunha - Como
+		 099 - Máximo Perrone - Como
+		 100 - Nico Paz - Como
+		 101 - Andrea Belotti - Como
+		 102 - Alieu Fadera - Como
+		 103 - Alessandro Gabrielloni - Como
+		 104 - Patrick Cutrone - Como
+		 105 - Gabriel Strefezza - Como
+		 106 - Cesc Fàbregas - Como
+		 107 - Como
+		 108 - Como
+		 109 - Sergi Roberto - Como
+		 110 - Nico Paz - Como
+		 111 - Patrick Cutrone - Como
+		 112 - Empoli - Logo
+		 113 - Devis Vásquez - Empoli
+		 114 - Samuele Perisan - Empoli
+		 115 - Luca Marianucci - Empoli
+		 116 - Mattia Viti - Empoli
+		 117 - Saba Goglichidze - Empoli
+		 118 - Ardian Ismajli - Empoli
+		 119 - Liberato Cacace - Empoli
+		 120 - Mattia De Sciglio - Empoli
+		 121 - Giuseppe Pezzella - Empoli
+		 122 - Tino Anjorin - Empoli
+		 123 - Alberto Grassi - Empoli
+		 124 - Youssef Maleh - Empoli
+		 125 - Jacopo Fazzini - Empoli
+		 126 - Liam Henderson - Empoli
+		 127 - Nicolas Haas - Empoli
+		 128 - Lorenzo Colombo - Empoli
+		 129 - Ola Solbakken - Empoli
+		 130 - Sebastiano Esposito - Empoli
+		 131 - Pietro Pellegri - Empoli
+		 132 - Emmanuel Gyasi - Empoli
+		 133 - Roberto D'Aversa - Empoli
+		 134 - Empoli
+		 135 - Empoli
+		 136 - Ardian Ismajli - Empoli
+		 137 - Jacopo Fazzini - Empoli
+		 138 - Emmanuel Gyasi - Empoli
+		 139 - Fiorentina - Logo
+		 140 - David De Gea - Fiorentina
+		 141 - Pietro Terracciano - Fiorentina
+		 142 - Robin Gosens - Fiorentina
+		 143 - Pietro Comuzzo - Fiorentina
+		 144 - Dodô - Fiorentina
+		 145 - Cristiano Biraghi - Fiorentina
+		 146 - Luca Ranieri - Fiorentina
+		 147 - Marin Pongračić - Fiorentina
+		 148 - Lucas Martínez Quarta - Fiorentina
+		 149 - Yacine Adli - Fiorentina
+		 150 - Amir Richardson - Fiorentina
+		 151 - Andrea Colpani - Fiorentina
+		 152 - Danilo Cataldi - Fiorentina
+		 153 - Edoardo Bove - Fiorentina
+		 154 - Rolando Mandragora - Fiorentina
+		 155 - Lucas Beltrán - Fiorentina
+		 156 - Riccardo Sottil - Fiorentina
+		 157 - Christian Kouamé - Fiorentina
+		 158 - Moise Kean - Fiorentina
+		 159 - Albert Guðmundsson - Fiorentina
+		 160 - Raffaele Palladino - Fiorentina
+		 161 - Fiorentina
+		 162 - Fiorentina
+		 163 - Robin Gosens - Fiorentina
+		 164 - Albert Guðmundsson - Fiorentina
+		 165 - Moise Kean - Fiorentina
+		 166 - Genoa - Logo
+		 167 - Pierluigi Gollini - Genoa
+		 168 - Nicola Leali - Genoa
+		 169 - Koni De Winter - Genoa
+		 170 - Alessandro Zanoli - Genoa
+		 171 - Johan Vásquez - Genoa
+		 172 - Mattia Bani - Genoa
+		 173 - Stefano Sabelli - Genoa
+		 174 - Aarón Martín - Genoa
+		 175 - Alessandro Vogliacco - Genoa
+		 176 - Alan Matturro - Genoa
+		 177 - Morten Frendrup - Genoa
+		 178 - Morten Thorsby - Genoa
+		 179 - Ruslan Malinovskyi - Genoa
+		 180 - Milan Badelj - Genoa
+		 181 - Fabio Miretti - Genoa
+		 182 - Caleb Ekuban - Genoa
+		 183 - Junior Messias - Genoa
+		 184 - David Ankeye - Genoa
+		 185 - Vitinha - Genoa
+		 186 - Andrea Pinamonti - Genoa
+		 187 - Alberto Gilardino - Genoa
+		 188 - Genoa
+		 189 - Genoa
+		 190 - Johan Vásquez - Genoa
+		 191 - Morten Frendrup - Genoa
+		 192 - Andrea Pinamonti - Genoa
+		 193 - Hellas Verona - Logo
+		 194 - Lorenzo Montipò - Hellas Verona
+		 195 - Simone Perilli - Hellas Verona
+		 196 - Flavius Daniliuc - Hellas Verona
+		 197 - Marco Davide Faraoni - Hellas Verona
+		 198 - Diego Coppola - Hellas Verona
+		 199 - Domagoj Bradarić - Hellas Verona
+		 200 - Giangiacomo Magnani - Hellas Verona
+		 201 - Martin Frese - Hellas Verona
+		 202 - Paweł Dawidowicz - Hellas Verona
+		 203 - Jackson Tchatchoua - Hellas Verona
+		 204 - Ondrej Duda - Hellas Verona
+		 205 - Suat Serdar - Hellas Verona
+		 206 - Abdou Harroui - Hellas Verona
+		 207 - Reda Belahyane - Hellas Verona
+		 208 - Tomáš Suslov - Hellas Verona
+		 209 - Grigoris Kastanos - Hellas Verona
+		 210 - Darko Lazović - Hellas Verona
+		 211 - Daniel Mosquera - Hellas Verona
+		 212 - Dailon Livramento - Hellas Verona
+		 213 - Casper Tengstedt - Hellas Verona
+		 214 - Paolo Zanetti - Hellas Verona
+		 215 - Hellas Verona
+		 216 - Hellas Verona
+		 217 - Lorenzo Montipò - Hellas Verona
+		 218 - Abdou Harroui - Hellas Verona
+		 219 - Daniel Mosquera - Hellas Verona
+		 220 - Inter - Logo
+		 221 - Yann Sommer - Inter
+		 222 - Josep Martínez - Inter
+		 223 - Alessandro Bastoni - Inter
+		 224 - Yann Bisseck - Inter
+		 225 - Federico Dimarco - Inter
+		 226 - Stefan De Vrij - Inter
+		 227 - Francesco Acerbi - Inter
+		 228 - Matteo Darmian - Inter
+		 229 - Benjamin Pavard - Inter
+		 230 - Denzel Dumfries - Inter
+		 231 - Carlos Augusto - Inter
+		 232 - Nicolò Barella - Inter
+		 233 - Piotr Zieliński - Inter
+		 234 - Davide Frattesi - Inter
+		 235 - Henrikh Mkhitaryan - Inter
+		 236 - Hakan Çalhanoğlu - Inter
+		 237 - Marko Arnautović - Inter
+		 238 - Marcus Thuram - Inter
+		 239 - Lautaro Martínez - Inter
+		 240 - Mehdi Taremi - Inter
+		 241 - Simone Inzaghi - Inter
+		 242 - Inter
+		 243 - Inter
+		 244 - Alessandro Bastoni - Inter
+		 245 - Hakan Çalhanoğlu - Inter
+		 246 - Lautaro Martínez - Inter
+		 247 - Juventus - Logo
+		 248 - Michele Di Gregorio - Juventus
+		 249 - Mattia Perin - Juventus
+		 250 - Juan Cabal - Juventus
+		 251 - Federico Gatti - Juventus
+		 252 - Danilo - Juventus
+		 253 - Pierre Kalulu - Juventus
+		 254 - Andrea Cambiaso - Juventus
+		 255 - Gleison Bremer - Juventus
+		 256 - Timothy Weah - Juventus
+		 257 - Khéphren Thuram - Juventus
+		 258 - Manuel Locatelli - Juventus
+		 259 - Douglas Luiz - Juventus
+		 260 - Teun Koopmeiners - Juventus
+		 261 - Weston McKennie - Juventus
+		 262 - Nicolò Fagioli - Juventus
+		 263 - Francisco Conceição - Juventus
+		 264 - Kenan Yildiz - Juventus
+		 265 - Arkadiusz Milik - Juventus
+		 266 - Nico González - Juventus
+		 267 - Dušan Vlahović - Juventus
+		 268 - Thiago Motta - Juventus
+		 269 - Juventus
+		 270 - Juventus
+		 271 - Michele Di Gregorio - Juventus
+		 272 - Teun Koopmeiners - Juventus
+		 273 - Dušan Vlahović - Juventus
+		 274 - Lazio - Logo
+		 275 - Ivan Provedel - Lazio
+		 276 - Chrīstos Mandas - Lazio
+		 277 - Alessio Romagnoli - Lazio
+		 278 - Patric - Lazio
+		 279 - Luca Pellegrini - Lazio
+		 280 - Mario Gila - Lazio
+		 281 - Adam Marušić - Lazio
+		 282 - Manuel Lazzari - Lazio
+		 283 - Nuno Tavares - Lazio
+		 284 - Nicolò Rovella - Lazio
+		 285 - Gaetano Castrovilli - Lazio
+		 286 - Matías Vecino - Lazio
+		 287 - Mattéo Guendouzi - Lazio
+		 288 - Fisayo Dele-Bashiru - Lazio
+		 289 - Mattia Zaccagni - Lazio
+		 290 - Gustav Isaksen - Lazio
+		 291 - Tijjani Noslin - Lazio
+		 292 - Loum Tchaouna - Lazio
+		 293 - Boulaye Dia - Lazio
+		 294 - Valentín Castellanos - Lazio
+		 295 - Marco Baroni - Lazio
+		 296 - Lazio
+		 297 - Lazio
+		 298 - Nicolò Rovella - Lazio
+		 299 - Mattéo Guendouzi - Lazio
+		 300 - Valentín Castellanos - Lazio
+		 301 - Lecce - Logo
+		 302 - Wladimiro Falcone - Lecce
+		 303 - Christian Früchtl - Lecce
+		 304 - Kialonda Gaspar - Lecce
+		 305 - Federico Baschirotto - Lecce
+		 306 - Patrick Dorgu - Lecce
+		 307 - Kevin Bonifazi - Lecce
+		 308 - Antonino Gallo - Lecce
+		 309 - Frédéric Guilbert - Lecce
+		 310 - Balthazar Pierret - Lecce
+		 311 - Filip Marchwiński - Lecce
+		 312 - Lassana Coulibaly - Lecce
+		 313 - Hamza Rafia - Lecce
+		 314 - Ylber Ramadani - Lecce
+		 315 - Rémi Oudin - Lecce
+		 316 - Tete Morente - Lecce
+		 317 - Lameck Banda - Lecce
+		 318 - Santiago Pierotti - Lecce
+		 319 - Nikola Krstović - Lecce
+		 320 - Nicola Sansone - Lecce
+		 321 - Ante Rebić - Lecce
+		 322 - Luca Gotti - Lecce
+		 323 - Lecce
+		 324 - Lecce
+		 325 - Wladimiro Falcone - Lecce
+		 326 - Rémi Oudin - Lecce
+		 327 - Nikola Krstović - Lecce
+		 328 - Milan - Logo
+		 329 - Mike Maignan - Milan
+		 330 - Marco Sportiello - Milan
+		 331 - Matteo Gabbia - Milan
+		 332 - Strahinja Pavlović - Milan
+		 333 - Emerson Royal - Milan
+		 334 - Davide Calabria - Milan
+		 335 - Malick Thiaw - Milan
+		 336 - Fikayo Tomori - Milan
+		 337 - Theo Hernández - Milan
+		 338 - Yunus Musah - Milan
+		 339 - Tijjani Reijnders - Milan
+		 340 - Ismaël Bennacer - Milan
+		 341 - Youssouf Fofana - Milan
+		 342 - Ruben Loftus-Cheek - Milan
+		 343 - Samuel Chukwueze - Milan
+		 344 - Álvaro Morata - Milan
+		 345 - Noah Okafor - Milan
+		 346 - Rafael Leão - Milan
+		 347 - Christian Pulisic - Milan
+		 348 - Tammy Abraham - Milan
+		 349 - Paulo Fonseca - Milan
+		 350 - Milan
+		 351 - Milan
+		 352 - Theo Hernández - Milan
+		 353 - Tijjani Reijnders - Milan
+		 354 - Rafael Leão - Milan
+		 355 - Monza - Logo
+		 356 - Stefano Turati - Monza
+		 357 - Semuel Pizzignacco - Monza
+		 358 - Armando Izzo - Monza
+		 359 - Danilo D'Ambrosio - Monza
+		 360 - Luca Caldirola - Monza
+		 361 - Andrea Carboni - Monza
+		 362 - Geōrgios Kyriakopoulos - Monza
+		 363 - Pablo Marí - Monza
+		 364 - Samuele Birindelli - Monza
+		 365 - Pedro Pereira - Monza
+		 366 - Matteo Pessina - Monza
+		 367 - Alessandro Bianco - Monza
+		 368 - Roberto Gagliardini - Monza
+		 369 - Stefano Sensi - Monza
+		 370 - Warren Bondo - Monza
+		 371 - Andrea Petagna - Monza
+		 372 - Gianluca Caprari - Monza
+		 373 - Daniel Maldini - Monza
+		 374 - Dany Mota - Monza
+		 375 - Milan Djurić - Monza
+		 376 - Alessandro Nesta - Monza
+		 377 - Monza
+		 378 - Monza
+		 379 - Pablo Marí - Monza
+		 380 - Matteo Pessina - Monza
+		 381 - Milan Djurić - Monza
+		 382 - Napoli - Logo
+		 383 - Alex Meret - Napoli
+		 384 - Elia Caprile - Napoli
+		 385 - Alessandro Buongiorno - Napoli
+		 386 - Giovanni Di Lorenzo - Napoli
+		 387 - Amir Rrahmani - Napoli
+		 388 - Mathías Olivera - Napoli
+		 389 - Leonardo Spinazzola - Napoli
+		 390 - Pasquale Mazzocchi - Napoli
+		 391 - Juan Jesus - Napoli
+		 392 - Stanislav Lobotka - Napoli
+		 393 - André-Frank Anguissa - Napoli
+		 394 - Billy Gilmour - Napoli
+		 395 - Scott McTominay - Napoli
+		 396 - Cyril Ngonge - Napoli
+		 397 - Giovanni Simeone - Napoli
+		 398 - Giacomo Raspadori - Napoli
+		 399 - Khvicha Kvaratskhelia - Napoli
+		 400 - Matteo Politano - Napoli
+		 401 - David Neres - Napoli
+		 402 - Romelu Lukaku - Napoli
+		 403 - Antonio Conte - Napoli
+		 404 - Napoli
+		 405 - Napoli
+		 406 - Alessandro Buongiorno - Napoli
+		 407 - Khvicha Kvaratskhelia - Napoli
+		 408 - Romelu Lukaku - Napoli
+		 409 - Parma - Logo
+		 410 - Zion Suzuki - Parma
+		 411 - Leandro Chichizola - Parma
+		 412 - Emanuele Valeri - Parma
+		 413 - Botond Balogh - Parma
+		 414 - Yordan Osorio - Parma
+		 415 - Enrico Delprato - Parma
+		 416 - Woyo Coulibaly - Parma
+		 417 - Alessandro Circati - Parma
+		 418 - Antoine Hainaut - Parma
+		 419 - Hernani - Parma
+		 420 - Simon Sohm - Parma
+		 421 - Adrián Bernabé - Parma
+		 422 - Mandela Keita - Parma
+		 423 - Nahuel Estévez - Parma
+		 424 - Adrian Benedyczak - Parma
+		 425 - Dennis Man - Parma
+		 426 - Ange-Yoan Bonny - Parma
+		 427 - Pontus Almqvist - Parma
+		 428 - Valentin Mihăilă - Parma
+		 429 - Matteo Cancellieri - Parma
+		 430 - Fabio Pecchia - Parma
+		 431 - Parma
+		 432 - Parma
+		 433 - Enrico Delprato - Parma
+		 434 - Adrián Bernabé - Parma
+		 435 - Dennis Man - Parma
+		 436 - Roma - Logo
+		 437 - Mile Svilar - Roma
+		 438 - Gianluca Mancini - Roma
+		 439 - Mats Hummels - Roma
+		 440 - Zeki Çelik - Roma
+		 441 - Evan Ndicka - Roma
+		 442 - Mario Hermoso - Roma
+		 443 - Angeliño - Roma
+		 444 - Saud Abdulhamid - Roma
+		 445 - Nicola Zalewski - Roma
+		 446 - Bryan Cristante - Roma
+		 447 - Alexis Saelemaekers - Roma
+		 448 - Lorenzo Pellegrini - Roma
+		 449 - Leandro Paredes - Roma
+		 450 - Manu Kone - Roma
+		 451 - Enzo Le Fée - Roma
+		 452 - Tommaso Baldanzi - Roma
+		 453 - Paulo Dybala - Roma
+		 454 - Matias Soulé - Roma
+		 455 - Artem Dovbyk - Roma
+		 456 - Stephan El Shaarawy - Roma
+		 457 - Ivan Jurić - Roma
+		 458 - Roma
+		 459 - Roma
+		 460 - Mario Hermoso - Roma
+		 461 - Manu Kone - Roma
+		 462 - Paulo Dybala - Roma
+		 463 - Torino - Logo
+		 464 - Vanja Milinković-Savić - Torino
+		 465 - Alberto Paleari - Torino
+		 466 - Perr Schuurs - Torino
+		 467 - Adam Masina - Torino
+		 468 - Sebastian Walukiewicz - Torino
+		 469 - Saúl Coco - Torino
+		 470 - Borna Sosa - Torino
+		 471 - Guillermo Maripán - Torino
+		 472 - Marcus Pedersen - Torino
+		 473 - Mërgim Vojvoda - Torino
+		 474 - Ivan Ilić - Torino
+		 475 - Valentino Lazaro - Torino
+		 476 - Samuele Ricci - Torino
+		 477 - Adrien Tameze - Torino
+		 478 - Karol Linetty - Torino
+		 479 - Duván Zapata - Torino
+		 480 - Yann Karamoh - Torino
+		 481 - Antonio Sanabria - Torino
+		 482 - Ché Adams - Torino
+		 483 - Nikola Vlašić - Torino
+		 484 - Paolo Vanoli - Torino
+		 485 - Torino
+		 486 - Torino
+		 487 - Vanja Milinković-Savić - Torino
+		 488 - Samuele Ricci - Torino
+		 489 - Ché Adams - Torino
+		 490 - Udinese - Logo
+		 491 - Maduka Okoye - Udinese
+		 492 - Răzvan Sava - Udinese
+		 493 - Hassane Kamara - Udinese
+		 494 - Christian Kabasele - Udinese
+		 495 - Lautaro Giannetti - Udinese
+		 496 - Kingsley Ehizibue - Udinese
+		 497 - Thomas Kristensen - Udinese
+		 498 - Jordan Zemura - Udinese
+		 499 - Jaka Bijol - Udinese
+		 500 - Martín Payero - Udinese
+		 501 - Oier Zarraga - Udinese
+		 502 - Jesper Karlström - Udinese
+		 503 - Jurgen Ekkelenkamp - Udinese
+		 504 - Sandi Lovrić - Udinese
+		 505 - Alexis Sánchez - Udinese
+		 506 - Keinan Davis - Udinese
+		 507 - Florian Thauvin - Udinese
+		 508 - Brenner - Udinese
+		 509 - Lorenzo Lucca - Udinese
+		 510 - Iker Bravo - Udinese
+		 511 - Kosta Runjaić - Udinese
+		 512 - Udinese
+		 513 - Udinese
+		 514 - Maduka Okoye - Udinese
+		 515 - Martín Payero - Udinese
+		 516 - Lorenzo Lucca - Udinese
+		 517 - Venezia - Logo
+		 518 - Jesse Joronen - Venezia
+		 519 - Filip Stanković - Venezia
+		 520 - Michael Svoboda - Venezia
+		 521 - Jay Idzes - Venezia
+		 522 - Giorgio Altare - Venezia
+		 523 - Joël Schingtienne - Venezia
+		 524 - Antonio Candela - Venezia
+		 525 - Francesco Zampano - Venezia
+		 526 - Richie Sagrado - Venezia
+		 527 - Magnus Andersen - Venezia
+		 528 - Issa Doumbia - Venezia
+		 529 - Gianluca Busio - Venezia
+		 530 - Hans Nicolussi Caviglia - Venezia
+		 531 - Mikael Ellertsson - Venezia
+		 532 - Alfred Duncan - Venezia
+		 533 - Gaetano Oristanio - Venezia
+		 534 - John Yeboah - Venezia
+		 535 - Antonio Raimondo - Venezia
+		 536 - Christian Gytkjær - Venezia
+		 537 - Joel Pohjanpalo - Venezia
+		 538 - Eusebio Di Francesco - Venezia
+		 539 - Venezia
+		 540 - Venezia
+		 541 - Michael Svoboda - Venezia
+		 542 - Gaetano Oristanio - Venezia
+		 543 - Joel Pohjanpalo - Venezia
+		 544 - Trofeo EA Sports FC Supercup
+		 545 - Trofeo Coppa Italia Frecciarossa
+		 546 - Trofeo Serie BKT -
+		 547 - (A)Bari - (B)Carrarese - Logo
+		 548 - Bari
+		 549 - (A) Radunović - (B) Mantovani - (C) Vicari - Bari
+		 550 - (A) Pucino - (B) Dorval - (C) Šimić - Bari
+		 551 - (A) Maita - (B) Oliveri - (C) Benali - Bari
+		 552 - (A) Maiello - (B) Lella - (C) Novakovich - Bari
+		 553 - (A) Lasagna - (B) Falletti - (C) Sibilli - Bari
+		 554 - Brescia
+		 555 - (A) Lezzerini - (B) Cistana - (C) Jallow - Brescia
+		 556 - (A) Corrado - (B) Dickmann - (C) Adorni - Brescia
+		 557 - (A) Verreth - (B) Galazzi - (C) Bisoli - Brescia
+		 558 - (A) Bertagnoli - (B) Olzer - (C) Besaggio - Brescia
+		 559 - (A) Jurić - (B) Borrelli - (C) Moncini - Brescia
+		 560 - (A)Carrarese - (B)Catanzaro - Logo
+		 561 - Carrarese
+		 562 - (A) Bleve - (B) Imperiale - (C) Oliana - Carrarese
+		 563 - (A) Illanes - (B) Coppolaro - (C) Hermannsson - Carrarese
+		 564 - (A) Zanon - (B) Cicconi - (C) Schiavi - Carrarese
+		 565 - (A) Giovane - (B) Capezzi - (C) Finotto - Carrarese
+		 566 - (A) Shpendi - (B) Cerri - (C) Panico - Carrarese
+		 567 - Catanzaro
+		 568 - (A) Pigliacelli - (B) Antonini - (C) Bonini - Catanzaro
+		 569 - (A) Scognamillo - (B) Brighenti - (C) Šitum - Catanzaro
+		 570 - (A) Petriccione - (B) Pontisso - (C) Pompetti - Catanzaro
+		 571 - (A) Koutsoupias - (B) Compagnon - (C) Pittarello - Catanzaro
+		 572 - (A) Buso - (B) Biasci - (C) Iemmello - Catanzaro
+		 573 - (A)Cesena - (A) Cittadella - Logo
+		 574 - Cesena
+		 575 - (A) Pisseri - (B) Curto - (C) Donnarumma - Cesena
+		 576 - (A) Ciofi - (B) Mangraviti - (C) Pieraccini - Cesena
+		 577 - (A) Prestia - (B) Berti - (C) Adamo - Cesena
+		 578 - (A) Bastoni - (B) Calò - (C) Francesconi - Cesena
+		 579 - (A) Antonucci - (B) Kargbo - (C) Shpendi - Cesena
+		 580 - Cittadella
+		 581 - (A) Kastrati - (B) Salvi - (C) Angeli - Cittadella
+		 582 - (A) Carissoni - (B) Pavan - (C) Masciangelo - Cittadella
+		 583 - (A) Casolari - (B) Amatucci - (C) Vita - Cittadella
+		 584 - (A) Branca - (B) Tessiore - (C) Pandolfi - Cittadella
+		 585 - (A) Desogus - (B) Rabbi - (C) Ravasio - Cittadella
+		 586 - (A)Cosenza - (B)Cremonese - Logo
+		 587 - Cosenza
+		 588 - (A) Micai - (B) Caporale - (C) Camporese - Cosenza
+		 589 - (A) Venturi - (B) Cimino - (C) Dalle Mura - Cosenza
+		 590 - (A) D'Orazio - (B) Kouan - (C) Florenzi - Cosenza
+		 591 - (A) Kourfalidīs - (B) Ciervo - (C) Mazzocchi - Cosenza
+		 592 - (A) Fumagalli - (B) Strizzolo - (C) Sankoh - Cosenza
+		 593 - Cremonese
+		 594 - (A) Fulignati - (B) Quagliata - (C) Ravanelli - Cremonese
+		 595 - (A) Bianchetti - (A) Sernicola - (C) Antov - Cremonese
+		 596 - (A) Castagnetti - (B) Collocolo - (C) Majer - Cremonese
+		 597 - (A) Vandeputte - (B) Vázquez - (C) Johnsen - Cremonese
+		 598 - (A) Bonazzoli - (B) Zanimacchia - (C) Nasti - Cremonese
+		 599 - (A)Frosonone - (B)Juve Stabia - Logo
+		 600 - Frosinone
+		 601 - (A) Cerofolini - (B) Marchizza - (C) Biraschi - Frosinone
+		 602 - (A) Oyono - (B) Monterisi - (C) Oyono - Frosinone
+		 603 - (A) Gelli - (B) Darboe - (C) Cichella - Frosinone
+		 604 - (A) Machín - (B) Ghedjemis - (C) Ambrosino - Frosinone
+		 605 - (A) Distefano - (B) Partipilo - (C) Tsadjout - Frosinone
+		 606 - Juve Stabia
+		 607 - (A) Thiam - (B) Fortini - (C) Ruggero - Juve Stabia
+		 608 - (A) Bellich - (B) Varnier - (C) Mussolini - Juve Stabia
+		 609 - (A) Folino - (B) Andreoni - (C) Buglio - Juve Stabia
+		 610 - (A) Leone - (B) Mosti - (C) Maistro - Juve Stabia
+		 611 - (A) Adorante - (B) Piscopo - (C) Candellone - Juve Stabia
+		 612 - (A)Mantova - (B)Modena - Logo
+		 613 - Mantova
+		 614 - (A) Festa - (B) Panizzi - (C) Redolfi - Mantova
+		 615 - (A) Brignani - (B) Maggioni - (C) Radaelli - Mantova
+		 616 - (A) Burrai - (B) Bani - (C) Trimboli - Mantova
+		 617 - (A) Aramu - (B) Mensah - (C) Fiori - Mantova
+		 618 - (A) Galuppini - (B) Mancuso - (C) Bragantini - Mantova
+		 619 - Modena
+		 620 - (A) Gagno - (B) Pergreffi - (C) Di Pardo - Modena
+		 621 - (A) Zaro - (B) Caldara - (C) Cotali - Modena
+		 622 - (A) Battistella - (B) Magnino - (C) Santoro - Modena
+		 623 - (A) Palumbo - (B) Gerli - (C) Abiuso - Modena
+		 624 - (A) Mendes - (B) Caso - (C) Defrel - Modena
+		 625 - (A)Palermo -(B) Pisa - Logo
+		 626 - Palermo
+		 627 - (A) Desplanches - (B) Lund - (C) Baniya - Palermo
+		 628 - (A) Diakité - (B) Pierozzi - (C) Nikolaou - Palermo
+		 629 - (A) Gomes - (B) Blin - (C) Segre - Palermo
+		 630 - (A) Ranocchia - (B) Di Mariano - (C) Le Douaron - Palermo
+		 631 - (A) Di Francesco - (B) Henry - (C) Brunori - Palermo
+		 632 - Pisa
+		 633 - (A) Šemper - (B) Caracciolo - (C) Canestrelli - Pisa
+		 634 - (A) Beruatto - (B) Calabresi - (C) Bonfanti - Pisa
+		 635 - (A) Marin - (B) Piccinini - (C) Abildgaard - Pisa
+		 636 - (A) Touré - (B) Højholt - (C) Tramoni - Pisa
+		 637 - (A) Lind - (B) Moreo - (C) Bonfanti - Pisa
+		 638 - (A)Reggiana - (B)Salernitana - Logo
+		 639 - Reggiana
+		 640 - (A) Bardi - (B) Rozzio - (C) Sampirisi - Reggiana
+		 641 - (A) Fiamozzi - (B) Meroni - (C) Cigarini - Reggiana
+		 642 - (A) Štulac - (B) Reinhart - (C) Sersanti - Reggiana
+		 643 - (A) Vergara - (B) Portanova - (C) Girma - Reggiana
+		 644 - (A) Maggio - (B) Gondo - (C) Marras - Reggiana
+		 645 - Salernitana
+		 646 - (A) Sepe - (B) Stojanović - (C) Bronn - Salernitana
+		 647 - (A) Njoh - (B) Ferrari - (C) Tongya - Salernitana
+		 648 - (A) Soriano - (B) Maggiore - (C) Adélaïde - Salernitana
+		 649 - (A) Amatucci - (B) Verde - (C) Nwankwo - Salernitana
+		 650 - (A) Kallon - (B) Torregrossa - (C) Braaf - Salernitana
+		 651 - (A) Sampdoria - (B) Sassuolo - Logo
+		 652 - Sampdoria
+		 653 - (A) Silvestri - (B) Romagnoli - (C) Venuti - Sampdoria
+		 654 - (A) Depaoli - (B) Bereszyński - (C) Vulikić - Sampdoria
+		 655 - (A) Ioannou - (B) Bellemo - (C) Akinsanmiro - Sampdoria
+		 656 - (A) Yepes - (B) Benedetti - (C) Kasami - Sampdoria
+		 657 - (A) Meulensteen - (B) Tutino - (C) Coda - Sampdoria
+		 658 - Sassuolo
+		 659 - (A) Moldovan - (B) Odenthal - (C) Romagna - Sassuolo
+		 660 - (A) Lovato - (B) Toljan - (C) Doig - Sassuolo
+		 661 - (A) Boloca - (B) Ghion - (C) Obiang - Sassuolo
+		 662 - (A) Thorstvedt - (B) Volpato - (C) Berardi - Sassuolo
+		 663 - (A) Laurienté - (B) Pierini - (C) Mulattieri - Sassuolo
+		 664 - (A) Spezia - (B) Südtirol - Logo
+		 665 - Spezia
+		 666 - (A) Sarr - (B) Vignali - (C) Matějů - Spezia
+		 667 - (A) Hristov - (B) Bertola - (C) Reca - Spezia
+		 668 - (A) Esposito - (B) Nagy - (C) Bandinelli - Spezia
+		 669 - (A) Cassata - (B) Elia - (C) Esposito - Spezia
+		 670 - (A) Falcinelli - (B) Di Serio - (C) Soleri - Spezia
+		 671 - Südtirol
+		 672 - (A) Poluzzi - (B) Cagnano - (C) Masiello - Südtirol
+		 673 - (A) Ceppitelli - (B) Davi - (C) Giorgini - Südtirol
+		 674 - (A) Kofler - (B) Arrigoni - (C) Mallamo - Südtirol
+		 675 - (A) Casiraghi - (B) Tait - (C) Kurtić - Südtirol
+		 676 - (A) Molina - (B) Rover - (C) Odogwu - Südtirol
+		 677 - (A)AlbinoLeffe - (B)Alcione Milano - (C)Arzignano Valchiampo - (D)Atalanta U23
+		 678 - (A) AlbinoLeffe - (B) Alcione Milano
+		 679 - (A) Arzignano Valchiampo - (B) Atalanta U23
+		 680 - (A)Caldiero Terme - (B)Feralpisalò - (C)Giana Erminio - (D)L.R. Vicenza - Logo
+		 681 - (A) Caldiero Terme - (B) Feralpisalò
+		 682 - (A) Giana Erminio - (B) L.R. Vicenza
+		 683 - (A)Lecco - (B)Lumezzane - (C)Novara -(D) Padova - Logo
+		 684 - (A) Lecco - (B) Lumezzane
+		 685 - (A) Novara - (B) Padova
+		 686 - (A)Pergolettese - (B)Pro Patria - (C)Pro Vercelli - (D)Pro Vercelli - Logo
+		 687 - (A) Pergolettese - (B) Pro Patria
+		 688 - (A)Pro Vercelli - (B)Renate
+		 689 - (A)Trento - (B)Triestina - (C)Union Clodiense - (D)Virtus Verona - Logo
+		 690 - (A) Trento - (B) Triestina
+		 691 - (A) Union Clodiense -(B) Virtus Verona
+		 692 - (A)Arezzo - (B)Ascoli - (C)Campobasso - (D)Carpi - Logo
+		 693 - (A) Arezzo - (B) Ascoli
+		 694 - (A) Campobasso - (B) Carpi
+		 695 - (A)Gubbio - (B)Legnago Salus - (C)Lucchese - (D)Milan Futuro - Logo
+		 696 - (A) Gubbio - (B) Legnano Salus
+		 697 - (A) Lucchese - (B) Milan Futuro
+		 698 - (A)Perugia - (B)Pescara - (C)Pianese - (D)Pineto - Logo
+		 699 - (A) Perugia - (B) Pescara
+		 700 - (A) Pianese - (B) Pineto
+		 701 - (A)Pontedera - (B)Rimini - (C)Sestri Levante - (D)Spal - Logo
+		 702 - (A) Pontedera - (B) Rimini
+		 703 - (A) Sestri Levante - (B) Spal
+		 704 - (A)Ternana - (B)Torres - (C)Virtus Entella - (D)Vis Pesaro - Logo
+		 705 - (A) Ternana - (B) Torres
+		 706 - (A) Virtus Entella - (B) Vis Pesaro
+		 707 - (A)ACR Messina - (B)Audace Cerignola - (C)Avellino - (D)AZ Picerno - Logo
+		 708 - (A) ACR Messina - (B) Audace Cerignola
+		 709 - (A) Avellino - (B) AZ Picerno
+		 710 - (A)Benevento - (B)Casertana - (C)Catania - (D)Cavese - Logo
+		 711 - (A) Benevento - (B) Casertana
+		 712 - (A) Catania - (B) Cavese
+		 713 - (A)Crotone - (B)Foggia - (C)Giugliano - (D)Juventus Next Gen - Logo
+		 714 - (A) Crotone - (B) Foggia
+		 715 - (A) Giugliano - (B) Juventus Next Gen
+		 716 - (A)Latina - (B)Monopoli - (C)Potenza - (D)Sorrento - Logo
+		 717 - (A) Latina - (B) Monipoli
+		 718 - (A) Potenza - (B) Sorrento
+		 719 - (A)Taranto - (B)Team Altamura - (C)Trapani - (D)Turris - Logo
+		 720 - (A) Taranto - (B) Team Altamura
+		 721 - (A) Trapani - (B) Turris
+		 UPD01 - Milan - Vincitrice della EA Sports FC Supercup
+		 UPD02 - Inter - Finalista
+		 UPD03 - Atalanta - Semifinalista
+		 UPD04 - Juventus - Semifinalista
+		 UPD05 - Inter-Atalanta 2-0 - supercoppa
+		 UPD06 - Juventus-Milan 1-2 - supercoppa
+		 UPD07 - Inter-Milan 2-3 - supercoppa
+		 UPD08 - Ottavi di finale Lazio-Napoli - Tijjani Noslin - Coppa Italia
+		 UPD09 - Ottavi di finale Roma-Sampdoria 4-1 - coppa italia
+		 UPD10 - Ottavi di finale Bologna-Monza 4-0 - coppa italia
+		 UPD11 - Ottavi di finale Fiorentina-Empoli 2-2 (3-4 dcr) - coppa italia
+		 UPD12 - (A)Marcus Thuram - POTM agosto / (B) Khvicha Kvaratskhelia - POTM settembre
+		 UPD13 - (A)Mateo Retegui - POTM ottobre / (B) Moise Kean - POTM novembre
+		 UPD14 - (A) Paolo Vanoli - COTM agosto / (B) Antonio Conte - COTM settembre
+		 UPD15 - (A) Marco Baroni - COTM ottobre / (B) Gian Piero Gasperini - COTM novembre
