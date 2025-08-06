@@ -281,21 +281,102 @@ export default function Admin() {
           {/* Albums Section */}
           {activeSection === "albums" && (
             <div className="space-y-6">
+              {/* Header with New Album Button */}
               <Card className="bg-[#05637b] border-0 shadow-lg">
                 <CardHeader className="border-b border-white/10">
-                  <CardTitle className="text-white text-xl flex items-center gap-2">
-                    <Image className="w-5 h-5 text-[#f8b400]" />
-                    Gestione Album
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="bg-white/5 p-6">
-                  <div className="text-center py-8">
-                    <Image className="w-16 h-16 text-white/20 mx-auto mb-4" />
-                    <p className="text-white/60 text-lg">Sezione Album</p>
-                    <p className="text-white/40 text-sm">Pronta per nuovi contenuti</p>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-white text-2xl flex items-center gap-3">
+                      <Image className="w-6 h-6 text-[#f8b400]" />
+                      Gestione Album
+                    </CardTitle>
+                    <Button className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-6">
+                      <Plus className="w-4 h-4 mr-2" />
+                      Nuovo Album
+                    </Button>
                   </div>
-                </CardContent>
+                </CardHeader>
               </Card>
+
+              {/* Albums List */}
+              <div className="space-y-4">
+                {/* Album 1 - Panini Calciatori 2024-25 */}
+                <Card className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-[#052b3e] mb-1">Panini Calciatori 2024-25</h3>
+                        <p className="text-[#05637b] text-sm">Collezione Serie A 2024-25</p>
+                      </div>
+                      <div className="mb-4">
+                        <p className="text-[#052b3e] font-medium">
+                          <span className="text-2xl font-bold">0</span> figurine totali
+                        </p>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Button 
+                          size="sm" 
+                          className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                        >
+                          Gestisci
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
+                        >
+                          Modifica
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
+                        >
+                          Elimina
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Album 2 - Panini Champions League 2024 */}
+                <Card className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-[#052b3e] mb-1">Panini Champions League 2024</h3>
+                        <p className="text-[#05637b] text-sm">UEFA Champions League Collection</p>
+                      </div>
+                      <div className="mb-4">
+                        <p className="text-[#052b3e] font-medium">
+                          <span className="text-2xl font-bold">0</span> figurine totali
+                        </p>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Button 
+                          size="sm" 
+                          className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                        >
+                          Gestisci
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
+                        >
+                          Modifica
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
+                        >
+                          Elimina
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           )}
 
