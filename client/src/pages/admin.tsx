@@ -128,38 +128,38 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[#fff4d6]">
       <div className="flex">
         {/* Sidebar */}
-        <nav className="w-64 bg-white shadow-lg min-h-screen">
+        <nav className="w-64 bg-[#05637b] shadow-2xl min-h-screen">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
-              <div className="w-10 h-10 bg-brand-azzurro rounded-lg flex items-center justify-center">
-                <Zap className="text-white w-5 h-5" />
+              <div className="w-10 h-10 bg-[#f8b400] rounded-lg flex items-center justify-center">
+                <Zap className="text-[#052b3e] w-5 h-5" />
               </div>
               <div>
-                <h1 className="font-bold text-gray-900">MATCHBOX</h1>
-                <p className="text-sm text-gray-600">Admin Panel</p>
+                <h1 className="font-bold text-white">MATCHBOX</h1>
+                <p className="text-sm text-white/70">Admin Panel</p>
               </div>
             </div>
 
             
             <ul className="space-y-2">
               <li>
-                <div className="flex items-center space-x-3 px-4 py-3 text-brand-azzurro bg-blue-50 rounded-lg">
-                  <Users className="w-4 h-4" />
-                  <span>Dashboard</span>
+                <div className="flex items-center space-x-3 px-4 py-3 text-white bg-[#f8b400]/20 rounded-lg border border-[#f8b400]/30">
+                  <Users className="w-4 h-4 text-[#f8b400]" />
+                  <span className="font-medium">Dashboard</span>
                 </div>
               </li>
               <li>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-600 hover:text-brand-azzurro hover:bg-blue-50 rounded-lg transition-colors">
-                  <Image className="w-4 h-4" />
+                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group">
+                  <Image className="w-4 h-4 group-hover:text-[#f8b400]" />
                   <span>Album</span>
                 </button>
               </li>
               <li>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-600 hover:text-brand-azzurro hover:bg-blue-50 rounded-lg transition-colors">
-                  <Settings className="w-4 h-4" />
+                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group">
+                  <Settings className="w-4 h-4 group-hover:text-[#f8b400]" />
                   <span>Impostazioni</span>
                 </button>
               </li>
@@ -172,65 +172,68 @@ export default function Admin() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Dashboard Amministratore</h1>
-              <p className="text-gray-600">Gestisci album e monitora l'attività</p>
+              <h1 className="text-3xl font-bold text-[#052b3e]">Dashboard Amministratore</h1>
+              <p className="text-[#05637b] text-lg">Gestisci album e monitora l'attività</p>
+            </div>
+            <div className="bg-[#f8b400] px-4 py-2 rounded-lg shadow-md">
+              <p className="text-[#052b3e] font-semibold">Admin Mode</p>
             </div>
           </div>
 
           {/* Stats Cards */}
           {stats && (
             <div className="grid grid-cols-4 gap-6 mb-8">
-              <Card>
+              <Card className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Utenti Totali</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.totalUsers}</p>
+                      <p className="text-sm font-medium text-white/70">Utenti Totali</p>
+                      <p className="text-3xl font-bold text-white">{(stats as any).totalUsers || 0}</p>
                     </div>
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Users className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-[#052b3e]" />
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Match Totali</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.totalMatches}</p>
+                      <p className="text-sm font-medium text-white/70">Match Totali</p>
+                      <p className="text-3xl font-bold text-white">{(stats as any).totalMatches || 0}</p>
                     </div>
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-green-600" />
+                    <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-[#052b3e]" />
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Album Attivi</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.activeAlbums}</p>
+                      <p className="text-sm font-medium text-white/70">Album Attivi</p>
+                      <p className="text-3xl font-bold text-white">{(stats as any).activeAlbums || 0}</p>
                     </div>
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Image className="w-6 h-6 text-orange-600" />
+                    <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+                      <Image className="w-6 h-6 text-[#052b3e]" />
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Segnalazioni</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.pendingReports}</p>
+                      <p className="text-sm font-medium text-white/70">Segnalazioni</p>
+                      <p className="text-3xl font-bold text-white">{(stats as any).pendingReports || 0}</p>
                     </div>
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                      <AlertTriangle className="w-6 h-6 text-red-600" />
+                    <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+                      <AlertTriangle className="w-6 h-6 text-[#052b3e]" />
                     </div>
                   </div>
                 </CardContent>
@@ -239,47 +242,50 @@ export default function Admin() {
           )}
 
           {/* Album Management */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>Gestione Album</CardTitle>
+          <Card className="mb-8 bg-[#05637b] border-0 shadow-lg">
+            <CardHeader className="border-b border-white/10">
+              <CardTitle className="text-white text-xl flex items-center gap-2">
+                <Plus className="w-5 h-5 text-[#f8b400]" />
+                Gestione Album
+              </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="bg-white/5 p-6">
               {/* Album Creation Form */}
               <form onSubmit={handleCreateAlbum} className="mb-6 space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label>Nome Album</Label>
+                    <Label className="text-white">Nome Album</Label>
                     <Input
                       placeholder="es. Calciatori Panini 2024"
                       value={albumForm.name}
                       onChange={(e) => setAlbumForm(prev => ({ ...prev, name: e.target.value }))}
-                      className="mt-2"
+                      className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
                     />
                   </div>
                   <div>
-                    <Label>Anno</Label>
+                    <Label className="text-white">Anno</Label>
                     <Input
                       type="number"
                       value={albumForm.year}
                       onChange={(e) => setAlbumForm(prev => ({ ...prev, year: parseInt(e.target.value) }))}
-                      className="mt-2"
+                      className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
                     />
                   </div>
                 </div>
                 <div>
-                  <Label>Lista Figurine (una per riga)</Label>
+                  <Label className="text-white">Lista Figurine (una per riga)</Label>
                   <Textarea
                     rows={6}
+                    className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
                     placeholder="1|Lionel Messi|FC Barcelona&#10;2|Cristiano Ronaldo|Juventus&#10;3|Neymar Jr|PSG"
                     value={albumForm.stickers}
                     onChange={(e) => setAlbumForm(prev => ({ ...prev, stickers: e.target.value }))}
-                    className="mt-2"
                   />
-                  <p className="text-sm text-gray-500 mt-1">Formato: Numero|Nome|Team (separati da pipe |)</p>
+                  <p className="text-sm text-white/70 mt-1">Formato: Numero|Nome|Team (separati da pipe |)</p>
                 </div>
                 <Button
                   type="submit"
-                  className="bg-brand-teal hover:bg-brand-teal/90"
+                  className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold"
                   disabled={createAlbumMutation.isPending}
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -289,23 +295,27 @@ export default function Admin() {
 
               {/* Albums List */}
               <div className="space-y-4">
-                <h3 className="font-medium text-gray-900">Album Esistenti</h3>
-                {albums.map((album: any) => (
-                  <div key={album.id} className="border border-gray-200 rounded-lg p-4">
+                <h3 className="font-medium text-white">Album Esistenti</h3>
+                {(albums as any[]).map((album: any) => (
+                  <div key={album.id} className="border border-[#f8b400]/30 bg-white/10 rounded-lg p-4 hover:bg-white/15 transition-colors">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-gray-900">{album.name}</h4>
-                        <p className="text-sm text-gray-600">
+                        <h4 className="font-medium text-white">{album.name}</h4>
+                        <p className="text-sm text-white/70">
                           Anno {album.year} • Creato il {new Date(album.createdAt).toLocaleDateString("it-IT")}
                         </p>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Badge variant={album.isActive ? "default" : "secondary"}>
+                        <Badge 
+                          variant={album.isActive ? "default" : "secondary"}
+                          className={album.isActive ? "bg-[#f8b400] text-[#052b3e]" : "bg-white/20 text-white"}
+                        >
                           {album.isActive ? "Attivo" : "Inattivo"}
                         </Badge>
                         <Button
                           variant="outline"
                           size="sm"
+                          className="border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
                           onClick={() => deleteAlbumMutation.mutate(album.id)}
                           disabled={deleteAlbumMutation.isPending}
                         >
@@ -320,39 +330,43 @@ export default function Admin() {
           </Card>
 
           {/* Reports */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Segnalazioni</CardTitle>
+          <Card className="bg-[#05637b] border-0 shadow-lg">
+            <CardHeader className="border-b border-white/10">
+              <CardTitle className="text-white text-xl flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-[#f8b400]" />
+                Segnalazioni
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              {reports.length === 0 ? (
-                <p className="text-gray-500 text-center py-4">Nessuna segnalazione</p>
+            <CardContent className="bg-white/5 p-6">
+              {(reports as any[]).length === 0 ? (
+                <p className="text-white/70 text-center py-4">Nessuna segnalazione</p>
               ) : (
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Tipo</TableHead>
-                      <TableHead>Descrizione</TableHead>
-                      <TableHead>Utente</TableHead>
-                      <TableHead>Data</TableHead>
-                      <TableHead>Stato</TableHead>
-                      <TableHead>Azioni</TableHead>
+                    <TableRow className="border-white/10">
+                      <TableHead className="text-white">Tipo</TableHead>
+                      <TableHead className="text-white">Descrizione</TableHead>
+                      <TableHead className="text-white">Utente</TableHead>
+                      <TableHead className="text-white">Data</TableHead>
+                      <TableHead className="text-white">Stato</TableHead>
+                      <TableHead className="text-white">Azioni</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {reports.map((report: any) => (
-                      <TableRow key={report.id}>
+                    {(reports as any[]).map((report: any) => (
+                      <TableRow key={report.id} className="border-white/10 hover:bg-white/5">
                         <TableCell>
-                          <Badge variant="outline">{report.type}</Badge>
+                          <Badge variant="outline" className="border-[#f8b400] text-[#f8b400]">{report.type}</Badge>
                         </TableCell>
-                        <TableCell className="max-w-xs truncate">{report.description}</TableCell>
-                        <TableCell>{report.reporter.nickname}</TableCell>
-                        <TableCell>
+                        <TableCell className="max-w-xs truncate text-white/90">{report.description}</TableCell>
+                        <TableCell className="text-white/90">{report.reporter.nickname}</TableCell>
+                        <TableCell className="text-white/90">
                           {new Date(report.createdAt).toLocaleDateString("it-IT")}
                         </TableCell>
                         <TableCell>
                           <Badge 
                             variant={report.status === "pending" ? "destructive" : "secondary"}
+                            className={report.status === "pending" ? "bg-red-500 text-white" : "bg-[#f8b400] text-[#052b3e]"}
                           >
                             {report.status}
                           </Badge>
@@ -363,6 +377,7 @@ export default function Admin() {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                className="border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
                                 onClick={() => updateReportMutation.mutate({ 
                                   reportId: report.id, 
                                   status: "resolved" 
@@ -373,6 +388,7 @@ export default function Admin() {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                className="border-white/30 text-white/70 hover:bg-white/10 hover:text-white"
                                 onClick={() => updateReportMutation.mutate({ 
                                   reportId: report.id, 
                                   status: "dismissed" 
