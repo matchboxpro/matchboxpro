@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings } from "lucide-react";
+import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,8 @@ export default function Admin() {
     year: new Date().getFullYear(),
     stickers: "",
   });
+  const [activeSection, setActiveSection] = useState<"dashboard" | "albums" | "settings">("dashboard");
+  const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -30,6 +32,12 @@ export default function Admin() {
 
   const { data: reports = [] } = useQuery({
     queryKey: ["/api/admin/reports"],
+  });
+
+  // Query for selected album stickers
+  const { data: albumStickers = [] } = useQuery({
+    queryKey: ["/api/albums", selectedAlbum?.id, "stickers"],
+    enabled: !!selectedAlbum,
   });
 
   const createAlbumMutation = useMutation({
@@ -146,21 +154,42 @@ export default function Admin() {
             
             <ul className="space-y-2">
               <li>
-                <div className="flex items-center space-x-3 px-4 py-3 text-white bg-[#f8b400]/20 rounded-lg border border-[#f8b400]/30">
-                  <Users className="w-4 h-4 text-[#f8b400]" />
-                  <span className="font-medium">Dashboard</span>
-                </div>
-              </li>
-              <li>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group">
-                  <Image className="w-4 h-4 group-hover:text-[#f8b400]" />
-                  <span>Album</span>
+                <button 
+                  onClick={() => setActiveSection("dashboard")}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                    activeSection === "dashboard" 
+                      ? "text-white bg-[#f8b400]/20 border border-[#f8b400]/30" 
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <Users className={`w-4 h-4 ${activeSection === "dashboard" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
+                  <span className={activeSection === "dashboard" ? "font-medium" : ""}>Dashboard</span>
                 </button>
               </li>
               <li>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group">
-                  <Settings className="w-4 h-4 group-hover:text-[#f8b400]" />
-                  <span>Impostazioni</span>
+                <button 
+                  onClick={() => setActiveSection("albums")}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+                    activeSection === "albums" 
+                      ? "text-white bg-[#f8b400]/20 border border-[#f8b400]/30" 
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <Image className={`w-4 h-4 ${activeSection === "albums" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
+                  <span className={activeSection === "albums" ? "font-medium" : ""}>Album</span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => setActiveSection("settings")}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+                    activeSection === "settings" 
+                      ? "text-white bg-[#f8b400]/20 border border-[#f8b400]/30" 
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <Settings className={`w-4 h-4 ${activeSection === "settings" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
+                  <span className={activeSection === "settings" ? "font-medium" : ""}>Impostazioni</span>
                 </button>
               </li>
             </ul>
@@ -172,16 +201,24 @@ export default function Admin() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-[#052b3e]">Dashboard Amministratore</h1>
-              <p className="text-[#05637b] text-lg">Gestisci album e monitora l'attività</p>
+              <h1 className="text-3xl font-bold text-[#052b3e]">
+                {activeSection === "dashboard" && "Dashboard Amministratore"}
+                {activeSection === "albums" && "Gestione Album"}
+                {activeSection === "settings" && "Impostazioni"}
+              </h1>
+              <p className="text-[#05637b] text-lg">
+                {activeSection === "dashboard" && "Gestisci album e monitora l'attività"}
+                {activeSection === "albums" && "Crea e gestisci album e figurine"}
+                {activeSection === "settings" && "Configura impostazioni sistema"}
+              </p>
             </div>
             <div className="bg-[#f8b400] px-4 py-2 rounded-lg shadow-md">
               <p className="text-[#052b3e] font-semibold">Admin Mode</p>
             </div>
           </div>
 
-          {/* Stats Cards */}
-          {stats && (
+          {/* Dashboard Content */}
+          {activeSection === "dashboard" && stats && (
             <div className="grid grid-cols-4 gap-6 mb-8">
               <Card className="bg-[#05637b] border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
@@ -241,7 +278,225 @@ export default function Admin() {
             </div>
           )}
 
-          {/* Album Management */}
+          {/* Albums Section */}
+          {activeSection === "albums" && !selectedAlbum && (
+            <Card className="mb-8 bg-[#05637b] border-0 shadow-lg">
+              <CardHeader className="border-b border-white/10">
+                <CardTitle className="text-white text-xl flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-[#f8b400]" />
+                  Crea Nuovo Album
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="bg-white/5 p-6">
+                {/* Album Creation Form */}
+                <form onSubmit={handleCreateAlbum} className="mb-6 space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-white">Nome Album</Label>
+                      <Input
+                        placeholder="es. Calciatori Panini 2024"
+                        value={albumForm.name}
+                        onChange={(e) => setAlbumForm(prev => ({ ...prev, name: e.target.value }))}
+                        className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-white">Anno</Label>
+                      <Input
+                        type="number"
+                        value={albumForm.year}
+                        onChange={(e) => setAlbumForm(prev => ({ ...prev, year: parseInt(e.target.value) }))}
+                        className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-white">Lista Figurine (una per riga)</Label>
+                    <Textarea
+                      rows={6}
+                      className="mt-2 bg-white border-[#f8b400]/30 focus:border-[#f8b400]"
+                      placeholder="1|Lionel Messi|FC Barcelona&#10;2|Cristiano Ronaldo|Juventus&#10;3|Neymar Jr|PSG"
+                      value={albumForm.stickers}
+                      onChange={(e) => setAlbumForm(prev => ({ ...prev, stickers: e.target.value }))}
+                    />
+                    <p className="text-sm text-white/70 mt-1">Formato: Numero|Nome|Team (separati da pipe |)</p>
+                  </div>
+                  <Button
+                    type="submit"
+                    className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold"
+                    disabled={createAlbumMutation.isPending}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    {createAlbumMutation.isPending ? "Creando..." : "Crea Album"}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          )}
+
+          {activeSection === "albums" && !selectedAlbum && (
+            <Card className="mb-8 bg-[#05637b] border-0 shadow-lg">
+              <CardHeader className="border-b border-white/10">
+                <CardTitle className="text-white text-xl flex items-center gap-2">
+                  <Image className="w-5 h-5 text-[#f8b400]" />
+                  Album Esistenti
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="bg-white/5 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {(albums as any[]).map((album: any) => (
+                    <div key={album.id} className="border border-[#f8b400]/30 bg-white/10 rounded-lg p-4 hover:bg-white/15 transition-colors">
+                      <div className="flex flex-col space-y-3">
+                        <div>
+                          <h4 className="font-medium text-white text-lg">{album.name}</h4>
+                          <p className="text-sm text-white/70">
+                            Anno {album.year} • Creato il {new Date(album.createdAt).toLocaleDateString("it-IT")}
+                          </p>
+                          <Badge 
+                            variant={album.isActive ? "default" : "secondary"}
+                            className={`mt-2 ${album.isActive ? "bg-[#f8b400] text-[#052b3e]" : "bg-white/20 text-white"}`}
+                          >
+                            {album.isActive ? "Attivo" : "Inattivo"}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Button
+                            size="sm"
+                            className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold flex-1"
+                            onClick={() => setSelectedAlbum(album)}
+                          >
+                            Gestisci
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="border-red-400 text-red-400 hover:bg-red-400 hover:text-white"
+                            onClick={() => deleteAlbumMutation.mutate(album.id)}
+                            disabled={deleteAlbumMutation.isPending}
+                          >
+                            Elimina
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Selected Album Management */}
+          {activeSection === "albums" && selectedAlbum && (
+            <div className="space-y-6">
+              {/* Back Button and Album Info */}
+              <Card className="bg-[#05637b] border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSelectedAlbum(null)}
+                        className="border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
+                      >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Torna agli Album
+                      </Button>
+                      <div>
+                        <h2 className="text-2xl font-bold text-white">{selectedAlbum.name}</h2>
+                        <p className="text-white/70">Anno {selectedAlbum.year} • {albumStickers.length} figurine</p>
+                      </div>
+                    </div>
+                    <Badge 
+                      variant={selectedAlbum.isActive ? "default" : "secondary"}
+                      className={`${selectedAlbum.isActive ? "bg-[#f8b400] text-[#052b3e]" : "bg-white/20 text-white"}`}
+                    >
+                      {selectedAlbum.isActive ? "Attivo" : "Inattivo"}
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Stickers Management */}
+              <Card className="bg-[#05637b] border-0 shadow-lg">
+                <CardHeader className="border-b border-white/10">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-white text-xl flex items-center gap-2">
+                      <Image className="w-5 h-5 text-[#f8b400]" />
+                      Gestione Figurine
+                    </CardTitle>
+                    <Button
+                      size="sm"
+                      className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Aggiungi Figurine
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent className="bg-white/5 p-6">
+                  {albumStickers.length === 0 ? (
+                    <div className="text-center py-8">
+                      <Image className="w-12 h-12 text-white/30 mx-auto mb-4" />
+                      <p className="text-white/70 text-lg">Nessuna figurina presente</p>
+                      <p className="text-white/50 text-sm">Aggiungi le prime figurine a questo album</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <p className="text-white/70">Totale: {albumStickers.length} figurine</p>
+                        <div className="flex items-center space-x-2">
+                          <Input
+                            placeholder="Cerca figurina..."
+                            className="bg-white/10 border-[#f8b400]/30 text-white placeholder-white/50"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                        {(albumStickers as any[]).map((sticker: any) => (
+                          <div key={sticker.id} className="border border-[#f8b400]/20 bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors">
+                            <div className="flex items-center justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center space-x-2">
+                                  <span className="bg-[#f8b400] text-[#052b3e] text-xs font-bold px-2 py-1 rounded">
+                                    #{sticker.number}
+                                  </span>
+                                  <span className="text-white font-medium">{sticker.name}</span>
+                                </div>
+                                {sticker.team && (
+                                  <p className="text-white/60 text-sm mt-1">{sticker.team}</p>
+                                )}
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="h-6 w-6 p-0 border-[#f8b400]/30 text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e]"
+                                >
+                                  <Edit className="w-3 h-3" />
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="h-6 w-6 p-0 border-red-400/30 text-red-400 hover:bg-red-400 hover:text-white"
+                                >
+                                  <Trash2 className="w-3 h-3" />
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Dashboard Album Management - Keep existing for backward compatibility */}
+          {activeSection === "dashboard" && (
           <Card className="mb-8 bg-[#05637b] border-0 shadow-lg">
             <CardHeader className="border-b border-white/10">
               <CardTitle className="text-white text-xl flex items-center gap-2">
@@ -328,8 +583,10 @@ export default function Admin() {
               </div>
             </CardContent>
           </Card>
+          )}
 
           {/* Reports */}
+          {activeSection === "dashboard" && (
           <Card className="bg-[#05637b] border-0 shadow-lg">
             <CardHeader className="border-b border-white/10">
               <CardTitle className="text-white text-xl flex items-center gap-2">
@@ -406,6 +663,7 @@ export default function Admin() {
               )}
             </CardContent>
           </Card>
+          )}
         </main>
       </div>
     </div>
