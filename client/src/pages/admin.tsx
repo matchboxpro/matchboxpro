@@ -28,7 +28,6 @@ export default function Admin() {
   });
   const [newAlbumData, setNewAlbumData] = useState({
     name: "",
-    year: new Date().getFullYear(),
     stickers: ""
   });
   const [importedStickers, setImportedStickers] = useState<Array<{id: string, number: string, description: string}>>([]);
@@ -426,7 +425,6 @@ export default function Admin() {
                       <div className="space-y-4">
                         <div>
                           <h3 className="text-xl font-bold text-[#052b3e] mb-1">{album.name}</h3>
-                          <p className="text-[#05637b] text-sm">Anno {album.year}</p>
                         </div>
                         <div className="mb-4">
                           <p className="text-[#052b3e] font-medium">
@@ -740,27 +738,13 @@ export default function Admin() {
                   />
                 </div>
 
-                {/* Album Year */}
-                <div className="space-y-3">
-                  <Label className="text-[#052b3e] font-medium">
-                    Anno:
-                  </Label>
-                  <Input
-                    type="number"
-                    placeholder="2025"
-                    value={newAlbumData.year}
-                    onChange={(e) => setNewAlbumData(prev => ({ ...prev, year: parseInt(e.target.value) || new Date().getFullYear() }))}
-                    className="border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
-                  />
-                </div>
-
                 {/* Action Buttons */}
                 <div className="flex items-center justify-end space-x-3 pt-4 border-t">
                   <Button 
                     variant="outline"
                     onClick={() => {
                       setShowNewAlbumModal(false);
-                      setNewAlbumData({ name: "", year: new Date().getFullYear(), stickers: "" });
+                      setNewAlbumData({ name: "", stickers: "" });
                     }}
                     className="px-6"
                   >
@@ -779,8 +763,7 @@ export default function Admin() {
 
                       try {
                         const response = await apiRequest("POST", "/api/albums", {
-                          name: newAlbumData.name.trim(),
-                          year: newAlbumData.year
+                          name: newAlbumData.name.trim()
                         });
 
                         if (response.ok) {
@@ -788,7 +771,7 @@ export default function Admin() {
                           queryClient.invalidateQueries({ queryKey: ["/api/albums"] });
                           
                           setShowNewAlbumModal(false);
-                          setNewAlbumData({ name: "", year: new Date().getFullYear(), stickers: "" });
+                          setNewAlbumData({ name: "", stickers: "" });
                           
                           toast({
                             title: "Album creato",
