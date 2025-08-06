@@ -445,14 +445,32 @@ export default function Admin() {
                           <Button 
                             size="sm" 
                             variant="outline"
-                            onClick={() => {
+                            onClick={async () => {
                               const newName = window.prompt("Modifica nome album:", album.name);
                               if (newName && newName.trim() !== "") {
-                                // TODO: Implement edit album API call
-                                toast({ 
-                                  title: "Funzione in sviluppo", 
-                                  description: "Modifica album sarà presto disponibile" 
-                                });
+                                try {
+                                  const response = await apiRequest("PUT", `/api/albums/${album.id}`, {
+                                    name: newName.trim()
+                                  });
+
+                                  if (response.ok) {
+                                    // Refresh albums list
+                                    queryClient.invalidateQueries({ queryKey: ["/api/albums"] });
+                                    
+                                    toast({
+                                      title: "Album modificato",
+                                      description: `Il nome dell'album è stato cambiato in "${newName.trim()}"`
+                                    });
+                                  } else {
+                                    throw new Error("Errore nella modifica");
+                                  }
+                                } catch (error) {
+                                  toast({
+                                    title: "Errore",
+                                    description: "Errore nella modifica dell'album",
+                                    variant: "destructive"
+                                  });
+                                }
                               }
                             }}
                             className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
@@ -462,13 +480,29 @@ export default function Admin() {
                           <Button 
                             size="sm" 
                             variant="outline"
-                            onClick={() => {
+                            onClick={async () => {
                               if (window.confirm(`Sei sicuro di voler eliminare l'album "${album.name}"? Questa azione eliminerà anche tutte le figurine associate.`)) {
-                                // TODO: Implement delete album API call
-                                toast({ 
-                                  title: "Funzione in sviluppo", 
-                                  description: "Eliminazione album sarà presto disponibile" 
-                                });
+                                try {
+                                  const response = await apiRequest("DELETE", `/api/albums/${album.id}`);
+
+                                  if (response.ok) {
+                                    // Refresh albums list
+                                    queryClient.invalidateQueries({ queryKey: ["/api/albums"] });
+                                    
+                                    toast({
+                                      title: "Album eliminato",
+                                      description: `L'album "${album.name}" è stato eliminato con successo`
+                                    });
+                                  } else {
+                                    throw new Error("Errore nell'eliminazione");
+                                  }
+                                } catch (error) {
+                                  toast({
+                                    title: "Errore",
+                                    description: "Errore nell'eliminazione dell'album",
+                                    variant: "destructive"
+                                  });
+                                }
                               }
                             }}
                             className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"

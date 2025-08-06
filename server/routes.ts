@@ -163,6 +163,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.put("/api/albums/:id", requireAdmin, async (req, res) => {
+    try {
+      const albumData = insertAlbumSchema.partial().parse(req.body);
+      const album = await storage.updateAlbum(req.params.id, albumData);
+      res.json(album);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      res.status(500).json({ message: "Errore nell'aggiornamento dell'album" });
+    }
+  });
+
   app.delete("/api/albums/:id", requireAdmin, async (req, res) => {
     try {
       await storage.deleteAlbum(req.params.id);
