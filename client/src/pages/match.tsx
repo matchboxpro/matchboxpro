@@ -48,16 +48,16 @@ export default function Match() {
 
   if (!user?.albumSelezionato) {
     return (
-      <div className="min-h-screen bg-gray-50 pb-20">
+      <div className="min-h-screen bg-brand-bianco pb-20">
         <MobileHeader
           title="Trova Match"
           onBack={() => setLocation("/")}
         />
         <div className="p-4 text-center">
-          <p className="text-gray-500 mb-4">Seleziona un album attivo per trovare match</p>
+          <p className="text-brand-nero/60 mb-4">Seleziona un album attivo per trovare match</p>
           <Button 
             onClick={() => setLocation("/profile")}
-            className="bg-brand-teal hover:bg-brand-teal/90"
+            className="bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
           >
             Vai al Profilo
           </Button>
@@ -67,7 +67,7 @@ export default function Match() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-brand-bianco pb-20">
       <MobileHeader
         title="Trova Match"
         subtitle="Trova collezionisti compatibili"
@@ -78,8 +78,8 @@ export default function Match() {
       <Card className="m-4">
         <CardContent className="p-4">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-medium text-gray-700">Raggio di ricerca</span>
-            <span className="text-sm text-brand-teal">{searchRadius[0]} km</span>
+            <span className="text-sm font-medium text-brand-nero">Raggio di ricerca</span>
+            <span className="text-sm text-brand-azzurro">{searchRadius[0]} km</span>
           </div>
           <Slider
             value={searchRadius}
@@ -97,8 +97,8 @@ export default function Match() {
         {potentialMatches.length === 0 ? (
           <Card>
             <CardContent className="p-6 text-center">
-              <p className="text-gray-500">Nessun match trovato nella tua zona</p>
-              <p className="text-sm text-gray-400 mt-2">
+              <p className="text-brand-nero/60">Nessun match trovato nella tua zona</p>
+              <p className="text-sm text-brand-nero/40 mt-2">
                 Prova ad aumentare il raggio di ricerca
               </p>
             </CardContent>

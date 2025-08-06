@@ -50,16 +50,16 @@ export default function Album() {
 
   if (!user?.albumSelezionato) {
     return (
-      <div className="min-h-screen bg-gray-50 pb-20">
+      <div className="min-h-screen bg-brand-bianco pb-20">
         <MobileHeader
           title="Il Mio Album"
           onBack={() => setLocation("/")}
         />
         <div className="p-4 text-center">
-          <p className="text-gray-500 mb-4">Seleziona un album attivo dal tuo profilo</p>
+          <p className="text-brand-nero/60 mb-4">Seleziona un album attivo dal tuo profilo</p>
           <Button 
             onClick={() => setLocation("/profile")}
-            className="bg-brand-teal hover:bg-brand-teal/90"
+            className="bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
           >
             Vai al Profilo
           </Button>
@@ -81,7 +81,7 @@ export default function Album() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-brand-bianco pb-20">
       <MobileHeader
         title="Il Mio Album"
         subtitle="Gestisci le tue figurine"
@@ -89,14 +89,14 @@ export default function Album() {
       />
 
       {/* Filter Tabs */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-brand-bianco border-b border-brand-azzurro/30">
         <div className="flex">
           <Button
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "all" 
-                ? "border-brand-teal text-brand-teal" 
-                : "border-transparent text-gray-500"
+                ? "border-brand-azzurro text-brand-azzurro" 
+                : "border-transparent text-brand-nero/60"
             }`}
             onClick={() => setFilter("all")}
           >
@@ -106,8 +106,8 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "missing" 
-                ? "border-brand-teal text-brand-teal" 
-                : "border-transparent text-gray-500"
+                ? "border-brand-azzurro text-brand-azzurro" 
+                : "border-transparent text-brand-nero/60"
             }`}
             onClick={() => setFilter("missing")}
           >
@@ -117,8 +117,8 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "double" 
-                ? "border-brand-teal text-brand-teal" 
-                : "border-transparent text-gray-500"
+                ? "border-brand-azzurro text-brand-azzurro" 
+                : "border-transparent text-brand-nero/60"
             }`}
             onClick={() => setFilter("double")}
           >
@@ -131,7 +131,7 @@ export default function Album() {
       <div className="p-4">
         {filteredStickers.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-gray-500">Nessuna figurina trovata</p>
+            <p className="text-brand-nero/60">Nessuna figurina trovata</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

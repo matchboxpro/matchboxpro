@@ -3,33 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(190, 90%, 50%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
+  --background: #fff4d6;
+  --foreground: #052b3e;
+  --muted: #fff4d6;
+  --muted-foreground: #052b3e;
+  --popover: #fff4d6;
+  --popover-foreground: #052b3e;
+  --card: #fff4d6;
+  --card-foreground: #052b3e;
+  --border: #05637b;
+  --input: #fff4d6;
+  --primary: #05637b;
+  --primary-foreground: #fff4d6;
+  --secondary: #f8b400;
+  --secondary-foreground: #052b3e;
+  --accent: #f8b400;
+  --accent-foreground: #052b3e;
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
+  --destructive-foreground: #fff4d6;
+  --ring: #05637b;
   --radius: 0.5rem;
   
   /* MATCHNODE Brand Colors */
-  --brand-teal: hsl(190, 90%, 50%);
-  --brand-orange: hsl(38, 92%, 50%);
+  --brand-azzurro: #05637b;
+  --brand-bianco: #fff4d6;
+  --brand-giallo: #f8b400;
+  --brand-nero: #052b3e;
   --sticker-yes: hsl(142, 76%, 36%);
-  --sticker-no: hsl(220, 14%, 50%);
-  --sticker-double: hsl(38, 92%, 50%);
+  --sticker-no: #052b3e;
+  --sticker-double: #f8b400;
 }
 
 .dark {
@@ -65,20 +67,36 @@
 }
 
 @layer utilities {
-  .text-brand-teal {
-    color: var(--brand-teal);
+  .text-brand-azzurro {
+    color: var(--brand-azzurro);
   }
   
-  .bg-brand-teal {
-    background-color: var(--brand-teal);
+  .bg-brand-azzurro {
+    background-color: var(--brand-azzurro);
   }
   
-  .text-brand-orange {
-    color: var(--brand-orange);
+  .text-brand-bianco {
+    color: var(--brand-bianco);
   }
   
-  .bg-brand-orange {
-    background-color: var(--brand-orange);
+  .bg-brand-bianco {
+    background-color: var(--brand-bianco);
+  }
+  
+  .text-brand-giallo {
+    color: var(--brand-giallo);
+  }
+  
+  .bg-brand-giallo {
+    background-color: var(--brand-giallo);
+  }
+  
+  .text-brand-nero {
+    color: var(--brand-nero);
+  }
+  
+  .bg-brand-nero {
+    background-color: var(--brand-nero);
   }
   
   .text-sticker-yes {

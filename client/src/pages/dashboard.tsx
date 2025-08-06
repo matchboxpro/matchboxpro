@@ -23,16 +23,16 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-brand-bianco pb-20">
       <MobileHeader
         title={`Ciao, ${user?.nickname || "Utente"}!`}
         subtitle={`Album: ${user?.albumSelezionato || "Nessun album selezionato"}`}
         rightElement={
           <button 
             onClick={() => setLocation("/profile")}
-            className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center"
+            className="w-10 h-10 bg-brand-azzurro/20 rounded-full flex items-center justify-center"
           >
-            <User className="w-5 h-5 text-gray-600" />
+            <User className="w-5 h-5 text-brand-azzurro" />
           </button>
         }
       />
@@ -61,15 +61,15 @@ export default function Dashboard() {
 
       {/* Recent Matches */}
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Ultimi Match</h2>
+        <h2 className="text-lg font-semibold text-brand-nero mb-4">Ultimi Match</h2>
         
         {matches.length === 0 ? (
           <Card>
             <CardContent className="p-6 text-center">
-              <p className="text-gray-500 mb-4">Nessun match trovato</p>
+              <p className="text-brand-nero/60 mb-4">Nessun match trovato</p>
               <Button 
                 onClick={() => setLocation("/match")}
-                className="bg-brand-teal hover:bg-brand-teal/90"
+                className="bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
               >
                 Trova Match
               </Button>

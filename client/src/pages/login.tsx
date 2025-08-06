@@ -63,15 +63,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center p-6">
-      <Card className="w-full max-w-md mx-auto">
+    <div className="min-h-screen bg-brand-bianco flex flex-col justify-center p-6">
+      <Card className="w-full max-w-md mx-auto border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-brand-teal rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <Zap className="text-brand-orange w-8 h-8" />
+            <div className="w-20 h-20 bg-brand-azzurro rounded-2xl mx-auto mb-4 flex items-center justify-center">
+              <Zap className="text-brand-giallo w-8 h-8" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">MATCHNODE</h1>
-            <p className="text-gray-600">Scambia le tue figurine Panini</p>
+            <h1 className="text-2xl font-bold text-brand-nero mb-2">MATCHNODE</h1>
+            <p className="text-brand-nero/80">Scambia le tue figurine Panini</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -116,7 +116,7 @@ export default function Login() {
 
             <Button 
               type="submit" 
-              className="w-full bg-brand-teal hover:bg-brand-teal/90"
+              className="w-full bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
               disabled={authMutation.isPending}
             >
               {authMutation.isPending 
@@ -129,12 +129,12 @@ export default function Login() {
           </form>
 
           <div className="text-center mt-6">
-            <p className="text-gray-600">
+            <p className="text-brand-nero/60">
               {isRegister ? "Hai già un account?" : "Non hai un account?"}
             </p>
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="text-brand-teal font-medium hover:underline"
+              className="text-brand-azzurro font-medium hover:underline"
             >
               {isRegister ? "Accedi" : "Registrati"}
             </button>

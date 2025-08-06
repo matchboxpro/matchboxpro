@@ -8,6 +8,14 @@ MATCHBOX is a mobile-first web application designed for trading Panini stickers 
 
 Preferred communication style: Simple, everyday language in Italian.
 
+### Brand Colors (FIXED PALETTE)
+- Azzurro: #05637b (primary brand color)
+- Bianco: #fff4d6 (background/light color) 
+- Giallo: #f8b400 (accent/action color)
+- Nero: #052b3e (text/dark color)
+
+Note: These exact color codes must ALWAYS be maintained throughout the app.
+
 ## System Architecture
 
 ### Frontend Architecture

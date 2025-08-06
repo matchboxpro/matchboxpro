@@ -14,16 +14,16 @@ interface StickerCardProps {
 
 export function StickerCard({ sticker, status, onStatusChange }: StickerCardProps) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-      <div className="w-full h-24 bg-gradient-to-br from-brand-teal to-cyan-700 flex items-center justify-center">
-        <span className="text-white font-bold text-2xl">{sticker.number}</span>
+    <div className="bg-brand-bianco rounded-xl border border-brand-azzurro/20 overflow-hidden">
+      <div className="w-full h-24 bg-gradient-to-br from-brand-azzurro to-brand-azzurro/80 flex items-center justify-center">
+        <span className="text-brand-bianco font-bold text-2xl">{sticker.number}</span>
       </div>
       
       <div className="p-3">
-        <div className="text-sm font-medium text-gray-900 mb-1">N. {sticker.number}</div>
-        <div className="text-xs text-gray-600 mb-2">{sticker.name}</div>
+        <div className="text-sm font-medium text-brand-nero mb-1">N. {sticker.number}</div>
+        <div className="text-xs text-brand-nero/80 mb-2">{sticker.name}</div>
         {sticker.team && (
-          <div className="text-xs text-gray-500 mb-3">{sticker.team}</div>
+          <div className="text-xs text-brand-nero/60 mb-3">{sticker.team}</div>
         )}
         
         <div className="grid grid-cols-3 gap-1">
@@ -33,7 +33,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "yes" 
                 ? "bg-sticker-yes hover:bg-sticker-yes/90 text-white" 
-                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "yes")}
           >
@@ -45,7 +45,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "no" 
                 ? "bg-sticker-no hover:bg-sticker-no/90 text-white" 
-                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "no")}
           >
@@ -57,7 +57,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "double" 
                 ? "bg-sticker-double hover:bg-sticker-double/90 text-white" 
-                : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "double")}
           >

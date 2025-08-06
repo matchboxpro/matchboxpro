@@ -85,14 +85,14 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Caricamento...</p>
+      <div className="min-h-screen bg-brand-bianco flex items-center justify-center">
+        <p className="text-brand-nero/60">Caricamento...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-brand-bianco pb-20">
       <MobileHeader
         title="Profilo"
         subtitle="Gestisci le tue impostazioni"
@@ -153,7 +153,7 @@ export default function Profile() {
                   step={1}
                   className="mt-2"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-brand-nero/60 mt-1">
                   <span>1 km</span>
                   <span>50 km</span>
                 </div>
@@ -180,7 +180,7 @@ export default function Profile() {
 
               <Button
                 type="submit"
-                className="w-full bg-brand-teal hover:bg-brand-teal/90"
+                className="w-full bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
                 disabled={updateProfileMutation.isPending}
               >
                 {updateProfileMutation.isPending ? "Salvando..." : "Salva Modifiche"}
@@ -190,7 +190,7 @@ export default function Profile() {
         </Card>
 
         {/* Premium Status */}
-        <Card className="bg-gradient-to-r from-brand-orange to-yellow-500 text-white border-0">
+        <Card className="bg-gradient-to-r from-brand-giallo to-brand-giallo/80 text-brand-nero border-0">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
