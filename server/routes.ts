@@ -200,6 +200,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Bulk import endpoint for stickers
+  app.post("/api/albums/:albumId/stickers/bulk", requireAdmin, async (req, res) => {
+    try {
+      const { stickers: stickerList } = req.body;
+      
+      const validatedStickers = stickerList.map((sticker: any) => 
+        insertStickerSchema.parse({ ...sticker, albumId: req.params.albumId })
+      );
+      
+      const createdStickers = await storage.createStickers(validatedStickers);
+      res.json({ success: true, count: createdStickers.length, stickers: createdStickers });
+    } catch (error) {
+      console.error("Bulk import error:", error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      res.status(500).json({ message: "Errore nell'import bulk delle figurine" });
+    }
+  });
+
   // User stickers routes
   app.get("/api/user-stickers/:albumId", requireAuth, async (req, res) => {
     try {

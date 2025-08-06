@@ -49,11 +49,11 @@ export default function Admin() {
   });
 
   // Function to parse and import stickers
-  const handleImportStickers = () => {
-    if (!stickerFormData.stickers.trim()) {
+  const handleImportStickers = async () => {
+    if (!selectedAlbum?.id || !stickerFormData.stickers.trim()) {
       toast({
         title: "Errore",
-        description: "Inserisci la lista delle figurine da importare",
+        description: "Seleziona un album e inserisci la lista delle figurine da importare",
         variant: "destructive"
       });
       return;
@@ -72,9 +72,9 @@ export default function Admin() {
         
         const [, number, description] = match;
         return {
-          id: `temp_${index}`,
           number: number.trim(),
-          description: description.trim()
+          name: description.trim(),
+          albumId: selectedAlbum.id
         };
       }).filter(Boolean);
 
@@ -87,15 +87,32 @@ export default function Admin() {
         return;
       }
 
-      setImportedStickers(parsed);
-      toast({
-        title: "Successo",
-        description: `Importate ${parsed.length} figurine`
+      // Save stickers to database via API
+      const response = await apiRequest("POST", `/api/albums/${selectedAlbum.id}/stickers/bulk`, {
+        stickers: parsed
       });
+
+      if (response.ok) {
+        const result = await response.json();
+        
+        // Refresh the stickers list
+        queryClient.invalidateQueries({ queryKey: ["/api/albums", selectedAlbum.id, "stickers"] });
+        
+        // Clear the form
+        setStickerFormData(prev => ({ ...prev, stickers: "" }));
+        
+        toast({
+          title: "Successo",
+          description: `Salvate ${result.count || parsed.length} figurine nel database`
+        });
+      } else {
+        throw new Error("Errore nel salvataggio");
+      }
     } catch (error) {
+      console.error("Import error:", error);
       toast({
         title: "Errore",
-        description: "Errore nel parsing della lista figurine",
+        description: "Errore nel salvataggio delle figurine nel database",
         variant: "destructive"
       });
     }
