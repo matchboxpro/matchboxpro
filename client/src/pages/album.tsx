@@ -45,27 +45,58 @@ export default function Album() {
       });
       return response.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
-      toast({
-        title: "Aggiornato!",
-        description: "Stato della figurina aggiornato",
+    onMutate: async ({ stickerId, status }) => {
+      // Ottimizzazione: aggiornamento ottimistico per UI istantanea
+      await queryClient.cancelQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
+      
+      const previousData = queryClient.getQueryData(["/api/user-stickers", selectedAlbum]);
+      
+      queryClient.setQueryData(["/api/user-stickers", selectedAlbum], (old: any) => {
+        if (!old) return old;
+        
+        const existingIndex = old.findIndex((us: any) => us.stickerId === stickerId);
+        if (existingIndex >= 0) {
+          // Aggiorna esistente
+          const newData = [...old];
+          newData[existingIndex] = { ...newData[existingIndex], status };
+          return newData;
+        } else {
+          // Aggiungi nuovo
+          return [...old, { stickerId, status, userId: user?.id }];
+        }
       });
+      
+      return { previousData };
     },
-    onError: (error: any) => {
+    onError: (error: any, variables, context) => {
+      // Rollback in caso di errore
+      if (context?.previousData) {
+        queryClient.setQueryData(["/api/user-stickers", selectedAlbum], context.previousData);
+      }
       toast({
         title: "Errore",
         description: error.message || "Errore nell'aggiornamento",
         variant: "destructive",
       });
     },
+    onSettled: () => {
+      // Sincronizza con il server
+      queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
+    },
   });
 
-  // Auto-set all stickers to "no" (missing) when album is first loaded
+  // Ottimizzazione: Auto-set solo quando necessario
   const autoSetMissingMutation = useMutation({
     mutationFn: async () => {
-      // Set ALL stickers to "no" status by default
-      const promises = stickers.map((sticker: any) => {
+      // Trova solo le figurine che non hanno ancora uno stato
+      const stickersWithoutStatus = stickers.filter((sticker: any) => {
+        return !userStickers.find((us: any) => us.stickerId === sticker.id);
+      });
+      
+      if (stickersWithoutStatus.length === 0) return;
+      
+      // Set solo le figurine senza stato a "no"
+      const promises = stickersWithoutStatus.map((sticker: any) => {
         return apiRequest("POST", "/api/user-stickers", { 
           stickerId: sticker.id, 
           status: "no",
@@ -79,9 +110,12 @@ export default function Album() {
     },
   });
 
-  // Auto-set missing status when stickers are loaded and there are fewer user stickers than total stickers
-  const shouldAutoSet = stickers.length > 0 && userStickers.length < stickers.length;
-  if (shouldAutoSet && !autoSetMissingMutation.isPending) {
+  // Auto-set solo quando ci sono figurine senza stato
+  const stickersWithoutStatus = stickers.filter((sticker: any) => {
+    return !userStickers.find((us: any) => us.stickerId === sticker.id);
+  });
+  
+  if (stickersWithoutStatus.length > 0 && stickers.length > 0 && !autoSetMissingMutation.isPending) {
     autoSetMissingMutation.mutate();
   }
 
@@ -303,6 +337,8 @@ function StickerRow({
       return;
     }
     
+    // Regola importante: se flaggo SI, automaticamente deseleziono NO
+    // e viceversa - i pulsanti SI e NO sono mutuamente esclusivi
     onStatusChange(sticker.id, newStatus);
   };
 

@@ -164,7 +164,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateUserSticker(userId: string, stickerId: string, status: string): Promise<UserSticker> {
-    // Try to update existing record
+    // Try to update existing record first (ottimizzazione per operazioni più veloci)
     const existing = await db
       .select()
       .from(userStickers)
