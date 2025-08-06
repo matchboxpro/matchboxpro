@@ -67,15 +67,14 @@ export default function Login() {
       <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+            <div className="w-48 h-36 mx-auto mb-4 flex items-center justify-center">
               <img 
-                src="/attached_assets/match icon_1754509310552.png" 
+                src="/attached_assets/matchtext_1754509586835.png" 
                 alt="MATCHBOX"
                 className="w-full h-full object-contain"
               />
             </div>
-            <h1 className="text-2xl font-bold text-brand-bianco mb-2">MATCHBOX</h1>
-            <p className="text-brand-bianco/80">Scambia le tue figurine Panini</p>
+            <p className="text-brand-bianco/90 text-lg">Scambia le tue figurine Panini</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
