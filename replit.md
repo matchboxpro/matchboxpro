@@ -2,7 +2,7 @@
 
 ## Overview
 
-MATCHBOX is a mobile-first web application designed for trading Panini stickers between users. The platform connects collectors based on location proximity and album compatibility to facilitate efficient sticker exchanges. Users can manage their sticker collections, find compatible trading partners through an intelligent matching system, and communicate through integrated chat functionality.
+MATCHBOX is a mobile-first web application designed for trading Panini stickers between users. The platform features a distinctive azzurro (#05637b) background layout with official branding and logos. The app connects collectors based on location proximity and album compatibility to facilitate efficient sticker exchanges. Users can manage their sticker collections, find compatible trading partners through an intelligent matching system, and communicate through integrated chat functionality.
 
 ## User Preferences
 

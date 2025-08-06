@@ -63,14 +63,18 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bianco flex flex-col justify-center p-6">
-      <Card className="w-full max-w-md mx-auto border-brand-azzurro">
+    <div className="min-h-screen bg-brand-azzurro flex flex-col justify-center p-6">
+      <Card className="w-full max-w-md mx-auto border-brand-bianco bg-brand-bianco">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-brand-azzurro rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <Zap className="text-brand-giallo w-8 h-8" />
+            <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+              <img 
+                src="/attached_assets/match icon_1754509310552.png" 
+                alt="MATCHBOX"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <h1 className="text-2xl font-bold text-brand-nero mb-2">MATCHNODE</h1>
+            <h1 className="text-2xl font-bold text-brand-nero mb-2">MATCHBOX</h1>
             <p className="text-brand-nero/80">Scambia le tue figurine Panini</p>
           </div>
 
@@ -116,7 +120,7 @@ export default function Login() {
 
             <Button 
               type="submit" 
-              className="w-full bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
+              className="w-full bg-brand-nero hover:bg-brand-nero/90 text-brand-bianco"
               disabled={authMutation.isPending}
             >
               {authMutation.isPending 
@@ -134,7 +138,7 @@ export default function Login() {
             </p>
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="text-brand-azzurro font-medium hover:underline"
+              className="text-brand-nero font-medium hover:underline"
             >
               {isRegister ? "Accedi" : "Registrati"}
             </button>

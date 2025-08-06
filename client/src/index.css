@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #fff4d6;
-  --foreground: #052b3e;
-  --muted: #fff4d6;
-  --muted-foreground: #052b3e;
+  --background: #05637b;
+  --foreground: #fff4d6;
+  --muted: #05637b;
+  --muted-foreground: #fff4d6;
   --popover: #fff4d6;
   --popover-foreground: #052b3e;
   --card: #fff4d6;
   --card-foreground: #052b3e;
-  --border: #05637b;
+  --border: #fff4d6;
   --input: #fff4d6;
-  --primary: #05637b;
+  --primary: #052b3e;
   --primary-foreground: #fff4d6;
   --secondary: #f8b400;
   --secondary-foreground: #052b3e;
@@ -21,7 +21,7 @@
   --accent-foreground: #052b3e;
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: #fff4d6;
-  --ring: #05637b;
+  --ring: #fff4d6;
   --radius: 0.5rem;
   
   /* MATCHNODE Brand Colors */

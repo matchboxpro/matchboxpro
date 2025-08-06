@@ -14,8 +14,8 @@ interface StickerCardProps {
 
 export function StickerCard({ sticker, status, onStatusChange }: StickerCardProps) {
   return (
-    <div className="bg-brand-bianco rounded-xl border border-brand-azzurro/20 overflow-hidden">
-      <div className="w-full h-24 bg-gradient-to-br from-brand-azzurro to-brand-azzurro/80 flex items-center justify-center">
+    <div className="bg-brand-bianco rounded-xl border border-brand-nero/20 overflow-hidden">
+      <div className="w-full h-24 bg-gradient-to-br from-brand-nero to-brand-nero/80 flex items-center justify-center">
         <span className="text-brand-bianco font-bold text-2xl">{sticker.number}</span>
       </div>
       
@@ -33,7 +33,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "yes" 
                 ? "bg-sticker-yes hover:bg-sticker-yes/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "yes")}
           >
@@ -45,7 +45,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "no" 
                 ? "bg-sticker-no hover:bg-sticker-no/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "no")}
           >
@@ -57,7 +57,7 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
             className={`py-1 px-2 text-xs ${
               status === "double" 
                 ? "bg-sticker-double hover:bg-sticker-double/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-azzurro/10"
+                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
             }`}
             onClick={() => onStatusChange(sticker.id, "double")}
           >

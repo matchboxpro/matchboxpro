@@ -23,17 +23,24 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bianco pb-20">
+    <div className="min-h-screen bg-brand-azzurro pb-20">
       <MobileHeader
         title={`Ciao, ${user?.nickname || "Utente"}!`}
         subtitle={`Album: ${user?.albumSelezionato || "Nessun album selezionato"}`}
         rightElement={
-          <button 
-            onClick={() => setLocation("/profile")}
-            className="w-10 h-10 bg-brand-azzurro/20 rounded-full flex items-center justify-center"
-          >
-            <User className="w-5 h-5 text-brand-azzurro" />
-          </button>
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/attached_assets/matchlogo_1754509310553.png" 
+              alt="MATCHBOX" 
+              className="h-8 w-auto"
+            />
+            <button 
+              onClick={() => setLocation("/profile")}
+              className="w-10 h-10 bg-brand-bianco/20 rounded-full flex items-center justify-center"
+            >
+              <User className="w-5 h-5 text-brand-bianco" />
+            </button>
+          </div>
         }
       />
 
@@ -61,15 +68,15 @@ export default function Dashboard() {
 
       {/* Recent Matches */}
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-brand-nero mb-4">Ultimi Match</h2>
+        <h2 className="text-lg font-semibold text-brand-bianco mb-4">Ultimi Match</h2>
         
         {matches.length === 0 ? (
           <Card>
             <CardContent className="p-6 text-center">
-              <p className="text-brand-nero/60 mb-4">Nessun match trovato</p>
+              <p className="text-brand-nero/80 mb-4">Nessun match trovato</p>
               <Button 
                 onClick={() => setLocation("/match")}
-                className="bg-brand-azzurro hover:bg-brand-azzurro/90 text-brand-bianco"
+                className="bg-brand-nero hover:bg-brand-nero/90 text-brand-bianco"
               >
                 Trova Match
               </Button>

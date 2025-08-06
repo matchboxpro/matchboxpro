@@ -9,11 +9,11 @@ interface MobileHeaderProps {
 
 export function MobileHeader({ title, subtitle, onBack, rightElement }: MobileHeaderProps) {
   return (
-    <header className="bg-brand-bianco border-b border-brand-azzurro p-4">
+    <header className="bg-brand-bianco border-b border-brand-nero/20 p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           {onBack && (
-            <button onClick={onBack} className="text-brand-azzurro">
+            <button onClick={onBack} className="text-brand-nero">
               <ArrowLeft className="w-5 h-5" />
             </button>
           )}
