@@ -64,18 +64,16 @@ export default function Admin() {
         // Remove empty lines
         if (!line.trim()) return null;
         
-        // Parse different formats: "123 - Description" or "CODE123 Description" or "123 Description"
-        const match = line.match(/^(.+?)\s*[-—–]\s*(.+)$/) || 
-                     line.match(/^(\S+)\s+(.+)$/) ||
-                     [null, line.trim(), ""];
+        // Parse format: "001 - Trofeo Serie A" or "005 - Marco Carnesecchi - Atalanta"
+        const match = line.match(/^\s*(\d+|[A-Za-z0-9]+)\s*[-—–]\s*(.+)$/);
         
         if (!match) return null;
         
-        const [, numberOrCode, description] = match;
+        const [, number, description] = match;
         return {
           id: `temp_${index}`,
-          number: numberOrCode.trim(),
-          description: (description || "").trim()
+          number: number.trim(),
+          description: description.trim()
         };
       }).filter(Boolean);
 
