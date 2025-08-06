@@ -411,97 +411,58 @@ export default function Admin() {
 
               {/* Albums List */}
               <div className="space-y-4">
-                {/* Album 1 - Panini Calciatori 2024-25 */}
-                <Card className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-[#052b3e] mb-1">Panini Calciatori 2024-25</h3>
-                        <p className="text-[#05637b] text-sm">Collezione Serie A 2024-25</p>
-                      </div>
-                      <div className="mb-4">
-                        <p className="text-[#052b3e] font-medium">
-                          <span className="text-2xl font-bold">0</span> figurine totali
-                        </p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Button 
-                          size="sm" 
-                          className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
-                          onClick={() => {
-                            const album = albums.find(a => a.name === "Panini Calciatori 2024-25");
-                            if (album) {
+                {albums.map((album: any) => (
+                  <Card key={album.id} className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="text-xl font-bold text-[#052b3e] mb-1">{album.name}</h3>
+                          <p className="text-[#05637b] text-sm">Anno {album.year}</p>
+                        </div>
+                        <div className="mb-4">
+                          <p className="text-[#052b3e] font-medium">
+                            <span className="text-2xl font-bold">{album.stickerCount || 0}</span> figurine totali
+                          </p>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Button 
+                            size="sm" 
+                            className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                            onClick={() => {
                               setSelectedAlbum(album);
                               setShowStickerModal(true);
-                            }
-                          }}
-                        >
-                          Gestisci
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
-                        >
-                          Modifica
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
-                        >
-                          Elimina
-                        </Button>
+                            }}
+                          >
+                            Gestisci
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
+                          >
+                            Modifica
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
+                          >
+                            Elimina
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Album 2 - Panini Champions League 2024 */}
-                <Card className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-[#052b3e] mb-1">Panini Champions League 2024</h3>
-                        <p className="text-[#05637b] text-sm">UEFA Champions League Collection</p>
-                      </div>
-                      <div className="mb-4">
-                        <p className="text-[#052b3e] font-medium">
-                          <span className="text-2xl font-bold">0</span> figurine totali
-                        </p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Button 
-                          size="sm" 
-                          className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
-                          onClick={() => {
-                            const album = albums.find(a => a.name === "Panini Champions League 2024");
-                            if (album) {
-                              setSelectedAlbum(album);
-                              setShowStickerModal(true);
-                            }
-                          }}
-                        >
-                          Gestisci
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white font-medium px-6"
-                        >
-                          Modifica
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium px-6"
-                        >
-                          Elimina
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                ))}
+                
+                {albums.length === 0 && (
+                  <Card className="bg-[#fff4d6] border-0 shadow-lg">
+                    <CardContent className="p-8 text-center">
+                      <p className="text-[#052b3e] text-lg">Nessun album presente.</p>
+                      <p className="text-[#05637b] text-sm mt-2">Clicca "Nuovo Album" per iniziare.</p>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             </div>
           )}
