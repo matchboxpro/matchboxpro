@@ -12,7 +12,7 @@ import { ChevronRight, Check, X, Copy } from "lucide-react";
 export default function Album() {
   const [, setLocation] = useLocation();
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
-  const [filter, setFilter] = useState<"all" | "missing" | "double">("missing");
+  const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
   const [expandedSticker, setExpandedSticker] = useState<any | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -64,16 +64,13 @@ export default function Album() {
   // Auto-set all stickers to "no" (missing) when album is first loaded
   const autoSetMissingMutation = useMutation({
     mutationFn: async () => {
+      // Set ALL stickers to "no" status by default
       const promises = stickers.map((sticker: any) => {
-        const existingStatus = getUserStickerStatus(sticker.id);
-        if (!existingStatus) {
-          return apiRequest("POST", "/api/user-stickers", { 
-            stickerId: sticker.id, 
-            status: "no",
-            albumId: selectedAlbum 
-          });
-        }
-        return Promise.resolve();
+        return apiRequest("POST", "/api/user-stickers", { 
+          stickerId: sticker.id, 
+          status: "no",
+          albumId: selectedAlbum 
+        });
       });
       await Promise.all(promises);
     },
@@ -82,9 +79,9 @@ export default function Album() {
     },
   });
 
-  // Auto-set missing status when stickers are loaded and no user stickers exist
-  const shouldAutoSet = stickers.length > 0 && userStickers.length === 0;
-  if (shouldAutoSet) {
+  // Auto-set missing status when stickers are loaded and there are fewer user stickers than total stickers
+  const shouldAutoSet = stickers.length > 0 && userStickers.length < stickers.length;
+  if (shouldAutoSet && !autoSetMissingMutation.isPending) {
     autoSetMissingMutation.mutate();
   }
 
@@ -344,8 +341,8 @@ function StickerRow({
               onClick={() => onStatusChange(sticker.id, "double")}
               className={`h-12 w-12 p-0 rounded-xl ${
                 status === "double" 
-                  ? "bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] border-[#f8b400] shadow-lg" 
-                  : "border-2 border-[#f8b400] text-[#f8b400] hover:bg-[#f8b400] hover:text-[#052b3e] bg-white/90"
+                  ? "bg-[#d4a504] hover:bg-[#d4a504]/90 text-white border-[#d4a504] shadow-lg" 
+                  : "border-2 border-[#d4a504] text-[#d4a504] hover:bg-[#d4a504] hover:text-white bg-white/90"
               }`}
             >
               <Copy className="w-6 h-6" />
