@@ -12,7 +12,7 @@ import { ChevronRight, Check, X, Copy } from "lucide-react";
 export default function Album() {
   const [, setLocation] = useLocation();
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
-  const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
+  const [filter, setFilter] = useState<"all" | "missing" | "double">("missing");
   const [expandedSticker, setExpandedSticker] = useState<any | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -60,6 +60,33 @@ export default function Album() {
       });
     },
   });
+
+  // Auto-set all stickers to "no" (missing) when album is first loaded
+  const autoSetMissingMutation = useMutation({
+    mutationFn: async () => {
+      const promises = stickers.map((sticker: any) => {
+        const existingStatus = getUserStickerStatus(sticker.id);
+        if (!existingStatus) {
+          return apiRequest("POST", "/api/user-stickers", { 
+            stickerId: sticker.id, 
+            status: "no",
+            albumId: selectedAlbum 
+          });
+        }
+        return Promise.resolve();
+      });
+      await Promise.all(promises);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
+    },
+  });
+
+  // Auto-set missing status when stickers are loaded and no user stickers exist
+  const shouldAutoSet = stickers.length > 0 && userStickers.length === 0;
+  if (shouldAutoSet) {
+    autoSetMissingMutation.mutate();
+  }
 
   // If no album selected, show album selection
   if (!selectedAlbum) {
@@ -147,21 +174,12 @@ export default function Album() {
   return (
     <div className="min-h-screen bg-[#fff4d6] pb-20">
       <div className="bg-[#05637b] border-b border-[#05637b] p-4">
-        <div className="flex items-center justify-between">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSelectedAlbum(null)}
-            className="text-white hover:bg-white/10"
-          >
-            ← Album
-          </Button>
+        <div className="flex items-center justify-center">
           <img 
             src="/matchbox-logo.png" 
             alt="MATCHBOX" 
             className="h-10 w-auto"
           />
-          <div className="w-16"></div> {/* Spacer */}
         </div>
         
         {selectedAlbumData && (
@@ -173,14 +191,14 @@ export default function Album() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="bg-[#05637b] border-b border-white/20">
-        <div className="flex">
+      <div className="bg-[#05637b] border-b border-white/20 p-2">
+        <div className="flex gap-2">
           <Button
             variant="ghost"
-            className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
+            className={`flex-1 py-3 px-4 rounded-lg font-medium ${
               filter === "all" 
-                ? "border-[#f8b400] text-[#f8b400]" 
-                : "border-transparent text-white/60"
+                ? "bg-[#f8b400] text-[#052b3e]" 
+                : "text-white hover:bg-white/10"
             }`}
             onClick={() => setFilter("all")}
           >
@@ -188,10 +206,10 @@ export default function Album() {
           </Button>
           <Button
             variant="ghost"
-            className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
+            className={`flex-1 py-3 px-4 rounded-lg font-medium ${
               filter === "missing" 
-                ? "border-[#f8b400] text-[#f8b400]" 
-                : "border-transparent text-white/60"
+                ? "bg-[#f8b400] text-[#052b3e]" 
+                : "text-white hover:bg-white/10"
             }`}
             onClick={() => setFilter("missing")}
           >
@@ -199,10 +217,10 @@ export default function Album() {
           </Button>
           <Button
             variant="ghost"
-            className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
+            className={`flex-1 py-3 px-4 rounded-lg font-medium ${
               filter === "double" 
-                ? "border-[#f8b400] text-[#f8b400]" 
-                : "border-transparent text-white/60"
+                ? "bg-[#f8b400] text-[#052b3e]" 
+                : "text-white hover:bg-white/10"
             }`}
             onClick={() => setFilter("double")}
           >
