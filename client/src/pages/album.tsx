@@ -51,17 +51,15 @@ export default function Album() {
   if (!user?.albumSelezionato) {
     return (
       <div className="min-h-screen bg-brand-bianco pb-20">
-        <MobileHeader
-          title="Il Mio Album"
-          onBack={() => setLocation("/")}
-          rightElement={
+        <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+          <div className="flex items-center justify-center">
             <img 
               src="/matchbox-logo.png" 
               alt="MATCHBOX" 
               className="h-10 w-auto"
             />
-          }
-        />
+          </div>
+        </div>
         <div className="p-4 text-center">
           <p className="text-brand-bianco/80 mb-4">Seleziona un album attivo dal tuo profilo</p>
           <Button 
@@ -89,18 +87,15 @@ export default function Album() {
 
   return (
     <div className="min-h-screen bg-brand-bianco pb-20">
-      <MobileHeader
-        title="Il Mio Album"
-        subtitle="Gestisci le tue figurine"
-        onBack={() => setLocation("/")}
-        rightElement={
+      <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+        <div className="flex items-center justify-center">
           <img 
             src="/matchbox-logo.png" 
             alt="MATCHBOX" 
             className="h-10 w-auto"
           />
-        }
-      />
+        </div>
+      </div>
 
       {/* Filter Tabs */}
       <div className="bg-brand-azzurro border-b border-brand-bianco/20">

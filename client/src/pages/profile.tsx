@@ -93,18 +93,15 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-brand-bianco pb-20">
-      <MobileHeader
-        title="Profilo"
-        subtitle="Gestisci le tue impostazioni"
-        onBack={() => setLocation("/")}
-        rightElement={
+      <div className="bg-brand-azzurro border-b border-brand-azzurro p-2">
+        <div className="flex items-center justify-center">
           <img 
             src="/matchbox-logo.png" 
             alt="MATCHBOX" 
             className="h-10 w-auto"
           />
-        }
-      />
+        </div>
+      </div>
 
       <div className="p-4 space-y-6">
         {/* Profile Header */}
