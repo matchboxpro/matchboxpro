@@ -87,7 +87,22 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getAlbums(): Promise<Album[]> {
-    return await db.select().from(albums).where(eq(albums.isActive, true)).orderBy(desc(albums.createdAt));
+    const albumsWithCount = await db
+      .select({
+        id: albums.id,
+        name: albums.name,
+        year: albums.year,
+        isActive: albums.isActive,
+        createdAt: albums.createdAt,
+        stickerCount: count(stickers.id)
+      })
+      .from(albums)
+      .leftJoin(stickers, eq(albums.id, stickers.albumId))
+      .where(eq(albums.isActive, true))
+      .groupBy(albums.id, albums.name, albums.year, albums.isActive, albums.createdAt)
+      .orderBy(desc(albums.createdAt));
+    
+    return albumsWithCount;
   }
 
   async getAlbum(id: string): Promise<Album | undefined> {

@@ -100,8 +100,9 @@ export default function Admin() {
       if (response.ok) {
         const result = await response.json();
         
-        // Refresh the stickers list
+        // Refresh the stickers list and albums list
         queryClient.invalidateQueries({ queryKey: ["/api/albums", selectedAlbum.id, "stickers"] });
+        queryClient.invalidateQueries({ queryKey: ["/api/albums"] });
         
         // Clear the form
         setStickerFormData(prev => ({ ...prev, stickers: "" }));
@@ -420,18 +421,16 @@ export default function Admin() {
               {/* Albums List */}
               <div className="space-y-4">
                 {albums.map((album: any) => (
-                  <Card key={album.id} className="bg-[#fff4d6] border-0 shadow-lg hover:shadow-xl transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-[#052b3e] mb-1">{album.name}</h3>
-                        </div>
-                        <div className="mb-4">
-                          <p className="text-[#052b3e] font-medium">
-                            <span className="text-2xl font-bold">{album.stickerCount || 0}</span> figurine totali
+                  <Card key={album.id} className="bg-[#fff4d6] border border-[#05637b] shadow-lg hover:shadow-xl transition-shadow">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-[#052b3e]">{album.name}</h3>
+                          <p className="text-[#052b3e] font-medium text-sm">
+                            <span className="text-lg font-bold">{album.stickerCount || 0}</span> figurine totali
                           </p>
                         </div>
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-2">
                           <Button 
                             size="sm" 
                             className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
