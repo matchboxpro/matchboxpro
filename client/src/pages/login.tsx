@@ -67,54 +67,51 @@ export default function Login() {
       <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
-            <div className="w-48 h-40 mx-auto mb-4 flex items-center justify-center bg-white/10 rounded-lg">
-              <img 
-                src="/matchbox-logo.png" 
-                alt="MATCHBOX Logo"
-                className="max-w-full max-h-full object-contain"
-                onError={(e) => {
-                  console.error('Logo failed to load:', e);
-                }}
-                onLoad={() => console.log('Logo caricato con successo')}
-              />
+            <div className="w-48 h-32 mx-auto mb-6 flex items-center justify-center">
+              <div className="w-32 h-32 bg-brand-bianco rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="text-center">
+                  <div className="text-4xl mb-2">⚡</div>
+                  <div className="text-brand-nero font-bold text-lg">MATCHBOX</div>
+                </div>
+              </div>
             </div>
-            <p className="text-brand-bianco/90 text-lg">Scambia le tue figurine Panini</p>
+            <p className="text-brand-bianco/90 text-lg mb-6">Scambia le tue figurine Panini</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label>Nickname</Label>
+              <Label className="text-brand-bianco">Nickname</Label>
               <Input
                 type="text"
                 placeholder="Il tuo nickname"
                 value={formData.nickname}
                 onChange={(e) => setFormData(prev => ({ ...prev, nickname: e.target.value }))}
-                className="mt-2"
+                className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
                 required
               />
             </div>
             
             <div>
-              <Label>Password</Label>
+              <Label className="text-brand-bianco">Password</Label>
               <Input
                 type="password"
                 placeholder="La tua password"
                 value={formData.password}
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                className="mt-2"
+                className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
                 required
               />
             </div>
 
             {isRegister && (
               <div>
-                <Label>CAP</Label>
+                <Label className="text-brand-bianco">CAP</Label>
                 <Input
                   type="text"
                   placeholder="Il tuo CAP (5 cifre)"
                   value={formData.cap}
                   onChange={(e) => setFormData(prev => ({ ...prev, cap: e.target.value }))}
-                  className="mt-2"
+                  className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
                   maxLength={5}
                   required
                 />
@@ -136,7 +133,7 @@ export default function Login() {
           </form>
 
           <div className="text-center mt-6">
-            <p className="text-brand-nero/60">
+            <p className="text-brand-bianco/60">
               {isRegister ? "Hai già un account?" : "Non hai un account?"}
             </p>
             <button
