@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download, LogOut } from "lucide-react";
+import { Users, Zap, Image, AlertTriangle, Plus, Download, LogOut, Settings } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -258,6 +258,18 @@ export default function Admin() {
                   <Users className="w-4 h-4" />
                   <span>Dashboard</span>
                 </div>
+              </li>
+              <li>
+                <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-600 hover:text-brand-azzurro hover:bg-blue-50 rounded-lg transition-colors">
+                  <Image className="w-4 h-4" />
+                  <span>Album</span>
+                </button>
+              </li>
+              <li>
+                <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-600 hover:text-brand-azzurro hover:bg-blue-50 rounded-lg transition-colors">
+                  <Settings className="w-4 h-4" />
+                  <span>Impostazioni</span>
+                </button>
               </li>
             </ul>
           </div>
