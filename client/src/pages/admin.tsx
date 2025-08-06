@@ -726,8 +726,8 @@ export default function Admin() {
                 <div className="pt-4 border-t">
                   <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '80px 1fr 120px'}}>
                     <div>Numero</div>
-                    <div>Descrizione</div>
-                    <div className="text-right">Azioni</div>
+                    <div className="text-center">Descrizione</div>
+                    <div className="text-center">Azioni</div>
                   </div>
                   
                   {/* Stickers List */}
