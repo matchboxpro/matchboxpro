@@ -612,7 +612,7 @@ export default function Admin() {
           {/* Sticker Management Modal */}
           {showStickerModal && (
           <Dialog open={showStickerModal} onOpenChange={setShowStickerModal}>
-            <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto bg-white">{/* Removed hideClose prop */}
+            <DialogContent className="sm:max-w-[900px] h-[90vh] bg-white flex flex-col">{/* Removed hideClose prop */}
               <DialogHeader className="border-b pb-4">
                 <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
                   <Image className="w-5 h-5 text-[#05637b]" />
@@ -620,7 +620,8 @@ export default function Admin() {
                 </DialogTitle>
               </DialogHeader>
 
-              <div className="space-y-6 py-4">
+              {/* Fixed sections */}
+              <div className="flex-shrink-0 space-y-6 py-4">
                 {/* Incolla lista figurine */}
                 <div className="space-y-3">
                   <Label className="text-[#052b3e] font-medium">
@@ -630,7 +631,7 @@ export default function Admin() {
                     placeholder="Formato: NUMERO — NOME"
                     value={stickerFormData.stickers}
                     onChange={(e) => setStickerFormData(prev => ({ ...prev, stickers: e.target.value }))}
-                    className="min-h-[200px] border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
+                    className="min-h-[120px] border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
                   />
                 </div>
 
@@ -681,67 +682,70 @@ export default function Admin() {
                   </Button>
                 </div>
 
-                {/* Table Header */}
-                <div className="pt-4 border-t">
-                  <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '80px 1fr 120px'}}>
-                    <div>Numero</div>
-                    <div className="text-center">Descrizione</div>
-                    <div className="text-center">Azioni</div>
-                  </div>
-                  
-                  {/* Stickers List */}
-                  {albumStickers.length === 0 ? (
-                    <div className="py-8 text-center text-gray-500">
-                      <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-                      <p>Nessuna figurina presente</p>
-                      <p className="text-sm">Importa le figurine per iniziare</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-2 max-h-[300px] overflow-y-auto mt-2">
-                      {albumStickers.map((sticker: any) => (
-                        <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '80px 1fr 120px'}}>
-                          <div className="font-mono text-sm text-[#05637b] font-medium">
-                            {sticker.number}
-                          </div>
-                          <div className="text-sm text-[#052b3e] break-words">
-                            {sticker.name || "Senza descrizione"}
-                          </div>
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => {
-                                const newName = window.prompt("Modifica nome:", sticker.name);
-                                if (newName !== null) {
-                                  // TODO: Implement edit sticker API call
-                                  toast({ title: "Funzione in sviluppo", description: "Modifica figurine sarà presto disponibile" });
-                                }
-                              }}
-                              className="h-7 px-2 border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white"
-                            >
-                              <Edit className="w-3 h-3" />
-                              <span className="sr-only">Modifica</span>
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => {
-                                if (window.confirm("Sei sicuro di voler eliminare questa figurina?")) {
-                                  // TODO: Implement delete sticker API call
-                                  toast({ title: "Funzione in sviluppo", description: "Eliminazione figurine sarà presto disponibile" });
-                                }
-                              }}
-                              className="h-7 px-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                              <span className="sr-only">Elimina</span>
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+              </div>
+
+              {/* Table Header - Fixed */}
+              <div className="flex-shrink-0 pt-4 border-t">
+                <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '80px 1fr 120px'}}>
+                  <div>Numero</div>
+                  <div className="text-center">Descrizione</div>
+                  <div className="text-center">Azioni</div>
                 </div>
+              </div>
+
+              {/* Stickers List - Scrollable */}
+              <div className="flex-1 overflow-y-auto min-h-0">
+                {albumStickers.length === 0 ? (
+                  <div className="py-8 text-center text-gray-500">
+                    <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                    <p>Nessuna figurina presente</p>
+                    <p className="text-sm">Importa le figurine per iniziare</p>
+                  </div>
+                ) : (
+                  <div className="space-y-2 p-2">
+                    {albumStickers.map((sticker: any) => (
+                      <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '80px 1fr 120px'}}>
+                        <div className="font-mono text-sm text-[#05637b] font-medium">
+                          {sticker.number}
+                        </div>
+                        <div className="text-sm text-[#052b3e] break-words">
+                          {sticker.name || "Senza descrizione"}
+                        </div>
+                        <div className="flex items-center justify-end space-x-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              const newName = window.prompt("Modifica nome:", sticker.name);
+                              if (newName !== null) {
+                                // TODO: Implement edit sticker API call
+                                toast({ title: "Funzione in sviluppo", description: "Modifica figurine sarà presto disponibile" });
+                              }
+                            }}
+                            className="h-7 px-2 border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white"
+                          >
+                            <Edit className="w-3 h-3" />
+                            <span className="sr-only">Modifica</span>
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              if (window.confirm("Sei sicuro di voler eliminare questa figurina?")) {
+                                // TODO: Implement delete sticker API call
+                                toast({ title: "Funzione in sviluppo", description: "Eliminazione figurine sarà presto disponibile" });
+                              }
+                            }}
+                            className="h-7 px-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                            <span className="sr-only">Elimina</span>
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </DialogContent>
           </Dialog>
