@@ -26,6 +26,7 @@ export default function Admin() {
     paniniLink: ""
   });
   const [importedStickers, setImportedStickers] = useState<Array<{id: string, number: string, description: string}>>([]);
+  const [editingSticker, setEditingSticker] = useState<{id: string, number: string, description: string} | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -100,12 +101,34 @@ export default function Admin() {
     }
   };
 
-  // Function to delete a sticker
+  // Function to delete a sticker with confirmation
   const handleDeleteSticker = (id: string) => {
-    setImportedStickers(prev => prev.filter(sticker => sticker.id !== id));
+    if (window.confirm("Sei sicuro di voler eliminare questa figurina?")) {
+      setImportedStickers(prev => prev.filter(sticker => sticker.id !== id));
+      toast({
+        title: "Figurina eliminata",
+        description: "La figurina è stata rimossa dalla lista"
+      });
+    }
+  };
+
+  // Function to edit a sticker
+  const handleEditSticker = (sticker: {id: string, number: string, description: string}) => {
+    const newNumber = window.prompt("Modifica numero/codice:", sticker.number);
+    if (newNumber === null) return; // User canceled
+    
+    const newDescription = window.prompt("Modifica descrizione:", sticker.description);
+    if (newDescription === null) return; // User canceled
+    
+    setImportedStickers(prev => prev.map(s => 
+      s.id === sticker.id 
+        ? { ...s, number: newNumber.trim(), description: newDescription.trim() }
+        : s
+    ));
+    
     toast({
-      title: "Figurina eliminata",
-      description: "La figurina è stata rimossa dalla lista"
+      title: "Figurina modificata",
+      description: "Le modifiche sono state salvate"
     });
   };
 
@@ -711,8 +734,8 @@ export default function Admin() {
 
                 {/* Table Header */}
                 <div className="pt-4 border-t">
-                  <div className="grid grid-cols-3 gap-4 font-medium text-[#052b3e] text-sm border-b pb-2">
-                    <div>Numero/Codice</div>
+                  <div className="grid gap-4 font-medium text-[#052b3e] text-sm border-b pb-2" style={{gridTemplateColumns: '1fr 2fr 1fr'}}>
+                    <div>Numero</div>
                     <div>Descrizione</div>
                     <div>Azioni</div>
                   </div>
@@ -727,7 +750,7 @@ export default function Admin() {
                   ) : (
                     <div className="space-y-2 max-h-[300px] overflow-y-auto mt-2">
                       {importedStickers.map((sticker) => (
-                        <div key={sticker.id} className="grid grid-cols-3 gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors">
+                        <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '1fr 2fr 1fr'}}>
                           <div className="font-mono text-sm text-[#05637b] font-medium">
                             {sticker.number}
                           </div>
@@ -738,6 +761,7 @@ export default function Admin() {
                             <Button
                               size="sm"
                               variant="outline"
+                              onClick={() => handleEditSticker(sticker)}
                               className="h-7 px-2 border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white"
                             >
                               <Edit className="w-3 h-3" />
