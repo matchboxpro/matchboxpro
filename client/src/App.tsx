@@ -1,5 +1,6 @@
 import { Switch, Route, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,25 +25,25 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     retry: false,
   });
 
+  useEffect(() => {
+    if (isLoading) return;
+    
+    if (!user && location !== "/login") {
+      setLocation("/login");
+    } else if (user && location === "/login") {
+      setLocation("/");
+    }
+  }, [user, isLoading, location, setLocation]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-brand-teal border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Caricamento...</p>
+          <div className="w-8 h-8 border-4 border-brand-azzurro border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-brand-nero/60">Caricamento...</p>
         </div>
       </div>
     );
-  }
-
-  if (!user && location !== "/login") {
-    setLocation("/login");
-    return null;
-  }
-
-  if (user && location === "/login") {
-    setLocation("/");
-    return null;
   }
 
   return <>{children}</>;
