@@ -29,7 +29,7 @@ export default function Dashboard() {
           <img 
             src="/matchbox-logo.png" 
             alt="MATCHBOX" 
-            className="h-8 w-auto"
+            className="h-10 w-auto"
           />
         </div>
       </div>
