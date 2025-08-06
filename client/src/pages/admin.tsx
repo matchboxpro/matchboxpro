@@ -304,9 +304,12 @@ export default function Admin() {
                 {activeSection === "settings" && "Configura impostazioni sistema"}
               </p>
             </div>
-            <div className="bg-[#f8b400] px-4 py-2 rounded-lg shadow-md">
-              <p className="text-[#052b3e] font-semibold">Admin Mode</p>
-            </div>
+            <Button 
+              onClick={() => window.location.href = '/dashboard'}
+              className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-4 py-2 shadow-md"
+            >
+              Vai all'App
+            </Button>
           </div>
 
           {/* Dashboard Content */}
