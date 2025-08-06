@@ -30,15 +30,15 @@ export default function Dashboard() {
         rightElement={
           <div className="flex items-center space-x-3">
             <img 
-              src="/attached_assets/matchlogo_1754509310553.png" 
+              src="/matchbox-logo.png" 
               alt="MATCHBOX" 
-              className="h-8 w-auto"
+              className="h-10 w-auto"
             />
             <button 
               onClick={() => setLocation("/profile")}
-              className="w-10 h-10 bg-brand-azzurro/20 rounded-full flex items-center justify-center"
+              className="w-10 h-10 bg-brand-giallo rounded-full flex items-center justify-center shadow-md"
             >
-              <User className="w-5 h-5 text-brand-azzurro" />
+              <User className="w-5 h-5 text-brand-nero" />
             </button>
           </div>
         }
@@ -46,21 +46,21 @@ export default function Dashboard() {
 
       {/* Stats Cards */}
       <div className="p-4 grid grid-cols-3 gap-4">
-        <Card className="bg-gradient-to-br from-sticker-yes to-green-600 text-white border-0">
+        <Card className="bg-brand-azzurro text-brand-bianco border-0 shadow-lg">
           <CardContent className="p-4">
-            <div className="text-2xl font-bold">{stats.collected}</div>
+            <div className="text-2xl font-bold text-brand-giallo">{stats.collected}</div>
             <div className="text-xs opacity-90">Raccolte</div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-sticker-double to-yellow-600 text-white border-0">
+        <Card className="bg-brand-giallo text-brand-nero border-0 shadow-lg">
           <CardContent className="p-4">
             <div className="text-2xl font-bold">{stats.doubles}</div>
-            <div className="text-xs opacity-90">Doppie</div>
+            <div className="text-xs opacity-75">Doppie</div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-sticker-no to-gray-600 text-white border-0">
+        <Card className="bg-brand-azzurro text-brand-bianco border-0 shadow-lg">
           <CardContent className="p-4">
-            <div className="text-2xl font-bold">{stats.missing}</div>
+            <div className="text-2xl font-bold text-brand-giallo">{stats.missing}</div>
             <div className="text-xs opacity-90">Mancanti</div>
           </CardContent>
         </Card>
@@ -71,12 +71,12 @@ export default function Dashboard() {
         <h2 className="text-lg font-semibold text-brand-nero mb-4">Ultimi Match</h2>
         
         {matches.length === 0 ? (
-          <Card>
+          <Card className="bg-brand-azzurro border-0 shadow-lg">
             <CardContent className="p-6 text-center">
               <p className="text-brand-bianco/80 mb-4">Nessun match trovato</p>
               <Button 
                 onClick={() => setLocation("/match")}
-                className="bg-brand-bianco hover:bg-brand-bianco/90 text-brand-nero"
+                className="bg-brand-giallo hover:bg-brand-giallo/90 text-brand-nero font-semibold shadow-md"
               >
                 Trova Match
               </Button>

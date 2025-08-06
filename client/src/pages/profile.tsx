@@ -97,19 +97,26 @@ export default function Profile() {
         title="Profilo"
         subtitle="Gestisci le tue impostazioni"
         onBack={() => setLocation("/")}
+        rightElement={
+          <img 
+            src="/matchbox-logo.png" 
+            alt="MATCHBOX" 
+            className="h-10 w-auto"
+          />
+        }
       />
 
       <div className="p-4 space-y-6">
         {/* Profile Header */}
-        <Card>
+        <Card className="bg-brand-azzurro border-0 shadow-lg">
           <CardContent className="pt-6 text-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-brand-teal to-cyan-700 rounded-full mx-auto mb-3 flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">
+            <div className="w-20 h-20 bg-brand-giallo rounded-full mx-auto mb-3 flex items-center justify-center shadow-md">
+              <span className="text-brand-nero text-2xl font-bold">
                 {user.nickname?.[0]?.toUpperCase() || "U"}
               </span>
             </div>
-            <h2 className="text-xl font-bold text-gray-900">{user.nickname}</h2>
-            <p className="text-gray-600">
+            <h2 className="text-xl font-bold text-brand-bianco">{user.nickname}</h2>
+            <p className="text-brand-bianco/80">
               Collezionista dal {new Date(user.startTrial).toLocaleDateString("it-IT", {
                 month: "short",
                 year: "numeric"

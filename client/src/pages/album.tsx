@@ -54,6 +54,13 @@ export default function Album() {
         <MobileHeader
           title="Il Mio Album"
           onBack={() => setLocation("/")}
+          rightElement={
+            <img 
+              src="/matchbox-logo.png" 
+              alt="MATCHBOX" 
+              className="h-10 w-auto"
+            />
+          }
         />
         <div className="p-4 text-center">
           <p className="text-brand-bianco/80 mb-4">Seleziona un album attivo dal tuo profilo</p>
@@ -86,6 +93,13 @@ export default function Album() {
         title="Il Mio Album"
         subtitle="Gestisci le tue figurine"
         onBack={() => setLocation("/")}
+        rightElement={
+          <img 
+            src="/matchbox-logo.png" 
+            alt="MATCHBOX" 
+            className="h-10 w-auto"
+          />
+        }
       />
 
       {/* Filter Tabs */}
@@ -95,7 +109,7 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "all" 
-                ? "border-brand-bianco text-brand-bianco" 
+                ? "border-brand-giallo text-brand-giallo" 
                 : "border-transparent text-brand-bianco/60"
             }`}
             onClick={() => setFilter("all")}
@@ -106,7 +120,7 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "missing" 
-                ? "border-brand-bianco text-brand-bianco" 
+                ? "border-brand-giallo text-brand-giallo" 
                 : "border-transparent text-brand-bianco/60"
             }`}
             onClick={() => setFilter("missing")}
@@ -117,7 +131,7 @@ export default function Album() {
             variant="ghost"
             className={`flex-1 py-3 px-4 rounded-none border-b-2 ${
               filter === "double" 
-                ? "border-brand-bianco text-brand-bianco" 
+                ? "border-brand-giallo text-brand-giallo" 
                 : "border-transparent text-brand-bianco/60"
             }`}
             onClick={() => setFilter("double")}
