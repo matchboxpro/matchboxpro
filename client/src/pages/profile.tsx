@@ -217,6 +217,18 @@ export default function Profile() {
           Esci
         </Button>
       </div>
+      
+      {/* Admin Button - Discreto a fondo pagina */}
+      <div className="fixed bottom-4 left-4">
+        <Button
+          onClick={() => window.location.href = '/admin'}
+          variant="ghost"
+          size="sm"
+          className="text-xs text-gray-400 hover:text-gray-600 opacity-50 hover:opacity-100 transition-opacity"
+        >
+          Admin
+        </Button>
+      </div>
     </div>
   );
 }
