@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2 } from "lucide-react";
+import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2, X, Upload, FileDown, Save } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -19,6 +20,11 @@ export default function Admin() {
   });
   const [activeSection, setActiveSection] = useState<"dashboard" | "albums" | "settings">("dashboard");
   const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
+  const [showStickerModal, setShowStickerModal] = useState(false);
+  const [stickerFormData, setStickerFormData] = useState({
+    stickers: "",
+    paniniLink: ""
+  });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -316,6 +322,10 @@ export default function Admin() {
                         <Button 
                           size="sm" 
                           className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                          onClick={() => {
+                            setSelectedAlbum({ name: "Panini Calciatori 2024-25", id: "album1" });
+                            setShowStickerModal(true);
+                          }}
                         >
                           Gestisci
                         </Button>
@@ -355,6 +365,10 @@ export default function Admin() {
                         <Button 
                           size="sm" 
                           className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
+                          onClick={() => {
+                            setSelectedAlbum({ name: "Panini Champions League 2024", id: "album2" });
+                            setShowStickerModal(true);
+                          }}
                         >
                           Gestisci
                         </Button>
@@ -549,6 +563,97 @@ export default function Admin() {
             </CardContent>
           </Card>
           )}
+
+          {/* Sticker Management Modal */}
+          <Dialog open={showStickerModal} onOpenChange={setShowStickerModal}>
+            <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto bg-white">
+              <DialogHeader className="border-b pb-4">
+                <div className="flex items-center justify-between">
+                  <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
+                    <Image className="w-5 h-5 text-[#05637b]" />
+                    Gestisci Figurine - {selectedAlbum?.name}
+                  </DialogTitle>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowStickerModal(false)}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
+              </DialogHeader>
+
+              <div className="space-y-6 py-4">
+                {/* Incolla lista figurine */}
+                <div className="space-y-3">
+                  <Label className="text-[#052b3e] font-medium">
+                    Incolla la lista delle figurine:
+                  </Label>
+                  <Textarea
+                    placeholder="Formato: NUMERO — NOME"
+                    value={stickerFormData.stickers}
+                    onChange={(e) => setStickerFormData(prev => ({ ...prev, stickers: e.target.value }))}
+                    className="min-h-[200px] border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
+                  />
+                </div>
+
+                {/* Link Album Panini */}
+                <div className="space-y-3">
+                  <Label className="text-[#052b3e] font-medium">
+                    Link Album Panini:
+                  </Label>
+                  <div className="flex items-center space-x-2">
+                    <Input
+                      placeholder="https://www.panini.it/..."
+                      value={stickerFormData.paniniLink}
+                      onChange={(e) => setStickerFormData(prev => ({ ...prev, paniniLink: e.target.value }))}
+                      className="flex-1 border-gray-200 focus:border-[#05637b] focus:ring-[#05637b]"
+                    />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-300 text-gray-600 hover:bg-gray-50"
+                    >
+                      <Save className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center space-x-3 pt-4 border-t">
+                  <Button className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6">
+                    <Upload className="w-4 h-4 mr-2" />
+                    Importa
+                  </Button>
+                  <Button className="bg-green-600 hover:bg-green-700 text-white font-medium px-6">
+                    <FileDown className="w-4 h-4 mr-2" />
+                    Esporta
+                  </Button>
+                  <Button className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-medium px-6">
+                    <Save className="w-4 h-4 mr-2" />
+                    Svuota
+                  </Button>
+                </div>
+
+                {/* Table Header */}
+                <div className="pt-4 border-t">
+                  <div className="grid grid-cols-3 gap-4 font-medium text-[#052b3e] text-sm border-b pb-2">
+                    <div>Numero</div>
+                    <div>Nome</div>
+                    <div>Azioni</div>
+                  </div>
+                  
+                  {/* Empty state or stickers would go here */}
+                  <div className="py-8 text-center text-gray-500">
+                    <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                    <p>Nessuna figurina presente</p>
+                    <p className="text-sm">Importa le figurine per iniziare</p>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </main>
       </div>
     </div>
