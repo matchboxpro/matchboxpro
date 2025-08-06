@@ -610,9 +610,8 @@ export default function Admin() {
                   </Button>
                   <Button 
                     onClick={() => {
-                      setImportedStickers([]);
                       setStickerFormData({ stickers: "", paniniLink: "" });
-                      toast({ title: "Lista svuotata", description: "Tutte le figurine sono state rimosse" });
+                      toast({ title: "Modulo svuotato", description: "Il form di importazione è stato pulito" });
                     }}
                     className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-medium px-6"
                   >
@@ -630,7 +629,7 @@ export default function Admin() {
                   </div>
                   
                   {/* Stickers List */}
-                  {importedStickers.length === 0 ? (
+                  {albumStickers.length === 0 ? (
                     <div className="py-8 text-center text-gray-500">
                       <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
                       <p>Nessuna figurina presente</p>
@@ -638,19 +637,25 @@ export default function Admin() {
                     </div>
                   ) : (
                     <div className="space-y-2 max-h-[300px] overflow-y-auto mt-2">
-                      {importedStickers.map((sticker) => (
+                      {albumStickers.map((sticker: any) => (
                         <div key={sticker.id} className="grid gap-4 p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors" style={{gridTemplateColumns: '80px 1fr 120px'}}>
                           <div className="font-mono text-sm text-[#05637b] font-medium">
                             {sticker.number}
                           </div>
                           <div className="text-sm text-[#052b3e] break-words">
-                            {sticker.description || "Senza descrizione"}
+                            {sticker.name || "Senza descrizione"}
                           </div>
                           <div className="flex items-center justify-end space-x-2">
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => handleEditSticker(sticker)}
+                              onClick={() => {
+                                const newName = window.prompt("Modifica nome:", sticker.name);
+                                if (newName !== null) {
+                                  // TODO: Implement edit sticker API call
+                                  toast({ title: "Funzione in sviluppo", description: "Modifica figurine sarà presto disponibile" });
+                                }
+                              }}
                               className="h-7 px-2 border-[#05637b] text-[#05637b] hover:bg-[#05637b] hover:text-white"
                             >
                               <Edit className="w-3 h-3" />
@@ -659,7 +664,12 @@ export default function Admin() {
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => handleDeleteSticker(sticker.id)}
+                              onClick={() => {
+                                if (window.confirm("Sei sicuro di voler eliminare questa figurina?")) {
+                                  // TODO: Implement delete sticker API call
+                                  toast({ title: "Funzione in sviluppo", description: "Eliminazione figurine sarà presto disponibile" });
+                                }
+                              }}
                               className="h-7 px-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                             >
                               <Trash2 className="w-3 h-3" />
