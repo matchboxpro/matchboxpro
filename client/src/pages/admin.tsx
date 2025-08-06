@@ -429,8 +429,11 @@ export default function Admin() {
                           size="sm" 
                           className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
                           onClick={() => {
-                            setSelectedAlbum({ name: "Panini Calciatori 2024-25", id: "album1" });
-                            setShowStickerModal(true);
+                            const album = albums.find(a => a.name === "Panini Calciatori 2024-25");
+                            if (album) {
+                              setSelectedAlbum(album);
+                              setShowStickerModal(true);
+                            }
                           }}
                         >
                           Gestisci
@@ -472,8 +475,11 @@ export default function Admin() {
                           size="sm" 
                           className="bg-[#05637b] hover:bg-[#05637b]/90 text-white font-medium px-6"
                           onClick={() => {
-                            setSelectedAlbum({ name: "Panini Champions League 2024", id: "album2" });
-                            setShowStickerModal(true);
+                            const album = albums.find(a => a.name === "Panini Champions League 2024");
+                            if (album) {
+                              setSelectedAlbum(album);
+                              setShowStickerModal(true);
+                            }
                           }}
                         >
                           Gestisci
