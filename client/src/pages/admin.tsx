@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2, X, Upload, FileDown, Save } from "lucide-react";
+import { Users, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2, X, Upload, FileDown, Save, Zap, ImageIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -290,7 +290,7 @@ export default function Admin() {
                       : "text-white/70 hover:text-white hover:bg-white/10"
                   }`}
                 >
-                  <Image className={`w-4 h-4 ${activeSection === "albums" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
+                  <ImageIcon className={`w-4 h-4 ${activeSection === "albums" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
                   <span className={activeSection === "albums" ? "font-medium" : ""}>Album</span>
                 </button>
               </li>
@@ -374,7 +374,7 @@ export default function Admin() {
                       <p className="text-3xl font-bold text-white">{(stats as any).activeAlbums || 0}</p>
                     </div>
                     <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
-                      <Image className="w-6 h-6 text-[#052b3e]" />
+                      <ImageIcon className="w-6 h-6 text-[#052b3e]" />
                     </div>
                   </div>
                 </CardContent>
@@ -404,7 +404,7 @@ export default function Admin() {
                 <CardHeader className="border-b border-white/10">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-white text-2xl flex items-center gap-3">
-                      <Image className="w-6 h-6 text-[#f8b400]" />
+                      <ImageIcon className="w-6 h-6 text-[#f8b400]" />
                       Gestione Album
                     </CardTitle>
                     <Button 
@@ -614,7 +614,7 @@ export default function Admin() {
             <DialogContent className="sm:max-w-[900px] h-[90vh] bg-white flex flex-col">{/* Removed hideClose prop */}
               <DialogHeader className="border-b pb-4">
                 <DialogTitle className="text-xl font-bold text-[#052b3e] flex items-center gap-2">
-                  <Image className="w-5 h-5 text-[#05637b]" />
+                  <ImageIcon className="w-5 h-5 text-[#05637b]" />
                   Gestisci Figurine - {selectedAlbum?.name}
                 </DialogTitle>
               </DialogHeader>
@@ -696,7 +696,7 @@ export default function Admin() {
               <div className="flex-1 overflow-y-auto min-h-0">
                 {albumStickers.length === 0 ? (
                   <div className="py-8 text-center text-gray-500">
-                    <Image className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                    <ImageIcon className="w-12 h-12 mx-auto mb-2 text-gray-300" />
                     <p>Nessuna figurina presente</p>
                     <p className="text-sm">Importa le figurine per iniziare</p>
                   </div>
