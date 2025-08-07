@@ -119,7 +119,7 @@ export default function Login() {
 
             <Button 
               type="submit" 
-              className="w-full bg-brand-bianco hover:bg-brand-bianco/90 text-brand-nero"
+              className="w-full bg-brand-giallo hover:bg-brand-giallo/90 text-brand-nero font-semibold"
               disabled={authMutation.isPending}
             >
               {authMutation.isPending 
@@ -137,7 +137,7 @@ export default function Login() {
             </p>
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="text-brand-bianco font-medium hover:underline"
+              className="text-brand-giallo font-medium hover:underline hover:text-brand-giallo/80"
             >
               {isRegister ? "Accedi" : "Registrati"}
             </button>
@@ -154,15 +154,15 @@ export default function Login() {
         />
       </div>
       
-      {/* Admin Button - Discreto con icona scudetto azzurro */}
+      {/* Admin Button - Icona scudo stile app */}
       <div className="fixed bottom-4 left-4">
         <Button
           onClick={() => window.location.href = '/admin'}
           variant="ghost"
-          size="sm"
-          className="text-brand-azzurro hover:text-brand-azzurro/80 opacity-60 hover:opacity-100 transition-opacity"
+          size="icon"
+          className="w-12 h-12 rounded-full bg-brand-azzurro/10 hover:bg-brand-azzurro/20 text-brand-azzurro hover:text-brand-azzurro opacity-60 hover:opacity-100 transition-all"
         >
-          <Shield className="w-4 h-4" />
+          <Shield className="w-6 h-6" />
         </Button>
       </div>
     </div>
