@@ -125,10 +125,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getStickersByAlbum(albumId: string): Promise<Sticker[]> {
-    // Ottimizzazione: converti il numero a intero per ordinamento corretto
+    // Ordinamento semplice e funzionante
     return await db.select().from(stickers)
       .where(eq(stickers.albumId, albumId))
-      .orderBy(sql`CAST(${stickers.number} AS INTEGER)`);
+      .orderBy(asc(stickers.number));
   }
 
   async createSticker(sticker: InsertSticker): Promise<Sticker> {
