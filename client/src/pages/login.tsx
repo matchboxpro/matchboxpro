@@ -145,17 +145,8 @@ export default function Login() {
         </CardContent>
       </Card>
       
-      {/* Logo MATCHBOX centralmente sotto il modale */}
+      {/* Admin Button - Centralmente sotto il modale */}
       <div className="mt-8 text-center">
-        <img 
-          src="/matchtext.png" 
-          alt="MATCHBOX"
-          className="w-32 h-auto mx-auto opacity-80"
-        />
-      </div>
-      
-      {/* Admin Button - Icona scudo stile app */}
-      <div className="fixed bottom-4 left-4">
         <Button
           onClick={() => window.location.href = '/admin'}
           variant="ghost"
