@@ -1,0 +1,31 @@
+{
+  "name": "MATCHBOX - Scambio Figurine Panini",
+  "short_name": "MATCHBOX",
+  "description": "App per lo scambio di figurine Panini tra collezionisti",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff4d6",
+  "theme_color": "#05637b",
+  "orientation": "portrait",
+  "categories": ["games", "social", "entertainment"],
+  "lang": "it",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
