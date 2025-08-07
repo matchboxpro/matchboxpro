@@ -27,10 +27,6 @@ export default function Login() {
       return response.json();
     },
     onSuccess: () => {
-      toast({
-        title: isRegister ? "Registrazione completata!" : "Accesso effettuato!",
-        description: "Benvenuto in MATCHNODE",
-      });
       setLocation("/");
     },
     onError: (error: any) => {
