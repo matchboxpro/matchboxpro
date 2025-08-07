@@ -166,7 +166,7 @@ export default function Album() {
   if (!selectedAlbum) {
     return (
       <div className="min-h-screen bg-[#fff4d6] pb-20">
-        <div className="bg-[#05637b] border-b border-[#05637b] p-4">
+        <div className="bg-[#05637b] border-b border-[#05637b] p-2">
           <div className="flex items-center justify-center">
             <img 
               src="/matchbox-logo.png" 
@@ -248,7 +248,7 @@ export default function Album() {
 
   return (
     <div className="min-h-screen bg-[#fff4d6] pb-20">
-      <div className="bg-[#05637b] border-b border-[#05637b] p-4">
+      <div className="bg-[#05637b] border-b border-[#05637b] p-2">
         <div className="flex items-center justify-center">
           <img 
             src="/matchbox-logo.png" 
