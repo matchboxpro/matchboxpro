@@ -67,20 +67,13 @@
 }
 
 @layer utilities {
+  /* MATCHBOX Brand Colors - Solo classi utilizzate */
   .text-brand-azzurro {
     color: var(--brand-azzurro);
   }
   
   .bg-brand-azzurro {
     background-color: var(--brand-azzurro);
-  }
-  
-  .text-brand-bianco {
-    color: var(--brand-bianco);
-  }
-  
-  .bg-brand-bianco {
-    background-color: var(--brand-bianco);
   }
   
   .text-brand-giallo {
@@ -91,32 +84,13 @@
     background-color: var(--brand-giallo);
   }
   
-  .text-brand-nero {
-    color: var(--brand-nero);
-  }
-  
-  .bg-brand-nero {
-    background-color: var(--brand-nero);
-  }
-  
-  .text-sticker-yes {
-    color: var(--sticker-yes);
-  }
-  
+  /* Sticker Status Colors - Ottimizzate per performance */
   .bg-sticker-yes {
     background-color: var(--sticker-yes);
   }
   
-  .text-sticker-no {
-    color: var(--sticker-no);
-  }
-  
   .bg-sticker-no {
     background-color: var(--sticker-no);
-  }
-  
-  .text-sticker-double {
-    color: var(--sticker-double);
   }
   
   .bg-sticker-double {
@@ -124,32 +98,23 @@
   }
 }
 
-/* Mobile-first responsive design */
-.max-w-md {
-  max-width: 28rem;
-}
-
-/* Smooth scrolling for mobile chat */
+/* Mobile-first ottimizzato */
 .chat-container {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for desktop */
+/* Scrollbar ottimizzato per mobile-first */
 @media (min-width: 768px) {
   .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
   
   .scrollbar-thin::-webkit-scrollbar-track {
-    background: hsl(60, 4.8%, 95.9%);
+    background: transparent;
   }
   
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(220, 14%, 50%);
-    border-radius: 3px;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: hsl(220, 14%, 40%);
+    background: hsl(220, 14%, 60%);
+    border-radius: 2px;
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Users, Zap, Image, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2, X, Upload, FileDown, Save } from "lucide-react";
+import { Users, AlertTriangle, Plus, Download, Settings, ArrowLeft, Edit, Trash2, X, Upload, FileDown, Save } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

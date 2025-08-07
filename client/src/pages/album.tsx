@@ -51,17 +51,19 @@ export default function Album() {
     staleTime: 10 * 60 * 1000, // Cache aggressiva - le figurine non cambiano spesso
   });
 
-  // Prefetch ottimizzato: precaricare le figurine per tutti gli album
+  // Prefetch ottimizzato: precaricare solo album attivo
   useEffect(() => {
-    if (albums.length > 0) {
-      albums.forEach((album: any) => {
+    if (albums.length > 0 && !selectedAlbum) {
+      // Prefetch solo primo album (quello più probabile da selezionare)
+      const firstAlbum = albums[0];
+      if (firstAlbum) {
         queryClient.prefetchQuery({
-          queryKey: ["/api/albums", album.id, "stickers"],
-          staleTime: 10 * 60 * 1000,
+          queryKey: ["/api/albums", firstAlbum.id, "stickers"],
+          staleTime: 30 * 60 * 1000, // Cache più aggressiva
         });
-      });
+      }
     }
-  }, [albums, queryClient]);
+  }, [albums, selectedAlbum, queryClient]);
 
   const updateStickerMutation = useMutation({
     mutationFn: async ({ stickerId, status }: { stickerId: string; status: "yes" | "no" | "double" }) => {

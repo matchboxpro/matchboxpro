@@ -187,15 +187,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Sticker routes - ottimizzato per velocità
+  // Sticker routes - ottimizzato per velocità massima
   app.get("/api/albums/:albumId/stickers", async (req, res) => {
     try {
-      // Cache aggressiva per figurine che non cambiano spesso
-      res.set('Cache-Control', 'public, max-age=1800'); // 30 minuti cache
+      // Cache estremamente aggressiva - le figurine raramente cambiano
+      res.set('Cache-Control', 'public, max-age=3600, immutable'); // 1 ora cache immutabile
       const stickers = await storage.getStickersByAlbum(req.params.albumId);
       res.json(stickers);
     } catch (error) {
-      console.error("Error fetching stickers:", error);
       res.status(500).json({ message: "Errore nel recuperare le figurine" });
     }
   });
