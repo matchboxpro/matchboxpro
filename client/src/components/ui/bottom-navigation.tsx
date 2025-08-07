@@ -33,10 +33,11 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         </button>
         <button
           onClick={() => {
-            onNavigate("/album");
-            // Force reload to reset album selection if we're already on the album page
+            // Se siamo già sulla pagina album, resetta la selezione
             if (window.location.pathname === "/album") {
-              window.location.reload();
+              onNavigate("/album?reset=true");
+            } else {
+              onNavigate("/album");
             }
           }}
           className={`flex flex-col items-center py-2 ${

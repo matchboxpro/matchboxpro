@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,23 @@ import { apiRequest } from "@/lib/queryClient";
 import { ChevronRight, Check, X, Copy } from "lucide-react";
 
 export default function Album() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
   const [expandedSticker, setExpandedSticker] = useState<any | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Reset album selection when navigating back to album page
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const reset = params.get('reset');
+    if (reset === 'true') {
+      setSelectedAlbum(null);
+      // Clean URL
+      window.history.replaceState({}, '', '/album');
+    }
+  }, [location]);
 
   const { data: user } = useQuery({
     queryKey: ["/api/auth/me"],
@@ -110,14 +121,18 @@ export default function Album() {
     },
   });
 
-  // Auto-set solo quando ci sono figurine senza stato
-  const stickersWithoutStatus = stickers.filter((sticker: any) => {
-    return !userStickers.find((us: any) => us.stickerId === sticker.id);
-  });
-  
-  if (stickersWithoutStatus.length > 0 && stickers.length > 0 && !autoSetMissingMutation.isPending) {
-    autoSetMissingMutation.mutate();
-  }
+  // Auto-set solo quando ci sono figurine senza stato - usando useEffect per evitare render loops
+  useEffect(() => {
+    if (!selectedAlbum || !stickers.length) return;
+    
+    const stickersWithoutStatus = stickers.filter((sticker: any) => {
+      return !userStickers.find((us: any) => us.stickerId === sticker.id);
+    });
+    
+    if (stickersWithoutStatus.length > 0 && !autoSetMissingMutation.isPending) {
+      autoSetMissingMutation.mutate();
+    }
+  }, [stickers, userStickers, selectedAlbum]);
 
   // If no album selected, show album selection
   if (!selectedAlbum) {
