@@ -16,7 +16,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/") ? "text-brand-giallo" : "text-brand-bianco"
+            isActive("/") ? "text-[#f8b400]" : "text-white"
           }`}
         >
           <Home className="w-5 h-5 mb-1" />
@@ -25,7 +25,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/match")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/match") ? "text-brand-giallo" : "text-brand-bianco"
+            isActive("/match") ? "text-[#f8b400]" : "text-white"
           }`}
         >
           <Zap className="w-5 h-5 mb-1" />
@@ -41,7 +41,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
             }
           }}
           className={`flex flex-col items-center py-2 ${
-            isActive("/album") ? "text-brand-giallo" : "text-brand-bianco"
+            isActive("/album") ? "text-[#f8b400]" : "text-white"
           }`}
         >
           <Image className="w-5 h-5 mb-1" />
@@ -50,7 +50,7 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
         <button
           onClick={() => onNavigate("/profile")}
           className={`flex flex-col items-center py-2 ${
-            isActive("/profile") ? "text-brand-giallo" : "text-brand-bianco"
+            isActive("/profile") ? "text-[#f8b400]" : "text-white"
           }`}
         >
           <User className="w-5 h-5 mb-1" />

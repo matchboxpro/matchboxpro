@@ -85,7 +85,7 @@ export default function Login() {
                 placeholder="Il tuo nickname"
                 value={formData.nickname}
                 onChange={(e) => setFormData(prev => ({ ...prev, nickname: e.target.value }))}
-                className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
+                className="mt-2 bg-white text-[#052b3e] placeholder:text-gray-500 border-0 focus:ring-2 focus:ring-[#f8b400]"
                 required
               />
             </div>
@@ -97,7 +97,7 @@ export default function Login() {
                 placeholder="La tua password"
                 value={formData.password}
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
+                className="mt-2 bg-white text-[#052b3e] placeholder:text-gray-500 border-0 focus:ring-2 focus:ring-[#f8b400]"
                 required
               />
             </div>
@@ -110,7 +110,7 @@ export default function Login() {
                   placeholder="Il tuo CAP (5 cifre)"
                   value={formData.cap}
                   onChange={(e) => setFormData(prev => ({ ...prev, cap: e.target.value }))}
-                  className="mt-2 bg-brand-bianco text-brand-nero placeholder:text-brand-nero/60"
+                  className="mt-2 bg-white text-[#052b3e] placeholder:text-gray-500 border-0 focus:ring-2 focus:ring-[#f8b400]"
                   maxLength={5}
                   required
                 />
