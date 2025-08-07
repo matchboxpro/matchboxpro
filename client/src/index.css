@@ -67,6 +67,28 @@
 }
 
 @layer utilities {
+  /* Disabilita feedback touch sui pulsanti figurine */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .touch-manipulation:hover {
+    background-color: inherit !important;
+    opacity: 1 !important;
+  }
+  
+  .touch-manipulation:active {
+    background-color: inherit !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
   /* MATCHBOX Brand Colors - Solo classi utilizzate */
   .text-brand-azzurro {
     color: var(--brand-azzurro);

@@ -30,10 +30,10 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
           <Button
             size="sm"
             variant={status === "yes" ? "default" : "outline"}
-            className={`py-1 px-2 text-xs ${
+            className={`py-1 px-2 text-xs touch-manipulation ${
               status === "yes" 
-                ? "bg-sticker-yes hover:bg-sticker-yes/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
+                ? "bg-sticker-yes text-white" 
+                : "bg-brand-bianco text-brand-nero/60"
             }`}
             onClick={() => onStatusChange(sticker.id, "yes")}
           >
@@ -42,10 +42,10 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
           <Button
             size="sm"
             variant={status === "no" ? "default" : "outline"}
-            className={`py-1 px-2 text-xs ${
+            className={`py-1 px-2 text-xs touch-manipulation ${
               status === "no" 
-                ? "bg-sticker-no hover:bg-sticker-no/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
+                ? "bg-sticker-no text-white" 
+                : "bg-brand-bianco text-brand-nero/60"
             }`}
             onClick={() => onStatusChange(sticker.id, "no")}
           >
@@ -54,10 +54,10 @@ export function StickerCard({ sticker, status, onStatusChange }: StickerCardProp
           <Button
             size="sm"
             variant={status === "double" ? "default" : "outline"}
-            className={`py-1 px-2 text-xs ${
+            className={`py-1 px-2 text-xs touch-manipulation ${
               status === "double" 
-                ? "bg-sticker-double hover:bg-sticker-double/90 text-white" 
-                : "bg-brand-bianco text-brand-nero/60 hover:bg-brand-nero/10"
+                ? "bg-sticker-double text-white" 
+                : "bg-brand-bianco text-brand-nero/60"
             }`}
             onClick={() => onStatusChange(sticker.id, "double")}
           >
