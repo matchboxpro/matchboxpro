@@ -119,7 +119,7 @@ export default function Login() {
 
             <Button 
               type="submit" 
-              className="w-full bg-brand-giallo hover:bg-brand-giallo/90 text-brand-nero font-semibold"
+              className="w-full bg-brand-giallo hover:bg-brand-giallo/90 text-black font-semibold"
               disabled={authMutation.isPending}
             >
               {authMutation.isPending 
