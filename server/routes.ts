@@ -140,9 +140,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Album routes
+  // Album routes - con cache headers per performance
   app.get("/api/albums", async (req, res) => {
     try {
+      // Cache headers per performance frontend
+      res.set('Cache-Control', 'public, max-age=600'); // 10 minuti cache
       const albums = await storage.getAlbums();
       res.json(albums);
     } catch (error) {
@@ -185,9 +187,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Sticker routes
+  // Sticker routes - ottimizzato per velocità
   app.get("/api/albums/:albumId/stickers", async (req, res) => {
     try {
+      // Cache aggressiva per figurine che non cambiano spesso
+      res.set('Cache-Control', 'public, max-age=1800'); // 30 minuti cache
       const stickers = await storage.getStickersByAlbum(req.params.albumId);
       res.json(stickers);
     } catch (error) {

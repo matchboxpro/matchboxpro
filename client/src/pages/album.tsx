@@ -30,22 +30,38 @@ export default function Album() {
 
   const { data: user } = useQuery({
     queryKey: ["/api/auth/me"],
+    staleTime: 5 * 60 * 1000, // 5 minuti cache
   });
 
-  // Get all albums from admin
+  // Get all albums from admin con cache aggressiva
   const { data: albums = [] } = useQuery({
     queryKey: ["/api/albums"],
+    staleTime: 10 * 60 * 1000, // 10 minuti cache
   });
 
   const { data: userStickers = [] } = useQuery({
     queryKey: ["/api/user-stickers", selectedAlbum],
     enabled: !!selectedAlbum,
+    staleTime: 2 * 60 * 1000, // 2 minuti cache
   });
 
   const { data: stickers = [] } = useQuery({
     queryKey: ["/api/albums", selectedAlbum, "stickers"],
     enabled: !!selectedAlbum,
+    staleTime: 10 * 60 * 1000, // Cache aggressiva - le figurine non cambiano spesso
   });
+
+  // Prefetch ottimizzato: precaricare le figurine per tutti gli album
+  useEffect(() => {
+    if (albums.length > 0) {
+      albums.forEach((album: any) => {
+        queryClient.prefetchQuery({
+          queryKey: ["/api/albums", album.id, "stickers"],
+          staleTime: 10 * 60 * 1000,
+        });
+      });
+    }
+  }, [albums, queryClient]);
 
   const updateStickerMutation = useMutation({
     mutationFn: async ({ stickerId, status }: { stickerId: string; status: "yes" | "no" | "double" }) => {
@@ -96,7 +112,7 @@ export default function Album() {
     },
   });
 
-  // Ottimizzazione: Auto-set solo quando necessario
+  // Ottimizzazione: Auto-set batch più intelligente per velocità
   const autoSetMissingMutation = useMutation({
     mutationFn: async () => {
       // Trova solo le figurine che non hanno ancora uno stato
@@ -106,30 +122,40 @@ export default function Album() {
       
       if (stickersWithoutStatus.length === 0) return;
       
-      // Set solo le figurine senza stato a "no"
-      const promises = stickersWithoutStatus.map((sticker: any) => {
-        return apiRequest("POST", "/api/user-stickers", { 
-          stickerId: sticker.id, 
-          status: "no",
-          albumId: selectedAlbum 
+      // Batch più piccoli per migliori performance (max 20 alla volta)
+      const batchSize = 20;
+      const batches = [];
+      for (let i = 0; i < stickersWithoutStatus.length; i += batchSize) {
+        batches.push(stickersWithoutStatus.slice(i, i + batchSize));
+      }
+      
+      // Processa batch sequenzialmente per evitare sovraccarico DB
+      for (const batch of batches) {
+        const promises = batch.map((sticker: any) => {
+          return apiRequest("POST", "/api/user-stickers", { 
+            stickerId: sticker.id, 
+            status: "no",
+            albumId: selectedAlbum 
+          });
         });
-      });
-      await Promise.all(promises);
+        await Promise.all(promises);
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/user-stickers", selectedAlbum] });
     },
   });
 
-  // Auto-set solo quando ci sono figurine senza stato - usando useEffect per evitare render loops
+  // Auto-set solo quando ci sono figurine senza stato - ottimizzato per evitare auto-set inutili
   useEffect(() => {
-    if (!selectedAlbum || !stickers.length) return;
+    if (!selectedAlbum || !stickers.length || userStickers.length >= stickers.length) return;
     
     const stickersWithoutStatus = stickers.filter((sticker: any) => {
       return !userStickers.find((us: any) => us.stickerId === sticker.id);
     });
     
-    if (stickersWithoutStatus.length > 0 && !autoSetMissingMutation.isPending) {
+    // Solo se ci sono molte figurine senza stato (evita micro-batch inutili)
+    if (stickersWithoutStatus.length > 10 && !autoSetMissingMutation.isPending) {
       autoSetMissingMutation.mutate();
     }
   }, [stickers, userStickers, selectedAlbum]);
