@@ -426,7 +426,7 @@ function StickerRow({
               className={`h-9 w-9 p-0 rounded-xl transition-all ${
                 status === "yes" || status === "double"
                   ? "bg-green-600 border-green-600 text-white shadow-lg" 
-                  : "border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-white/90"
+                  : "bg-white border-0 text-green-600 hover:bg-green-600 hover:text-white"
               }`}
             >
               <Check className="w-5 h-5" />
@@ -438,7 +438,7 @@ function StickerRow({
               className={`h-9 w-9 p-0 rounded-xl transition-all ${
                 status === "no" 
                   ? "bg-red-600 border-red-600 text-white shadow-lg" 
-                  : "border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-white/90"
+                  : "bg-white border-0 text-red-600 hover:bg-red-600 hover:text-white"
               }`}
             >
               <X className="w-5 h-5" />
@@ -452,8 +452,8 @@ function StickerRow({
                 status === "double" 
                   ? "bg-[#d4a504] border-[#d4a504] text-white shadow-lg" 
                   : isDoubleDisabled
-                    ? "border-2 border-gray-400 text-gray-400 bg-gray-200 cursor-not-allowed opacity-50"
-                    : "border-2 border-[#d4a504] text-[#d4a504] hover:bg-[#d4a504] hover:text-white bg-white/90"
+                    ? "bg-gray-200 border-0 text-gray-400 cursor-not-allowed opacity-50"
+                    : "bg-white border-0 text-[#d4a504] hover:bg-[#d4a504] hover:text-white"
               }`}
             >
               <Copy className="w-5 h-5" />
