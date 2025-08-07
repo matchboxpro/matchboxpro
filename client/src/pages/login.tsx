@@ -64,7 +64,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-brand-bianco flex flex-col justify-center p-6">
-      <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-brand-azzurro">
+      <Card className="w-full max-w-md mx-auto bg-brand-azzurro border-0">
         <CardContent className="pt-6">
           <div className="text-center mb-8">
             <div className="w-60 h-44 mx-auto mb-6 flex items-center justify-center">
