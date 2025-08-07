@@ -254,8 +254,8 @@ export default function Admin() {
     <div className="min-h-screen bg-[#fff4d6]">
       <div className="flex">
         {/* Sidebar */}
-        <nav className="w-64 bg-[#05637b] shadow-2xl min-h-screen">
-          <div className="p-6">
+        <nav className="w-64 bg-[#05637b] shadow-2xl min-h-screen flex flex-col">
+          <div className="p-6 flex flex-col flex-1">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-10 h-10 bg-[#f8b400] rounded-lg flex items-center justify-center">
                 <Zap className="text-[#052b3e] w-5 h-5" />
@@ -308,6 +308,16 @@ export default function Admin() {
                 </button>
               </li>
             </ul>
+            
+            {/* Pulsante Vai all'App - centrato in fondo */}
+            <div className="mt-auto pt-6">
+              <Button 
+                onClick={() => window.location.href = '/'}
+                className="w-full bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold py-3 shadow-md"
+              >
+                Vai all'App
+              </Button>
+            </div>
           </div>
         </nav>
 
@@ -327,12 +337,7 @@ export default function Admin() {
                 {activeSection === "settings" && "Configura impostazioni sistema"}
               </p>
             </div>
-            <Button 
-              onClick={() => window.location.href = '/'}
-              className="bg-[#f8b400] hover:bg-[#f8b400]/90 text-[#052b3e] font-semibold px-4 py-2 shadow-md"
-            >
-              Vai all'App
-            </Button>
+
           </div>
 
           {/* Dashboard Content */}
