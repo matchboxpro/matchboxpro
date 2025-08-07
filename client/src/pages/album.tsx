@@ -401,11 +401,11 @@ function StickerRow({
   const isDoubleDisabled = status !== "yes" && status !== "double";
 
   return (
-    <Card className="bg-[#05637b] border-0 shadow-sm">
-      <CardContent className="p-4">
+    <Card className="bg-[#0a7a96] border-0 shadow-sm">
+      <CardContent className="p-3">
         <div className="flex items-center gap-4">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12 bg-[#f8b400] rounded-lg flex items-center justify-center">
+            <div className="w-12 h-9 bg-[#f8b400] rounded-lg flex items-center justify-center">
               <span className="text-[#052b3e] font-bold text-lg font-mono">
                 {sticker.number}
               </span>
@@ -423,32 +423,32 @@ function StickerRow({
               size="lg"
               variant="outline"
               onClick={() => handleStatusChange("yes")}
-              className={`h-12 w-12 p-0 rounded-xl transition-all ${
+              className={`h-9 w-9 p-0 rounded-xl transition-all ${
                 status === "yes" || status === "double"
                   ? "bg-green-600 border-green-600 text-white shadow-lg" 
                   : "border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-white/90"
               }`}
             >
-              <Check className="w-6 h-6" />
+              <Check className="w-5 h-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => handleStatusChange("no")}
-              className={`h-12 w-12 p-0 rounded-xl transition-all ${
+              className={`h-9 w-9 p-0 rounded-xl transition-all ${
                 status === "no" 
                   ? "bg-red-600 border-red-600 text-white shadow-lg" 
                   : "border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-white/90"
               }`}
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => handleStatusChange("double")}
               disabled={isDoubleDisabled}
-              className={`h-12 w-12 p-0 rounded-xl transition-all ${
+              className={`h-9 w-9 p-0 rounded-xl transition-all ${
                 status === "double" 
                   ? "bg-[#d4a504] border-[#d4a504] text-white shadow-lg" 
                   : isDoubleDisabled
@@ -456,7 +456,7 @@ function StickerRow({
                     : "border-2 border-[#d4a504] text-[#d4a504] hover:bg-[#d4a504] hover:text-white bg-white/90"
               }`}
             >
-              <Copy className="w-6 h-6" />
+              <Copy className="w-5 h-5" />
             </Button>
           </div>
         </div>
