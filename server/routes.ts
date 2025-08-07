@@ -195,6 +195,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const stickers = await storage.getStickersByAlbum(req.params.albumId);
       res.json(stickers);
     } catch (error) {
+      console.error("Error fetching stickers:", error);
       res.status(500).json({ message: "Errore nel recuperare le figurine" });
     }
   });

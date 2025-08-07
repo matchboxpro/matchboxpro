@@ -125,7 +125,6 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getStickersByAlbum(albumId: string): Promise<Sticker[]> {
-    // Ordinamento semplice e funzionante
     return await db.select().from(stickers)
       .where(eq(stickers.albumId, albumId))
       .orderBy(asc(stickers.number));
