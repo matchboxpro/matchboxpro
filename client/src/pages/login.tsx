@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap } from "lucide-react";
+import { Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -145,15 +145,24 @@ export default function Login() {
         </CardContent>
       </Card>
       
-      {/* Admin Button - Discreto a fondo pagina */}
+      {/* Logo MATCHBOX centralmente sotto il modale */}
+      <div className="mt-8 text-center">
+        <img 
+          src="/matchtext.png" 
+          alt="MATCHBOX"
+          className="w-32 h-auto mx-auto opacity-80"
+        />
+      </div>
+      
+      {/* Admin Button - Discreto con icona scudetto azzurro */}
       <div className="fixed bottom-4 left-4">
         <Button
           onClick={() => window.location.href = '/admin'}
           variant="ghost"
           size="sm"
-          className="text-xs text-gray-400 hover:text-gray-600 opacity-50 hover:opacity-100 transition-opacity"
+          className="text-brand-azzurro hover:text-brand-azzurro/80 opacity-60 hover:opacity-100 transition-opacity"
         >
-          Admin
+          <Shield className="w-4 h-4" />
         </Button>
       </div>
     </div>
