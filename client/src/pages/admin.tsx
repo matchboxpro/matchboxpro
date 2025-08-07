@@ -18,7 +18,7 @@ export default function Admin() {
     year: new Date().getFullYear(),
     stickers: "",
   });
-  const [activeSection, setActiveSection] = useState<"dashboard" | "albums" | "settings">("dashboard");
+  const [activeSection, setActiveSection] = useState<"dashboard" | "albums" | "reports" | "settings">("dashboard");
   const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
   const [showStickerModal, setShowStickerModal] = useState(false);
   const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
@@ -296,6 +296,19 @@ export default function Admin() {
               </li>
               <li>
                 <button 
+                  onClick={() => setActiveSection("reports")}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+                    activeSection === "reports" 
+                      ? "text-white bg-[#f8b400]/20 border border-[#f8b400]/30" 
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <AlertTriangle className={`w-4 h-4 ${activeSection === "reports" ? "text-[#f8b400]" : "group-hover:text-[#f8b400]"}`} />
+                  <span className={activeSection === "reports" ? "font-medium" : ""}>Segnalazioni</span>
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => setActiveSection("settings")}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
                     activeSection === "settings" 
@@ -329,11 +342,13 @@ export default function Admin() {
               <h1 className="text-3xl font-bold text-[#052b3e]">
                 {activeSection === "dashboard" && "Dashboard Amministratore"}
                 {activeSection === "albums" && "Gestione Album"}
+                {activeSection === "reports" && "Segnalazioni"}
                 {activeSection === "settings" && "Impostazioni"}
               </h1>
               <p className="text-[#05637b] text-lg">
                 {activeSection === "dashboard" && "Gestisci album e monitora l'attività"}
                 {activeSection === "albums" && "Crea e gestisci album e figurine"}
+                {activeSection === "reports" && "Gestisci segnalazioni degli utenti"}
                 {activeSection === "settings" && "Configura impostazioni sistema"}
               </p>
             </div>
@@ -531,10 +546,8 @@ export default function Admin() {
             </div>
           )}
 
-
-
-          {/* Reports */}
-          {activeSection === "dashboard" && (
+          {/* Reports Section */}
+          {activeSection === "reports" && (
           <Card className="bg-[#05637b] border-0 shadow-lg">
             <CardHeader className="border-b border-white/10">
               <CardTitle className="text-white text-xl flex items-center gap-2">
