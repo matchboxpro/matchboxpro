@@ -12,7 +12,7 @@ import { ChevronRight, Check, X, Copy } from "lucide-react";
 export default function Album() {
   const [location, setLocation] = useLocation();
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
-  const [filter, setFilter] = useState<"all" | "missing" | "double">("all");
+  const [filter, setFilter] = useState<"all" | "mine" | "missing" | "double">("all");
   const [expandedSticker, setExpandedSticker] = useState<any | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -236,6 +236,7 @@ export default function Album() {
 
   const filteredStickers = stickers.filter((sticker: any) => {
     const status = getUserStickerStatus(sticker.id);
+    if (filter === "mine") return status === "yes";
     if (filter === "missing") return !status || status === "no";
     if (filter === "double") return status === "double";
     return true;
@@ -275,6 +276,17 @@ export default function Album() {
             onClick={() => setFilter("all")}
           >
             Tutte
+          </Button>
+          <Button
+            variant="ghost"
+            className={`flex-1 py-3 px-4 rounded-lg font-medium ${
+              filter === "mine" 
+                ? "bg-[#f8b400] text-[#052b3e]" 
+                : "text-white hover:bg-white/10"
+            }`}
+            onClick={() => setFilter("mine")}
+          >
+            Mie
           </Button>
           <Button
             variant="ghost"
